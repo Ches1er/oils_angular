@@ -1,0 +1,5 @@
+<div *ngFor='let item of options'>
+  <div *ngIf="!item.fade">
+    <input type='checkbox' [(ngModel)]='item.checked' (change)='onToggle()'>{{item.label}}
+  </div>
+</div>

@@ -1,0 +1,35 @@
+.main_content{
+  display: inline-flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  .filters {
+    margin-right: 10px;
+    width: 15%;
+    .approval{
+      flex-flow: column nowrap;
+      .approval_data{
+        display: inline-flex;
+        flex-flow: row nowrap;
+        .approval_name {
+          color: red;
+        }
+        .approval_fold {
+          margin-left: 10px;
+          color: blue;
+        }
+      }
+    }
+  }
+  .products{
+    width: 80%;
+    .products_list{
+      width: 100%;
+      display: inline-flex;
+      justify-content: flex-start;
+      flex-flow: row nowrap;
+      .product {
+        margin: 5px;
+      }
+    }
+  }
+}

@@ -1,0 +1,104 @@
+<div class="main_content">
+  <div class="filters">
+    <div>Производители</div>
+    <app-checkbox-component [options]='brandsOptions' (toggle)='onBrandsChange($event)'></app-checkbox-component>
+    <div>Объем, л.</div>
+    <app-checkbox-component [options]="volOptions" (toggle)="onVolumeChange($event)"></app-checkbox-component>
+    <div>Вязкость</div>
+    <app-checkbox-component [options]="viscOptions" (toggle)="onViscosityChange($event)"></app-checkbox-component>
+    <div>Классификация ACEA</div>
+    <app-checkbox-component [options]='aceaOptions' (toggle)='onAceaChange($event)'></app-checkbox-component>
+    <div>Классификация API</div>
+    <app-checkbox-component [options]='apiOptions' (toggle)='onApiChange($event)'></app-checkbox-component>
+    <div>База</div>
+    <app-checkbox-component [options]='baseOptions' (toggle)='onBaseChange($event)'></app-checkbox-component>
+    <span (click)="hideAll=!hideAll">Допуски {{hideAll?'+':'-'}}</span>
+    <div [hidden]="hideAll">
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">Mercedes-Benz</div>
+          <div class="approval_fold" (click)="hideMb=!hideMb">{{hideMb?'+':'-'}}</div>
+        </div>
+        <app-checkbox-component
+          [hidden]="hideMb"
+          [options]='mbOptions'
+          (toggle)='onApprovalChange($event, "mbApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">Vw</div>
+          <div class="approval_fold" (click)="hideVw=!hideVw">{{hideVw?'+':'-'}}</div>
+        </div>
+            <app-checkbox-component
+              [hidden]="hideVw"
+              [options]='vwOptions'
+              (toggle)='onApprovalChange($event, "vwApprovals")'>
+            </app-checkbox-component>
+        </div>
+
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">Ford</div>
+          <div class="approval_fold" (click)="hideFord=!hideFord">{{hideFord?'+':'-'}}</div>
+        </div>
+        <app-checkbox-component
+          [hidden]="hideFord"
+          [options]='fordOptions'
+          (toggle)='onApprovalChange($event, "fordApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">Fiat</div>
+          <div class="approval_fold" (click)="hideFiat=!hideFiat">{{hideFiat?'+':'-'}}</div>
+        </div>
+        <app-checkbox-component
+          [hidden]="hideFiat"
+          [options]='fiatOptions'
+          (toggle)='onApprovalChange($event, "fiatApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">BMW</div>
+          <div class="approval_fold" (click)="hideBmw=!hideBmw">{{hideBmw?'+':'-'}}</div>
+        </div>
+        <app-checkbox-component
+          [hidden]="hideBmw"
+          [options]='bmwOptions'
+          (toggle)='onApprovalChange($event, "bmwApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">Renault</div>
+          <div class="approval_fold" (click)="hideRen=!hideRen">{{hideRen?'+':'-'}}</div>
+        </div>
+        <app-checkbox-component
+          [hidden]="hideRen"
+          [options]='renOptions'
+          (toggle)='onApprovalChange($event, "renApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+    </div>
+  </div>
+  <div class="products">
+    <div *ngIf="!nonEmptyProductList">Товаров нет</div>
+    <div class="products_list" *ngIf="nonEmptyProductList">
+        <div class="product" *ngFor="let product of products; let i = index">
+          <div *ngIf="product.show">
+            <div>{{product.name}}</div>
+            <img src="{{product.img}}" alt="">
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
