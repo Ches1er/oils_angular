@@ -475,59 +475,59 @@ export class OilsComponent implements OnInit {
     }
   }
 
-  // Hide-Show filter options
+          // Hide-Show filter options
 
   // Api
 
   private apiCheckboxFade(apiArr: Array<number>, ifAllUnfaded: boolean): void {
-    if (ifAllUnfaded) {
-      this.apiOptions.map(e => e.fade = false);
-    } else {
-      const unique = this.uniqueElementsInArray(apiArr);
-      this.apiOptions.map(e => {
-        e.fade = !unique.includes(e.value);
-      });
-    }
+    const unique = this.uniqueElementsInArray(apiArr);
+    this.apiOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
   }
 
   // Acea
 
   private aceaCheckboxFade(aceaArr: Array<number>, ifAllUnfaded: boolean): void {
-    if (ifAllUnfaded) {
-      this.aceaOptions.map(e => e.fade = false);
-    } else {
-      const unique = this.uniqueElementsInArray(aceaArr);
-      this.aceaOptions.map(e => {
-        e.fade = !unique.includes(e.value);
-      });
-    }
+    const unique = this.uniqueElementsInArray(aceaArr);
+    this.aceaOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
   }
 
   // Base
-
   private baseCheckboxFade(baseArr: Array<number>, ifAllUnfaded: boolean): void {
-    console.log(this.baseIdsArray);
     const unique = this.uniqueElementsInArray(baseArr);
     this.baseOptions.map(e => {
-      if (!unique.includes(e.value)) {
-        e.fade = true;
-      }
+      e.fade = !unique.includes(e.value);
     });
   }
 
   // Brand
 
   private brandCheckboxFade(brandArr: Array<number>, ifAllUnfaded: boolean): void {
-    if (ifAllUnfaded) {
-      this.brandsOptions.map(e => e.fade = false);
-    } else {
-      const unique = this.uniqueElementsInArray(brandArr);
-      this.brandsOptions.map(e => {
-        if (!unique.includes(e.value)) {
-          e.fade = true;
-        }
-      });
-    }
+    const unique = this.uniqueElementsInArray(brandArr);
+    this.brandsOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
+  }
+
+  // Volume
+
+  private volumeCheckboxFade(volumeArr, ifAllUnfaded): void {
+    const unique = this.uniqueElementsInArray(volumeArr);
+    this.volOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
+  }
+
+  // Viscosity
+
+  private viscosityCheckboxFade(viscArr, ifAllUnfaded): void {
+    const unique = this.uniqueElementsInArray(viscArr);
+    this.viscOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
   }
 
   // MBApprovals
@@ -648,11 +648,15 @@ export class OilsComponent implements OnInit {
         this.apiIdsArray = this.apiIdsArray.concat(p.api);
         this.aceaIdsArray = this.aceaIdsArray.concat(p.acea);
         this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
+        this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
+        this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
         this.approvalsIdsConcat(p, 'none');
       });
       this.commonCheckboxFade(['base',
         'api',
         'acea',
+        'volume',
+        'viscosity',
         'mbApprovals',
         'bmwApprovals',
         'fiatApprovals',
@@ -668,20 +672,23 @@ export class OilsComponent implements OnInit {
     this.requestItem.acea = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
-
     this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
       this.nonEmptyProductList = true;
       this.products = resp;
       this.products.forEach(p => {
         this.convertStrPropertiesToArray(p);
         this.apiIdsArray = this.apiIdsArray.concat(p.api);
-        this.brandIdsArray = this.brandIdsArray.concat(p.acea);
+        this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
         this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
+        this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
+        this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
         this.approvalsIdsConcat(p, 'none');
       });
       this.commonCheckboxFade(['base',
         'api',
         'brand',
+        'volume',
+        'viscosity',
         'mbApprovals',
         'bmwApprovals',
         'fiatApprovals',
@@ -705,11 +712,15 @@ export class OilsComponent implements OnInit {
         this.aceaIdsArray = this.aceaIdsArray.concat(p.api);
         this.brandIdsArray = this.brandIdsArray.concat(p.acea);
         this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
+        this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
+        this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
         this.approvalsIdsConcat(p, 'none');
       });
       this.commonCheckboxFade(['base',
         'acea',
         'brand',
+        'volume',
+        'viscosity',
         'mbApprovals',
         'bmwApprovals',
         'fiatApprovals',
@@ -733,12 +744,14 @@ export class OilsComponent implements OnInit {
         this.apiIdsArray = this.apiIdsArray.concat(p.api);
         this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
         this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
-        this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idVolume);
+        this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
         this.approvalsIdsConcat(p, 'none');
       });
       this.commonCheckboxFade(['base',
         'acea',
+        'api',
         'brand',
+        'viscosity',
         'mbApprovals',
         'bmwApprovals',
         'fiatApprovals',
@@ -800,11 +813,13 @@ export class OilsComponent implements OnInit {
           this.aceaIdsArray = this.aceaIdsArray.concat(p.acea);
           this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
           this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
+          this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
+          this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
           this.approvalsIdsConcat(p, definer);
           this.nonEmptyProductList = true;
         }
       });
-      this.commonCheckboxFade(['api', 'acea', 'brand', 'base'].concat(appArrayWithoutDefiner), false);
+      this.commonCheckboxFade(['api', 'acea', 'brand', 'base', 'volume', 'viscosity'].concat(appArrayWithoutDefiner), false);
     }
   }
 
@@ -818,12 +833,4 @@ export class OilsComponent implements OnInit {
       }
     });
   }
-
-  private updateOilsWithProperties(requestItem: RequestItem) {
-    this.productsService.oilsWProperties(requestItem).subscribe(resp => {
-      this.products = resp;
-    });
-  }
-
-
 }
