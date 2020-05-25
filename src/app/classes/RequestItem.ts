@@ -20,12 +20,12 @@ export class RequestItem {
               private pAcea: Array<any>,
               private pVolume,
               private pViscosity,
-              private pMb: Array<any>,
-              private pBmw: Array<any>,
-              private pFiat: Array<any>,
-              private pFord: Array<any>,
-              private pRen: Array<any>,
-              private pVw: Array<any>) {
+              private pMbApprovals: Array<any>,
+              private pBmwApprovals: Array<any>,
+              private pFiatApprovals: Array<any>,
+              private pFordApprovals: Array<any>,
+              private pRenApprovals: Array<any>,
+              private pVwApprovals: Array<any>) {
   }
 
   get brand(): Array<any> {
@@ -60,51 +60,51 @@ export class RequestItem {
     this.pAcea = value;
   }
 
-  get mb(): Array<any> {
-    return this.pMb;
+  get mbApprovals(): Array<any> {
+    return this.pMbApprovals;
   }
 
-  set mb(value: Array<any>) {
-    this.pMb = value;
+  set mbApprovals(value: Array<any>) {
+    this.pMbApprovals = value;
   }
 
-  get bmw(): Array<any> {
-    return this.pBmw;
+  get bmwApprovals(): Array<any> {
+    return this.pBmwApprovals;
   }
 
-  set bmw(value: Array<any>) {
-    this.pBmw = value;
+  set bmwApprovals(value: Array<any>) {
+    this.pBmwApprovals = value;
   }
 
-  get fiat(): Array<any> {
-    return this.pFiat;
+  get fiatApprovals(): Array<any> {
+    return this.pFiatApprovals;
   }
 
-  set fiat(value: Array<any>) {
-    this.pFiat = value;
+  set fiatApprovals(value: Array<any>) {
+    this.pFiatApprovals = value;
   }
 
-  get ford(): Array<any> {
-    return this.pFord;
+  get fordApprovals(): Array<any> {
+    return this.pFordApprovals;
   }
 
-  set ford(value: Array<any>) {
-    this.pFord = value;
+  set fordApprovals(value: Array<any>) {
+    this.pFordApprovals = value;
   }
 
-  get ren(): Array<any> {
-    return this.pRen;
+  get renApprovals(): Array<any> {
+    return this.pRenApprovals;
   }
 
-  set ren(value: Array<any>) {
-    this.pRen = value;
+  set renApprovals(value: Array<any>) {
+    this.pRenApprovals = value;
   }
 
-  get vw(): Array<any> {
-    return this.pVw;
+  get vwApprovals(): Array<any> {
+    return this.pVwApprovals;
   }
 
-  set vw(value: Array<any>) {
-    this.pVw = value;
+  set vwApprovals(value: Array<any>) {
+    this.pVwApprovals = value;
   }
 }

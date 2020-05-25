@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CheckboxItem} from "../../../classes/CheckboxItem";
+import {CheckboxItem} from '../../../classes/CheckboxItem';
 
 @Component({
   selector: 'app-checkbox-component',

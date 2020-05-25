@@ -2,27 +2,27 @@ export class urlConfig {
   private base = 'http://oils/api/';
   CORE = this.base;
 
-    //BRANDS
+  // BRANDS
   private brandsBase = this.CORE + 'brands/';
   GETBRANDS = this.brandsBase + 'all';
   GETBRANDSBYTYPE = this.brandsBase + 'bytype/';
 
-    //ACEA
+  // ACEA
 
   private aceaBase = this.CORE + 'acea/';
   GETACEA = this.aceaBase + 'all';
 
-    //API
+  // API
 
   private apiBase = this.CORE + 'api/';
   GETAPI = this.apiBase + 'all';
 
-   //BASE
+  // BASE
 
   private baseBase = this.CORE + 'base/';
   GETBASE = this.baseBase + 'all';
 
-    // VISCOSITY
+  // VISCOSITY
 
   private viscosityBase = this.CORE + 'viscosity/';
   GETVISCOSITY = this.viscosityBase + 'all';
@@ -32,44 +32,50 @@ export class urlConfig {
   private volumeBase = this.CORE + 'volume/';
   GETVOLUME = this.volumeBase + 'all';
 
-          //APROVALS
+  // APROVALS
 
   private approvalsBase = this.CORE + 'approvals/';
 
-  //MB
+  // MB
 
   private mbApprovalsBase = this.approvalsBase + 'mb/';
   GETMBAPPROVALS = this.mbApprovalsBase + 'all';
 
-  //BMW
+  // BMW
 
   private bmwApprovalsBase = this.approvalsBase + 'bmw/';
   GETBMWAPPROVALS = this.bmwApprovalsBase + 'all';
 
-  //FORD
+  // FORD
 
   private fordApprovalsBase = this.approvalsBase + 'ford/';
   GETFORDAPPROVALS = this.fordApprovalsBase + 'all';
 
-  //FIAT
+  // FIAT
 
   private fiatApprovalsBase = this.approvalsBase + 'fiat/';
   GETFIATAPPROVALS = this.fiatApprovalsBase + 'all';
 
-  //RENAULT
+  // RENAULT
 
   private renApprovalsBase = this.approvalsBase + 'ren/';
   GETRENAPPROVALS = this.renApprovalsBase + 'all';
 
-  //VW
+  // VW
 
   private vwApprovalsBase = this.approvalsBase + 'vw/';
   GETVWAPPROVALS = this.vwApprovalsBase + 'all';
 
-         //GOODS
+  // GOODS
 
   private goodsBase = this.CORE + 'goods/';
-  //OILS
+  // OILS
   GETOILS = this.goodsBase + 'oils';
   GETOILSWPROPERTIES = this.goodsBase + 'oilswprop';
+
+  // IMAGES
+  private imagesBase = this.CORE + 'images/';
+  GETIMAGES = this.imagesBase + 'all';
+  GETIMAGE = this.imagesBase + 'getimage/';
+  UPLOAD_IMAGE = this.imagesBase + 'upload';
 }

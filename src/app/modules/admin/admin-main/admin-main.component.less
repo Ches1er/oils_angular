@@ -1,0 +1,25 @@
+
+.admin {
+  display: inline-flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  .admin_content {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    .nav{
+      width: 20%;
+      // border: 1px solid @main_content_border;
+      box-sizing: border-box;
+      padding: 5px;
+    }
+    .content{
+      margin-left: 5px;
+      flex-grow: 1;
+      // border: 1px solid @main_content_border;
+      box-sizing: border-box;
+      padding: 5px;
+    }
+  }
+}

@@ -465,12 +465,12 @@ export class OilsComponent implements OnInit {
     });
   }
 
-  private commonCheckboxFade(definers: Array<string>, ifAllUnfaded: boolean) {
+  private commonCheckboxFade(definers: Array<string>) {
     for (let i = 0; i < definers.length; i++) {
       const methodName = definers[i] + 'CheckboxFade';
       const arrName = definers[i] + 'IdsArray';
       if (this[methodName]) {
-        this[methodName](this[arrName], ifAllUnfaded);
+        this[methodName](this[arrName]);
       }
     }
   }
@@ -479,7 +479,7 @@ export class OilsComponent implements OnInit {
 
   // Api
 
-  private apiCheckboxFade(apiArr: Array<number>, ifAllUnfaded: boolean): void {
+  private apiCheckboxFade(apiArr: Array<number>): void {
     const unique = this.uniqueElementsInArray(apiArr);
     this.apiOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -488,7 +488,7 @@ export class OilsComponent implements OnInit {
 
   // Acea
 
-  private aceaCheckboxFade(aceaArr: Array<number>, ifAllUnfaded: boolean): void {
+  private aceaCheckboxFade(aceaArr: Array<number>): void {
     const unique = this.uniqueElementsInArray(aceaArr);
     this.aceaOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -496,7 +496,7 @@ export class OilsComponent implements OnInit {
   }
 
   // Base
-  private baseCheckboxFade(baseArr: Array<number>, ifAllUnfaded: boolean): void {
+  private baseCheckboxFade(baseArr: Array<number>): void {
     const unique = this.uniqueElementsInArray(baseArr);
     this.baseOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -505,7 +505,7 @@ export class OilsComponent implements OnInit {
 
   // Brand
 
-  private brandCheckboxFade(brandArr: Array<number>, ifAllUnfaded: boolean): void {
+  private brandCheckboxFade(brandArr: Array<number>): void {
     const unique = this.uniqueElementsInArray(brandArr);
     this.brandsOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -514,7 +514,7 @@ export class OilsComponent implements OnInit {
 
   // Volume
 
-  private volumeCheckboxFade(volumeArr, ifAllUnfaded): void {
+  private volumeCheckboxFade(volumeArr): void {
     const unique = this.uniqueElementsInArray(volumeArr);
     this.volOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -523,7 +523,7 @@ export class OilsComponent implements OnInit {
 
   // Viscosity
 
-  private viscosityCheckboxFade(viscArr, ifAllUnfaded): void {
+  private viscosityCheckboxFade(viscArr): void {
     const unique = this.uniqueElementsInArray(viscArr);
     this.viscOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -532,92 +532,56 @@ export class OilsComponent implements OnInit {
 
   // MBApprovals
 
-  private mbApprovalsCheckboxFade(mbArray: Array<number>, ifAllUnfaded: boolean): void {
-    if (ifAllUnfaded) {
-      this.mbOptions.map(e => e.fade = false);
-    } else {
-      const unique = this.uniqueElementsInArray(mbArray);
-      this.mbOptions.map(e => {
-        if (!unique.includes(e.value)) {
-          e.fade = true;
-        }
-      });
-    }
+  private mbApprovalsCheckboxFade(mbArray: Array<number>): void {
+    const unique = this.uniqueElementsInArray(mbArray);
+    this.mbOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
   }
 
   // BmwApprovals
 
-  private bmwApprovalsCheckboxFade(bmwArray: Array<number>, ifAllUnfaded: boolean): void {
-    if (ifAllUnfaded) {
-      this.bmwOptions.map(e => e.fade = false);
-    } else {
-      const unique = this.uniqueElementsInArray(bmwArray);
-      this.bmwOptions.map(e => {
-        if (!unique.includes(e.value)) {
-          e.fade = true;
-        }
-      });
-    }
+  private bmwApprovalsCheckboxFade(bmwArray: Array<number>): void {
+    const unique = this.uniqueElementsInArray(bmwArray);
+    this.bmwOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
   }
 
   // FiatApprovals
 
-  private fiatApprovalsCheckboxFade(fiatArray: Array<number>, ifAllUnfaded: boolean): void {
-    if (ifAllUnfaded) {
-      this.fiatOptions.map(e => e.fade = false);
-    } else {
-      const unique = this.uniqueElementsInArray(fiatArray);
-      this.fiatOptions.map(e => {
-        if (!unique.includes(e.value)) {
-          e.fade = true;
-        }
-      });
-    }
+  private fiatApprovalsCheckboxFade(fiatArray: Array<number>): void {
+    const unique = this.uniqueElementsInArray(fiatArray);
+    this.fiatOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
   }
 
   // FordApprovals
 
-  private fordApprovalsCheckboxFade(fordArray: Array<number>, ifAllUnfaded: boolean): void {
-    if (ifAllUnfaded) {
-      this.fordOptions.map(e => e.fade = false);
-    } else {
-      const unique = this.uniqueElementsInArray(fordArray);
-      this.fordOptions.map(e => {
-        if (!unique.includes(e.value)) {
-          e.fade = true;
-        }
-      });
-    }
+  private fordApprovalsCheckboxFade(fordArray: Array<number>): void {
+    const unique = this.uniqueElementsInArray(fordArray);
+    this.fordOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
   }
 
   // RenaultApprovals
 
-  private renApprovalsCheckboxFade(renArray: Array<number>, ifAllUnfaded: boolean): void {
-    if (ifAllUnfaded) {
-      this.renOptions.map(e => e.fade = false);
-    } else {
-      const unique = this.uniqueElementsInArray(renArray);
-      this.renOptions.map(e => {
-        if (!unique.includes(e.value)) {
-          e.fade = true;
-        }
-      });
-    }
+  private renApprovalsCheckboxFade(renArray: Array<number>): void {
+    const unique = this.uniqueElementsInArray(renArray);
+    this.renOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
   }
 
   // VwApprovals
 
-  private vwApprovalsCheckboxFade(vwArray: Array<number>, ifAllUnfaded: boolean): void {
-    if (ifAllUnfaded) {
-      this.vwOptions.map(e => e.fade = false);
-    } else {
-      const unique = this.uniqueElementsInArray(vwArray);
-      this.vwOptions.map(e => {
-        if (!unique.includes(e.value)) {
-          e.fade = true;
-        }
-      });
-    }
+  private vwApprovalsCheckboxFade(vwArray: Array<number>): void {
+    const unique = this.uniqueElementsInArray(vwArray);
+    this.vwOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
   }
 
   // Finding unique elements in array
@@ -662,7 +626,7 @@ export class OilsComponent implements OnInit {
         'fiatApprovals',
         'fordApprovals',
         'renApprovals',
-        'vwApprovals'], false);
+        'vwApprovals']);
     });
 
   }
@@ -694,13 +658,12 @@ export class OilsComponent implements OnInit {
         'fiatApprovals',
         'fordApprovals',
         'renApprovals',
-        'vwApprovals'], false);
+        'vwApprovals']);
     });
   }
 
   // Api
   onApiChange(value: Array<number>) {
-    // this.requestItem.api = [];
     this.requestItem.api = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
@@ -726,7 +689,7 @@ export class OilsComponent implements OnInit {
         'fiatApprovals',
         'fordApprovals',
         'renApprovals',
-        'vwApprovals'], false);
+        'vwApprovals']);
     });
   }
 
@@ -757,70 +720,96 @@ export class OilsComponent implements OnInit {
         'fiatApprovals',
         'fordApprovals',
         'renApprovals',
-        'vwApprovals'], false);
+        'vwApprovals']);
     });
   }
 
   // Viscosity
   onViscosityChange(value) {
-    // todo
+    this.requestItem.viscosity = value;
+    this.nullIdsArrays();
+    this.nonEmptyProductList = false;
+    this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
+      this.nonEmptyProductList = true;
+      this.products = resp;
+      this.products.forEach(p => {
+        this.convertStrPropertiesToArray(p);
+        this.aceaIdsArray = this.aceaIdsArray.concat(p.acea);
+        this.apiIdsArray = this.apiIdsArray.concat(p.api);
+        this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
+        this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
+        this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
+        this.approvalsIdsConcat(p, 'none');
+      });
+      this.commonCheckboxFade(['base',
+        'acea',
+        'api',
+        'brand',
+        'volume',
+        'mbApprovals',
+        'bmwApprovals',
+        'fiatApprovals',
+        'fordApprovals',
+        'renApprovals',
+        'vwApprovals']);
+    });
   }
 
   // Base
   onBaseChange(value: Array<number>) {
+    this.requestItem.base = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
-    if (value.length === 0) {
-      this.commonCheckboxFade(['api', 'acea', 'brand', 'mbApprovals', 'bmwApprovals',
-        'fiatApprovals',
-        'fordApprovals',
-        'renApprovals',
-        'vwApprovals'], true);
-      this.updateOils();
-    } else {
+    this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
+      this.nonEmptyProductList = true;
+      this.products = resp;
       this.products.forEach(p => {
-        p.show = value.includes(p.idBase);
-        if (p.show) {
-          this.apiIdsArray = this.apiIdsArray.concat(p.api);
-          this.aceaIdsArray = this.aceaIdsArray.concat(p.acea);
-          this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
-          this.approvalsIdsConcat(p, 'none');
-          this.nonEmptyProductList = true;
-        }
+        this.convertStrPropertiesToArray(p);
+        this.aceaIdsArray = this.aceaIdsArray.concat(p.api);
+        this.brandIdsArray = this.brandIdsArray.concat(p.acea);
+        this.apiIdsArray = this.apiIdsArray.concat(p.api);
+        this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
+        this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
+        this.approvalsIdsConcat(p, 'none');
       });
-      this.commonCheckboxFade(['api', 'acea', 'brand', 'mbApprovals', 'bmwApprovals',
+      this.commonCheckboxFade(['api',
+        'acea',
+        'brand',
+        'volume',
+        'viscosity',
+        'mbApprovals',
+        'bmwApprovals',
         'fiatApprovals',
         'fordApprovals',
         'renApprovals',
-        'vwApprovals'], false);
-    }
+        'vwApprovals']);
+    });
   }
 
   // Approvals Change
-  onApprovalChange(value: Array<number>, definer: string) {
+  onApprovalChange(value, definer: string) {
+    this.requestItem[definer] = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
     const fullAppArray = ['mbApprovals', 'bmwApprovals', 'fiatApprovals', 'fordApprovals', 'renApprovals', 'vwApprovals'];
     const appArrayWithoutDefiner = fullAppArray.filter(e => e !== definer);
-    if (value.length === 0) {
-      this.commonCheckboxFade(['api', 'acea', 'brand', 'base'].concat(appArrayWithoutDefiner), true);
-      this.updateOils();
-    } else {
+
+    this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
+      this.nonEmptyProductList = true;
+      this.products = resp;
       this.products.forEach(p => {
-        p.show = value.includes(p.idBase);
-        if (p.show) {
-          this.apiIdsArray = this.apiIdsArray.concat(p.api);
-          this.aceaIdsArray = this.aceaIdsArray.concat(p.acea);
-          this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
-          this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
-          this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
-          this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
-          this.approvalsIdsConcat(p, definer);
-          this.nonEmptyProductList = true;
-        }
+        this.convertStrPropertiesToArray(p);
+        this.apiIdsArray = this.apiIdsArray.concat(p.api);
+        this.aceaIdsArray = this.aceaIdsArray.concat(p.acea);
+        this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
+        this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
+        this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
+        this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
+        this.approvalsIdsConcat(p, definer);
+        this.nonEmptyProductList = true;
       });
-      this.commonCheckboxFade(['api', 'acea', 'brand', 'base', 'volume', 'viscosity'].concat(appArrayWithoutDefiner), false);
-    }
+      this.commonCheckboxFade(['api', 'acea', 'brand', 'base', 'volume', 'viscosity'].concat(appArrayWithoutDefiner));
+    });
   }
 
   private approvalsIdsConcat(p: Oils, exception: string): void {

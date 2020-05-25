@@ -1,13 +1,13 @@
 export class Brand {
 
-  constructor(private pId:number, private pName:string, private pIdimage:number, private pImg: string) {
+  constructor(private pId, private pName, private pIdimage, private pImg: string) {
   }
 
-  get id(): number {
+  get id() {
     return this.pId;
   }
 
-  set id(value: number) {
+  set id(value) {
     this.pId = value;
   }
 
@@ -19,19 +19,19 @@ export class Brand {
     this.pName = value;
   }
 
-  get id_image(): number {
+  get id_image() {
     return this.pIdimage;
   }
 
-  set id_image(value: number) {
+  set id_image(value) {
     this.pIdimage = value;
   }
 
-  get img(): string {
+  get img() {
     return this.pImg;
   }
 
-  set img(value: string) {
+  set img(value) {
     this.pImg = value;
   }
 

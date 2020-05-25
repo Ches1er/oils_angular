@@ -27,16 +27,15 @@ export class ProductsService {
     params.append('base', requestItem.base.join(','));
     params.append('api', requestItem.api.join(','));
     params.append('acea', requestItem.acea.join(','));
-    params.append('mb', requestItem.mb.join(','));
-    params.append('bmw', requestItem.bmw.join(','));
-    params.append('fiat', requestItem.fiat.join(','));
-    params.append('ford', requestItem.ford.join(','));
-    params.append('ren', requestItem.ren.join(','));
-    params.append('vw', requestItem.vw.join(','));
+    params.append('mb', requestItem.mbApprovals.join(','));
+    params.append('bmw', requestItem.bmwApprovals.join(','));
+    params.append('fiat', requestItem.fiatApprovals.join(','));
+    params.append('ford', requestItem.fordApprovals.join(','));
+    params.append('ren', requestItem.renApprovals.join(','));
+    params.append('vw', requestItem.vwApprovals.join(','));
     return this.http.post(this.urlConfig.GETOILSWPROPERTIES, params)
       .pipe(map(resp => OilsResponse.fromJson(resp)))
       .pipe(map(or => {
-        const data: Array<Oils> = [];
         return or.data;
       }));
   }

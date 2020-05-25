@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
-import {ProductsModule} from "./modules/products/products.module";
+import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import {ProductsModule} from './modules/products/products.module';
+import {AdminModule} from './modules/admin/admin.module';
 
 const routes: Routes = [
   {path: '', redirectTo: 'main', pathMatch: 'full'},
@@ -13,6 +14,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule, ProductsModule]
+  exports: [RouterModule, ProductsModule, AdminModule]
 })
 export class AppRoutingModule { }
