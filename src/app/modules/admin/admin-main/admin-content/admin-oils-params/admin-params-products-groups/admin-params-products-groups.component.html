@@ -1,0 +1,39 @@
+<form class="admin_content_form" [formGroup] ='addChangeProductTypes' (ngSubmit)="onProductsTypesSubmit()">
+  <div class="admin_block_header_small">Форма добавления-изменения типов продукции</div>
+  <div class="form-group">
+    <select name="" id="product_types" formControlName = "id" (change)="fillInProductType($event.target.value)">
+      <option disabled selected value> -- Выберите тип -- </option>
+      <option *ngFor="let type of productsTypes" value="{{type.id}}">{{type.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <p class="admin_content_block_label">Название типа</p>
+    <input class="admin_content_input" type="text" id="name" formControlName = "name">
+    <div class="validation_error"
+         *ngIf="addChangeProductTypes.get('name').getError('required') &&
+                (addChangeProductTypes.get('name').dirty || addChangeProductTypes.get('name').touched)">
+      Введите пожалуйста название типа.
+    </div>
+  </div>
+
+  <div class="form-group" *ngIf="choosenImg">
+    <img class="choosenImg" src="{{choosenImg.path}}" alt="">
+  </div>
+
+  <div class="form-group">
+    <p class="admin_content_block_label">Выберите картинку для типа</p>
+    <p class="admin_content_block_label_small">*Если картинка не будет выбрана, то будет установлена картинка по-умолчанию</p>
+    <button class="admin-btn" (click)="imagesPickerShow($event)">Выберите картинку типа</button>
+  </div>
+
+  <div class="admin_content_button_block">
+    <div *ngIf="addChangeProductTypes.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить тип</button>
+    </div>
+    <div *ngIf="addChangeProductTypes.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
+    </div>
+    <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>
+  </div>
+</form>

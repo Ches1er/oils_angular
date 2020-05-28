@@ -1,6 +1,20 @@
 export class Brand {
+  get typesNames(): any {
+    return this.pTypesNames;
+  }
 
-  constructor(private pId, private pName, private pIdimage, private pImg: string) {
+  set typesNames(value: any) {
+    this.pTypesNames = value;
+  }
+  get types(): any {
+    return this.pTypes;
+  }
+
+  set types(value: any) {
+    this.pTypes = value;
+  }
+
+  constructor(private pId, private pName, private pIdimage, private pImg: string, private pTypes: any, private pTypesNames: any) {
   }
 
   get id() {
@@ -36,6 +50,6 @@ export class Brand {
   }
 
   public static fromJson(jsonObj: any): Brand {
-    return new Brand(jsonObj.id, jsonObj.name, jsonObj.id_image, jsonObj.img);
+    return new Brand(jsonObj.id, jsonObj.name, jsonObj.id_image, jsonObj.img, jsonObj.types, jsonObj.types_names);
   }
 }

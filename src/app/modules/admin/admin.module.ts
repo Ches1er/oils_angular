@@ -8,6 +8,10 @@ import { AdminOilsApprovalsComponent } from './admin-main/admin-content/admin-oi
 import {AdminOilsGoodsComponent} from './admin-main/admin-content/admin-oils-goods/admin-oils-goods.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ImagesPickerModule} from '../images-picker/images-picker.module';
+import { AdminParamsProductsGroupsComponent } from './admin-main/admin-content/admin-oils-params/admin-params-products-groups/admin-params-products-groups.component';
+import { AdminParamsBrandsComponent } from './admin-main/admin-content/admin-oils-params/admin-params-brands/admin-params-brands.component';
+import {ServerResponseModule} from '../server-response/server-response.module';
+import {SharedModule} from '../shared/shared.module';
 
 const routes: Routes = [
   {path: '', redirectTo: '', pathMatch: 'full'},
@@ -20,13 +24,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AdminMainComponent, AdminNavComponent, AdminOilsParamsComponent, AdminOilsApprovalsComponent, AdminOilsGoodsComponent],
+  declarations: [AdminMainComponent, AdminNavComponent, AdminOilsParamsComponent, AdminOilsApprovalsComponent, AdminOilsGoodsComponent, AdminParamsProductsGroupsComponent, AdminParamsBrandsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     FormsModule,
-    ImagesPickerModule
+    ImagesPickerModule,
+    ServerResponseModule,
+    SharedModule
   ]
 })
 export class AdminModule { }

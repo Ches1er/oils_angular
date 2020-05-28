@@ -2,10 +2,17 @@ export class urlConfig {
   private base = 'http://oils/api/';
   CORE = this.base;
 
+  // PRODUCTS_TYPES
+
+  private productsTypesBase = this.CORE + 'products_types/';
+  GETPRODUCTSTYPES = this.productsTypesBase + 'all';
+  ADDPRODUCTSTYPE = this.productsTypesBase + 'add';
+
   // BRANDS
   private brandsBase = this.CORE + 'brands/';
   GETBRANDS = this.brandsBase + 'all';
   GETBRANDSBYTYPE = this.brandsBase + 'bytype/';
+  ADDBRAND = this.brandsBase + 'add';
 
   // ACEA
 
@@ -76,6 +83,6 @@ export class urlConfig {
   // IMAGES
   private imagesBase = this.CORE + 'images/';
   GETIMAGES = this.imagesBase + 'all';
-  GETIMAGE = this.imagesBase + 'getimage/';
-  UPLOAD_IMAGE = this.imagesBase + 'upload';
+  GETIMAGE = this.imagesBase + 'image/';
+  UPLOAD_IMAGE = this.imagesBase + 'upload_image';
 }

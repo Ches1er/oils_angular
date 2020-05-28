@@ -1,3 +1,5 @@
+@import "../../../../common";
+
 .admin_nav{
   display: inline-flex;
   flex-flow: column;
@@ -7,12 +9,15 @@
     display: inline-block;
     margin-bottom: 5px;
     width: 100%;
+    border-bottom: 1px solid @main_content_border;
     a {
       font-size: 1.1em;
       display: block;
       text-decoration: none;
-      // color: @main_left_side_list;
-      // &:hover {color: @main_left_side_list_hover_color}
+      color: @main_nav_font_color;
+      text-indent: 0;
+      transition: all 2ms linear;
+      &:hover {color: @main_nav_font_color_hover; text-indent: 10px; transition: all 1ms ease}
     }
   }
 }

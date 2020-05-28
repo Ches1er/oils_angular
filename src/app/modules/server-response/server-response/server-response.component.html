@@ -1,0 +1,15 @@
+<div class="fade" *ngIf="visible">
+  <div class="server_response_window">
+    <div class="window-header">Вы сделали следующее действие: {{action}}</div>
+    <div class="window-main">
+        <div class="server_response">{{result}}</div>
+    </div>
+    <div class="window-footer">
+      <div class="small_message">* Данное окно закроется через 5 секунд, если этого не произошло, нажмите кнопку "Закрыть".</div>
+      <div class="images-picker-button-block">
+        <button class="images-picker-button" (click)="cancel()">Закрыть окно</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -9,6 +9,14 @@ export class AdminMessagesService {
 
   // Windows
 
+  get ShowServerResponseWindowMessage(): Subject<null> {
+    return this.pShowServerResponseWindowMessage;
+  }
+
+  get dataToServerResponse(): Subject<string> {
+    return this.pDataToServerResponse;
+  }
+
   get imagesPickerWindowShowMessage(): Subject<null> {
     return this.pImagesPickerWindowShow;
   }
@@ -25,8 +33,29 @@ export class AdminMessagesService {
     this.pImageHasChoosen.next(image);
   }
 
+  public ShowServerResponseWindow() {
+    this.pShowServerResponseWindowMessage.next();
+  }
+
+  public DataToServerResponseData(data: string) {
+    this.pDataToServerResponse.next(data);
+  }
+
+  // CreateUpdate
+
+  get typeUpdateCreateMessage(): Subject<null> {
+    return this.pTypeUpdateCreateMessage;
+  }
+
+  public typeUpdateCreate() {
+    this.pTypeUpdateCreateMessage.next();
+  }
+
   private pImagesPickerWindowShow: Subject<null> = new Subject<null>();
   private pImageHasChoosen: Subject<Image> = new Subject<Image>();
+  private pDataToServerResponse: Subject<string> = new Subject<string>();
+  private pShowServerResponseWindowMessage: Subject<null> = new Subject<null>();
+  private pTypeUpdateCreateMessage: Subject<null> = new Subject<null>()
 
   constructor() {
   }

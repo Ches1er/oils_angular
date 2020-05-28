@@ -1,0 +1,52 @@
+<form class="admin_content_form" [formGroup] = 'addChangeBrands' (ngSubmit)="onBrandsSubmit()">
+  <div class="admin_block_header_small">Форма добавления-изменения брендов</div>
+  <div class="form-group">
+    <select name="" id="brands" formControlName = "id" (change)="fillInBrand($event.target.value)">
+      <option disabled selected value> -- Выберите бренд -- </option>
+      <option *ngFor="let brand of brands" value="{{brand.id}}">{{brand.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <p class="admin_content_block_label">Название бренда</p>
+    <input class="admin_content_input" type="text" id="name" formControlName = "name">
+    <div class="validation_error"
+         *ngIf="addChangeBrands.get('name').getError('required') &&
+                (addChangeBrands.get('name').dirty || addChangeBrands.get('name').touched)">
+      Введите пожалуйста название бренда.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <p *ngIf="usedTypes" class="admin_content_block_label">Типы продукции к которым уже принадлежит бренд</p>
+    <div class="used_types" *ngIf="usedTypes">
+      <div *ngFor="let type of usedTypes">
+        <div class="used_type">{{type}}</div>
+      </div>
+    </div>
+    <p class="admin_content_block_label">Все типы продукции</p>
+    <app-checkbox-component [options]='typesOptions'
+                            (toggle)='onTypesChange($event)'>
+    </app-checkbox-component>
+  </div>
+
+  <div class="form-group" *ngIf="choosenImg">
+    <img class="choosenImg" src="{{choosenImg.path}}" alt="">
+  </div>
+
+  <div class="form-group">
+    <p class="admin_content_block_label">Выберите картинку для бренда</p>
+    <p class="admin_content_block_label_small">*Если картинка не будет выбрана, то будет установлена картинка по-умолчанию</p>
+    <button class="admin-btn" (click)="imagesPickerShow($event)">Выберите картинку бренда</button>
+  </div>
+
+  <div class="admin_content_button_block">
+    <div *ngIf="addChangeBrands.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить бренд</button>
+    </div>
+    <div *ngIf="addChangeBrands.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
+    </div>
+    <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>
+  </div>
+</form>
