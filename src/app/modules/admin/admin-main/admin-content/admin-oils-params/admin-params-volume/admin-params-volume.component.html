@@ -1,0 +1,29 @@
+<form class="admin_content_form" [formGroup] ='addChangeVolume' (ngSubmit)='onVolumesSubmit()'>
+  <div class="admin_block_header_small">Форма добавления-изменения объемов</div>
+  <div class="form-group">
+    <select name="" id="brands" formControlName = "id" (change)="fillInVolume($event.target.value)">
+      <option disabled selected value> -- Выберите объем -- </option>
+      <option *ngFor="let volume of volumes" value="{{volume.id}}">{{volume.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <p class="admin_content_block_label">Объем</p>
+    <input class="admin_content_input" type="text" id="name" formControlName = "name">
+    <div class="validation_error"
+         *ngIf="addChangeVolume.get('name').getError('required') &&
+                (addChangeVolume.get('name').dirty || addChangeVolume.get('name').touched)">
+      Введите пожалуйста объем.
+    </div>
+  </div>
+
+  <div class="admin_content_button_block">
+    <div *ngIf="addChangeVolume.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить объем</button>
+    </div>
+    <div *ngIf="addChangeVolume.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
+    </div>
+    <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>
+  </div>
+</form>

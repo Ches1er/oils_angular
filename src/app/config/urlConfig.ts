@@ -18,11 +18,13 @@ export class urlConfig {
 
   private aceaBase = this.CORE + 'acea/';
   GETACEA = this.aceaBase + 'all';
+  ADDACEA = this.aceaBase + 'add';
 
   // API
 
   private apiBase = this.CORE + 'api/';
   GETAPI = this.apiBase + 'all';
+  ADDAPI = this.apiBase + 'add';
 
   // BASE
 
@@ -33,15 +35,21 @@ export class urlConfig {
 
   private viscosityBase = this.CORE + 'viscosity/';
   GETVISCOSITY = this.viscosityBase + 'all';
+  ADDVISCOSITY = this.viscosityBase + 'add';
 
   // VOLUME
 
   private volumeBase = this.CORE + 'volume/';
   GETVOLUME = this.volumeBase + 'all';
+  ADDVOLUME = this.volumeBase + 'add';
 
   // APROVALS
 
   private approvalsBase = this.CORE + 'approvals/';
+
+  // Create-update
+
+  ADDAPPROVAL = this.approvalsBase + 'add';
 
   // MB
 

@@ -1,0 +1,29 @@
+<form class="admin_content_form" [formGroup]="addChangeViscosity" (ngSubmit)="onViscositySubmit()">
+  <div class="admin_block_header_small">Форма добавления-изменения вязкостей</div>
+  <div class="form-group">
+    <select name="" id="brands" formControlName = "id" (change)="fillInViscosity($event.target.value)">
+      <option disabled selected value> -- Выберите вязкость -- </option>
+      <option *ngFor="let visc of viscosity" value="{{visc.id}}">{{visc.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <p class="admin_content_block_label">Вязкость</p>
+    <input class="admin_content_input" type="text" id="name" formControlName = "name">
+    <div class="validation_error"
+         *ngIf="addChangeViscosity.get('name').getError('required') &&
+                (addChangeViscosity.get('name').dirty || addChangeViscosity.get('name').touched)">
+      Введите пожалуйста название вязкости.
+    </div>
+  </div>
+
+  <div class="admin_content_button_block">
+    <div *ngIf="addChangeViscosity.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить вязкость</button>
+    </div>
+    <div *ngIf="addChangeViscosity.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
+    </div>
+    <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>
+  </div>
+</form>

@@ -43,18 +43,9 @@ export class AdminParamsBrandsComponent implements OnInit {
     this.pWhatHaveToDo = value;
   }
 
-  get onSubmitResponse() {
-    return this.pOnSubmitResponse;
-  }
-
-  set onSubmitResponse(value) {
-    this.pOnSubmitResponse = value;
-  }
-
   private pBrands = [];
   private pChoosenImg: Image = null;
   private pWhatHaveToDo: string;
-  private pOnSubmitResponse: string;
   private blockDefiner = false;
   private pUsedTypes = null;
   private typesOptions = [];
@@ -157,7 +148,6 @@ export class AdminParamsBrandsComponent implements OnInit {
     });
     this.whatHaveToDo = 'add';
     this.choosenImg = null;
-    this.onSubmitResponse = null;
     this.usedTypes = null;
     this.typesOptions = [];
     this.updateProductTypes();
@@ -175,7 +165,6 @@ export class AdminParamsBrandsComponent implements OnInit {
         this.usedTypes = brand.typesNames.split(',');
         this.choosenImg = new Image(brand.id_image, 'name', brand.img);
         this.whatHaveToDo = 'update';
-        console.log(this.usedTypes);
       }
     });
   }

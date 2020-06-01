@@ -12,6 +12,10 @@ import { AdminParamsProductsGroupsComponent } from './admin-main/admin-content/a
 import { AdminParamsBrandsComponent } from './admin-main/admin-content/admin-oils-params/admin-params-brands/admin-params-brands.component';
 import {ServerResponseModule} from '../server-response/server-response.module';
 import {SharedModule} from '../shared/shared.module';
+import { AdminParamsVolumeComponent } from './admin-main/admin-content/admin-oils-params/admin-params-volume/admin-params-volume.component';
+import { AdminParamsViscComponent } from './admin-main/admin-content/admin-oils-params/admin-params-visc/admin-params-visc.component';
+import { AdminParamsAceaComponent } from './admin-main/admin-content/admin-oils-params/admin-params-acea/admin-params-acea.component';
+import { AdminParamsApiComponent } from './admin-main/admin-content/admin-oils-params/admin-params-api/admin-params-api.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '', pathMatch: 'full'},
@@ -24,7 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AdminMainComponent, AdminNavComponent, AdminOilsParamsComponent, AdminOilsApprovalsComponent, AdminOilsGoodsComponent, AdminParamsProductsGroupsComponent, AdminParamsBrandsComponent],
+  declarations: [AdminMainComponent, AdminNavComponent, AdminOilsParamsComponent, AdminOilsApprovalsComponent, AdminOilsGoodsComponent, AdminParamsProductsGroupsComponent, AdminParamsBrandsComponent, AdminParamsVolumeComponent, AdminParamsViscComponent, AdminParamsAceaComponent, AdminParamsApiComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

@@ -367,27 +367,27 @@ export class OilsComponent implements OnInit {
   }
 
   private updateApprovals() {
-    this.approvalsService.mbApprovals.subscribe(resp => {
+    this.approvalsService.mbApprovals('prod').subscribe(resp => {
       this.mbApprovals = resp;
       this.mbOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });
-    this.approvalsService.bmwApprovals.subscribe(resp => {
+    this.approvalsService.bmwApprovals('prod').subscribe(resp => {
       this.bmwApprovals = resp;
       this.bmwOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });
-    this.approvalsService.fiatApprovals.subscribe(resp => {
+    this.approvalsService.fiatApprovals('prod').subscribe(resp => {
       this.fiatApprovals = resp;
       this.fiatOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });
-    this.approvalsService.fordApprovals.subscribe(resp => {
+    this.approvalsService.fordApprovals('prod').subscribe(resp => {
       this.fordApprovals = resp;
       this.fordOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });
-    this.approvalsService.renaultApprovals.subscribe(resp => {
+    this.approvalsService.renaultApprovals('prod').subscribe(resp => {
       this.renApprovals = resp;
       this.renOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });
-    this.approvalsService.vwApprovals.subscribe(resp => {
+    this.approvalsService.vwApprovals('prod').subscribe(resp => {
       this.vwApprovals = resp;
       this.vwOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });
@@ -411,14 +411,14 @@ export class OilsComponent implements OnInit {
   }
 
   private updateAcea() {
-    this.aceaService.Acea.subscribe(resp => {
+    this.aceaService.Acea('prod').subscribe(resp => {
       this.acea = resp;
       this.aceaOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });
   }
 
   private updateApi() {
-    this.apiService.Api.subscribe(resp => {
+    this.apiService.Api('prod').subscribe(resp => {
       this.Api = resp;
       this.apiOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });
@@ -433,11 +433,11 @@ export class OilsComponent implements OnInit {
   }
 
   private updateMainProperties() {
-    this.mainPropertiesService.viscosity.subscribe(resp => {
+    this.mainPropertiesService.viscosity('prod').subscribe(resp => {
       this.viscosity = resp;
       this.viscOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });
-    this.mainPropertiesService.volume.subscribe(resp => {
+    this.mainPropertiesService.volume('prod').subscribe(resp => {
       this.volume = resp;
       this.volOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });

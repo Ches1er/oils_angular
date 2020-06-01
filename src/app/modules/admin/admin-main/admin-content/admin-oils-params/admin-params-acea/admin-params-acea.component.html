@@ -1,0 +1,29 @@
+<form class="admin_content_form" [formGroup]="addChangeAcea" (ngSubmit)="onAceaSubmit()">
+  <div class="admin_block_header_small">Форма добавления-изменения значений Acea</div>
+  <div class="form-group">
+    <select name="" id="brands" formControlName = "id" (change)="fillInAcea($event.target.value)">
+      <option disabled selected value> -- Выберите значение Acea -- </option>
+      <option *ngFor="let ac of acea" value="{{ac.id}}">{{ac.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <p class="admin_content_block_label">Значение Acea</p>
+    <input class="admin_content_input" type="text" id="name" formControlName = "name">
+    <div class="validation_error"
+         *ngIf="addChangeAcea.get('name').getError('required') &&
+                (addChangeAcea.get('name').dirty || addChangeAcea.get('name').touched)">
+      Введите пожалуйста значение Acea.
+    </div>
+  </div>
+
+  <div class="admin_content_button_block">
+    <div *ngIf="addChangeAcea.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить значение</button>
+    </div>
+    <div *ngIf="addChangeAcea.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
+    </div>
+    <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>
+  </div>
+</form>

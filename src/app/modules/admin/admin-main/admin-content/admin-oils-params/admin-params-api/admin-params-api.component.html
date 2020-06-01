@@ -1,0 +1,30 @@
+<form class="admin_content_form" [formGroup]='addChangeApi' (ngSubmit)="onApiSubmit()">
+  <div class="admin_block_header_small">Форма добавления-изменения значений Api</div>
+  <div class="form-group">
+    <select name="" id="brands" formControlName = "id" (change)="fillInApi($event.target.value)">
+      <option disabled selected value> -- Выберите значение Api -- </option>
+      <option *ngFor="let ac of api" value="{{ac.id}}">{{ac.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <p class="admin_content_block_label">Значение Api</p>
+    <input class="admin_content_input" type="text" id="name" formControlName = "name">
+    <div class="validation_error"
+         *ngIf="addChangeApi.get('name').getError('required') &&
+                (addChangeApi.get('name').dirty || addChangeApi.get('name').touched)">
+      Введите пожалуйста значение Api.
+    </div>
+  </div>
+
+  <div class="admin_content_button_block">
+    <div *ngIf="addChangeApi.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить значение</button>
+    </div>
+    <div *ngIf="addChangeApi.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
+    </div>
+    <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>
+  </div>
+</form>
+

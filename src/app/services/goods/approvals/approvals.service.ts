@@ -15,6 +15,7 @@ import {Ren} from "../../../dto/approvals/Renault/Ren";
 import {RenResponse} from "../../../dto/approvals/Renault/RenResponse";
 import {Vw} from "../../../dto/approvals/Vw/Vw";
 import {VwResponse} from "../../../dto/approvals/Vw/VwResponse";
+import {ServerResponse} from '../../../dto/ServerResponse/ServerResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -23,34 +24,45 @@ export class ApprovalsService {
   urlConfig: urlConfig = new urlConfig();
   constructor(@Inject(HttpClient) private http: HttpClient) { }
 
-  get mbApprovals(): Observable<Array<Mb>> {
-    return this.http.get(this.urlConfig.GETMBAPPROVALS)
+  mbApprovals(definer: string): Observable<Array<Mb>> {
+    return this.http.get(this.urlConfig.GETMBAPPROVALS + '/' + definer)
       .pipe(map(resp => MbResponse.fromJson(resp)))
       .pipe(map(ma => ma.data));
   }
-  get bmwApprovals(): Observable<Array<Bmw>> {
-    return this.http.get(this.urlConfig.GETBMWAPPROVALS)
+  bmwApprovals(definer: string): Observable<Array<Bmw>> {
+    return this.http.get(this.urlConfig.GETBMWAPPROVALS + '/' + definer)
       .pipe(map(resp => BmwResponse.fromJson(resp)))
       .pipe(map(ba => ba.data));
   }
-  get fiatApprovals(): Observable<Array<Fiat>> {
-    return this.http.get(this.urlConfig.GETFIATAPPROVALS)
+  fiatApprovals(definer: string): Observable<Array<Fiat>> {
+    return this.http.get(this.urlConfig.GETFIATAPPROVALS + '/' + definer)
       .pipe(map(resp => FiatResponse.fromJson(resp)))
       .pipe(map(fa => fa.data));
   }
-  get fordApprovals(): Observable<Array<Ford>> {
-    return this.http.get(this.urlConfig.GETFORDAPPROVALS)
+  fordApprovals(definer: string): Observable<Array<Ford>> {
+    return this.http.get(this.urlConfig.GETFORDAPPROVALS + '/' + definer)
       .pipe(map(resp => FordResponse.fromJson(resp)))
       .pipe(map(fa => fa.data));
   }
-  get renaultApprovals(): Observable<Array<Ren>> {
-    return this.http.get(this.urlConfig.GETRENAPPROVALS)
+  renaultApprovals(definer: string): Observable<Array<Ren>> {
+    return this.http.get(this.urlConfig.GETRENAPPROVALS + '/' + definer)
       .pipe(map(resp => RenResponse.fromJson(resp)))
       .pipe(map(ra => ra.data));
   }
-  get vwApprovals(): Observable<Array<Vw>> {
-    return this.http.get(this.urlConfig.GETVWAPPROVALS)
+  vwApprovals(definer: string): Observable<Array<Vw>> {
+    return this.http.get(this.urlConfig.GETVWAPPROVALS + '/' + definer)
       .pipe(map(resp => VwResponse.fromJson(resp)))
       .pipe(map(va => va.data));
+  }
+  addApproval(action: string, data): Observable<string> {
+    console.log(data);
+    const params = new FormData();
+    params.append('definer', data.definer);
+    params.append('action', action);
+    params.append('id', data.id);
+    params.append('name', data.name);
+    return this.http.post(this.urlConfig.ADDAPPROVAL, params)
+      .pipe(map(resp => ServerResponse.fromJson(resp)))
+      .pipe(map(sr => sr.response));
   }
 }
