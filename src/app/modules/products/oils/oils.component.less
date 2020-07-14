@@ -1,3 +1,5 @@
+@import "../../../common";
+:host {width: 100%}
 .main_content{
   display: inline-flex;
   flex-flow: row nowrap;
@@ -5,8 +7,23 @@
   .filters {
     margin-right: 10px;
     width: 15%;
+    .filter_unit{
+      display: block;
+      color: @filter_font_color;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      font-family: @nav_filters_font;
+    }
+    span {
+      cursor: pointer;
+    }
     .approval{
+
       flex-flow: column nowrap;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      margin-top: 5px;
       .approval_data{
         display: inline-flex;
         flex-flow: row nowrap;
@@ -14,6 +31,7 @@
           color: red;
         }
         .approval_fold {
+          cursor: pointer;
           margin-left: 10px;
           color: blue;
         }
@@ -22,6 +40,14 @@
   }
   .products{
     width: 80%;
+    .products_header{
+      font-size: 24px;
+      border-bottom: 1px solid @main_content_border;
+      color: @main_nav_font_color;
+      margin-bottom: 10px;
+      font-family: @headers_font;
+      font-weight: bold;
+    }
     .products_list{
       width: 100%;
       display: inline-flex;
@@ -29,6 +55,9 @@
       flex-flow: row nowrap;
       .product {
         margin: 5px;
+        font-family: @products_name_font;
+        text-transform: uppercase;
+        color: @main_content_font_color;
       }
     }
   }

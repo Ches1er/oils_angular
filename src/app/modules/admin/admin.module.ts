@@ -16,6 +16,8 @@ import { AdminParamsVolumeComponent } from './admin-main/admin-content/admin-oil
 import { AdminParamsViscComponent } from './admin-main/admin-content/admin-oils-params/admin-params-visc/admin-params-visc.component';
 import { AdminParamsAceaComponent } from './admin-main/admin-content/admin-oils-params/admin-params-acea/admin-params-acea.component';
 import { AdminParamsApiComponent } from './admin-main/admin-content/admin-oils-params/admin-params-api/admin-params-api.component';
+import {ngxLoadingAnimationTypes, NgxLoadingModule} from 'ngx-loading';
+import {AngularEditorModule} from '@kolkov/angular-editor';
 
 const routes: Routes = [
   {path: '', redirectTo: '', pathMatch: 'full'},
@@ -30,6 +32,15 @@ const routes: Routes = [
 @NgModule({
   declarations: [AdminMainComponent, AdminNavComponent, AdminOilsParamsComponent, AdminOilsApprovalsComponent, AdminOilsGoodsComponent, AdminParamsProductsGroupsComponent, AdminParamsBrandsComponent, AdminParamsVolumeComponent, AdminParamsViscComponent, AdminParamsAceaComponent, AdminParamsApiComponent],
   imports: [
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.circleSwish,
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)',
+      backdropBorderRadius: '4px',
+      primaryColour: '#252525',
+      secondaryColour: '#252525',
+      tertiaryColour: '#252525'
+    }),
+    AngularEditorModule,
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,

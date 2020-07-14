@@ -1,42 +1,56 @@
-<div class="approvals_names">
-  <div class="admin_block_header_small">Чтоб отобразить список, нажмите на допуск</div>
-  <div [ngClass]="activatedApproval==='Mb'?'approval_name_choosen':'approval_name'"
-       (click)="onApprovalClick('Mb', $event)">Mercedes-Benz
-  </div>
-  <div [ngClass]="activatedApproval==='Bmw'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Bmw', $event)">Bmw</div>
-  <div [ngClass]="activatedApproval==='Fiat'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Fiat', $event)">Fiat</div>
-  <div [ngClass]="activatedApproval==='Ford'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Ford', $event)">Ford</div>
-  <div [ngClass]="activatedApproval==='Ren'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Ren', $event)">Renault</div>
-  <div [ngClass]="activatedApproval==='Vw'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Vw', $event)">Volkswagen</div>
-</div>
-<div *ngIf="!formHide">
-  <form class="admin_content_form" [formGroup]="addChangeApproval" (ngSubmit)="onApprovalSubmit()">
-    <div class="admin_block_header_small">Форма добавления-изменения значений допусков</div>
-    <div class="form-group">
-      <select name="" id="brands" formControlName = "id" (change)="fillInApproval($event.target.value)">
-        <option disabled selected value> -- Выберите значение допуска -- </option>
-        <option *ngFor="let app of approvals" value="{{app.id}}">{{app.name}}</option>
-      </select>
+<div class="admin_unit_block">
+  <div class="admin_block_header">В данном блоке вы можете изменять существующие или добавлять новые допуски</div>
+  <div class="approvals_names">
+    <div class="admin_block_header_small">Чтоб отобразить список допусков, нажмите на марку автомобиля</div>
+    <div [ngClass]="activatedApproval==='Mb'?'approval_name_choosen':'approval_name'"
+         (click)="onApprovalClick('Mb', $event)">Mercedes-Benz
     </div>
+    <div [ngClass]="activatedApproval==='Bmw'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Bmw', $event)">Bmw</div>
+    <div [ngClass]="activatedApproval==='Fiat'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Fiat', $event)">Fiat</div>
+    <div [ngClass]="activatedApproval==='Ford'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Ford', $event)">Ford</div>
+    <div [ngClass]="activatedApproval==='Ren'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Ren', $event)">Renault</div>
+    <div [ngClass]="activatedApproval==='Vw'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Vw', $event)">Volkswagen</div>
+    <div [ngClass]="activatedApproval==='Porsche'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Porsche', $event)">Porsche</div>
+    <div [ngClass]="activatedApproval==='Gm'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Gm', $event)">Gm</div>
+  <div [ngClass]="activatedApproval==='Koenig'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Koenig', $event)">Koenig</div>
+  <div [ngClass]="activatedApproval==='Chrysler'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Chrysler', $event)">Chrysler</div>
+  <div [ngClass]="activatedApproval==='Psa'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Psa', $event)">Psa</div>
+  <div [ngClass]="activatedApproval==='Volvo'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Volvo', $event)">Volvo</div>
+    <div [ngClass]="activatedApproval==='Jaguar'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Jaguar', $event)">Jaguar</div>
+    <div [ngClass]="activatedApproval==='Jaso'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Jaso', $event)">Jaso</div>
+    <div [ngClass]="activatedApproval==='Mazda'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Mazda', $event)">Mazda</div>
+    <div [ngClass]="activatedApproval==='Nissan'?'approval_name_choosen':'approval_name'" (click)="onApprovalClick('Nissan', $event)">Nissan</div>
+</div>
+  <div *ngIf="!formHide">
+    <form class="admin_content_form" [formGroup]="addChangeApproval" (ngSubmit)="onApprovalSubmit()">
+      <div class="admin_block_header_small">Форма добавления-изменения значений допусков</div>
+      <div class="form-group">
+        <select name="" id="brands" formControlName = "id" (change)="fillInApproval($event.target.value)">
+          <option disabled selected value> -- Выберите значение допуска -- </option>
+          <option *ngFor="let app of approvals" value="{{app.id}}">{{app.name}}</option>
+        </select>
+      </div>
 
-    <div class="form-group">
-      <p class="admin_content_block_label">Значение допуска</p>
-      <input class="admin_content_input" type="text" id="name" formControlName = "name">
-      <div class="validation_error"
-           *ngIf="addChangeApproval.get('name').getError('required') &&
+      <div class="form-group">
+        <p class="admin_content_block_label">Значение допуска</p>
+        <input class="admin_content_input" type="text" id="name" formControlName = "name">
+        <div class="validation_error"
+             *ngIf="addChangeApproval.get('name').getError('required') &&
                 (addChangeApproval.get('name').dirty || addChangeApproval.get('name').touched)">
-        Введите пожалуйста значение допуска.
+          Введите пожалуйста значение допуска.
+        </div>
       </div>
-    </div>
 
-    <div class="admin_content_button_block">
-      <div *ngIf="addChangeApproval.valid">
-        <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить значение</button>
+      <div class="admin_content_button_block">
+        <div *ngIf="addChangeApproval.valid">
+          <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить значение</button>
+        </div>
+        <div *ngIf="addChangeApproval.valid">
+          <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
+        </div>
+        <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>
       </div>
-      <div *ngIf="addChangeApproval.valid">
-        <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
-      </div>
-      <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
+<app-server-response></app-server-response>

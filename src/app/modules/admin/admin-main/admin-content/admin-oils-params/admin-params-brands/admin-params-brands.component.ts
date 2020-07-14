@@ -129,7 +129,6 @@ export class AdminParamsBrandsComponent implements OnInit {
   onTypesChange(value) {
     const t = value.join(',');
     this.addChangeBrands.patchValue({types: t});
-    console.log(this.addChangeBrands.value);
   }
 
   imagesPickerShow(e) {

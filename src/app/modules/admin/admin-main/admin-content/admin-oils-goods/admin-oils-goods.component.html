@@ -1,1 +1,377 @@
-<p>admin-oils-goods works!</p>
+<ngx-loading [show]="loading"></ngx-loading>
+<form class="admin_content_form" [formGroup]="addChangeGoods" (ngSubmit)="onChangeGoodsSubmit()">
+  <div class="admin_block_header_small">Форма добавления-изменения моторного масла</div>
+  <div class="form-group">
+    <p class="admin_content_block_label">Для изменения товара, выберите его из списка</p>
+    <select name="" id="brands" formControlName = "id" (change)="fillInGoods($event.target.value)">
+      <option disabled selected value> -- Выберите значение товар -- </option>
+      <option *ngFor="let good of goods" value="{{good.id}}">{{good.name}}</option>
+    </select>
+  </div>
+
+  <!-- Название, артикул, производитель, картинка, вязкость, объем  -->
+<div class="main_prop">
+  <p class="admin_content_block_label">Название, артикул, производитель, картинка, вязкость, объем</p>
+  <div class="main_prop_block">
+    <div class="form-group">
+      <p class="admin_content_block_label">Артикул товара</p>
+      <input class="admin_content_input" type="text" id="art" formControlName = "art">
+      <div class="validation_error"
+           *ngIf="addChangeGoods.get('art').getError('required') &&
+                (addChangeGoods.get('art').dirty || addChangeGoods.get('art').touched)">
+        Введите пожалуйста артикул.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <p class="admin_content_block_label">Название товара</p>
+      <input class="admin_content_input" type="text" id="name" formControlName = "name">
+      <div class="validation_error"
+           *ngIf="addChangeGoods.get('name').getError('required') &&
+                (addChangeGoods.get('name').dirty || addChangeGoods.get('name').touched)">
+        Введите пожалуйста название.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <p class="admin_content_block_label">Выберите производителя товара</p>
+      <select name="" id="brand" (change)='onPropertiesChange($event.target.value, "idBrand")' formControlName = "idBrand">
+        <option disabled selected value> -- Выберите производителя -- </option>
+        <option *ngFor="let br of brand" value="{{br.id}}">{{br.name}}</option>
+      </select>
+    </div>
+
+
+    <div class="form-group">
+      <p class="admin_content_block_label">Выберите картинку товара</p>
+      <div class="form-group" *ngIf="choosenImg">
+        <img class="choosenImg" src="{{choosenImg.path}}" alt="">
+      </div>
+      <p class="admin_content_block_label_small" *ngIf="!choosenImg">
+        *Если картинка не будет выбрана, то будет установлена картинка по-умолчанию
+      </p>
+      <button class="admin-btn" (click)="imagesPickerShow($event)">Выберите картинку товара</button>
+    </div>
+
+    <div class="form-group">
+      <p class="admin_content_block_label">Выберите объем из списка</p>
+      <select name="" id="volume" (change)='onPropertiesChange($event.target.value, "idVolume")' formControlName = "idVolume">
+        <option disabled selected value> -- Выберите объем -- </option>
+        <option *ngFor="let vol of volume" value="{{vol.id}}">{{vol.name}} л.</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <p class="admin_content_block_label">Выберите вязкость из списка</p>
+      <select name="" id="viscosity" (change)='onPropertiesChange($event.target.value, "idViscosity")' formControlName = "idViscosity">
+        <option disabled selected value> -- Выберите вязкость -- </option>
+        <option *ngFor="let visc of viscosity" value="{{visc.id}}">{{visc.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <p class="admin_content_block_label">Введите короткое описание товара</p>
+      <textarea name="" id="short_news" cols="30" rows="10" formControlName = "shortDesc"></textarea>
+      <div class="validation_error"
+           *ngIf="addChangeGoods.get('shortDesc').getError('required') &&
+                (addChangeGoods.get('shortDesc').dirty || addChangeGoods.get('shortDesc').touched)">
+        Добавьте пожалуйста короткое описание товара.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <p class="admin_content_block_label">Введите полное описание товара</p>
+      <angular-editor formControlName="fullDesc" [config]="config" style="background-color: white"></angular-editor>
+      <div class="validation_error"
+           *ngIf="addChangeGoods.get('fullDesc').getError('required') &&
+                (addChangeGoods.get('fullDesc').dirty || addChangeGoods.get('fullDesc').touched)">
+        Добавьте полное описание товара.
+      </div>
+    </div>
+</div>
+
+  </div>
+
+  <!-- допуски, асеа, апи -->
+
+  <div class="main_prop">
+    <p class="admin_content_block_label">Список основных свойств моторного масла и допуски</p>
+    <div class="main_prop_block">
+
+      <!--Acea-->
+
+      <div class="form-group">
+        <p *ngIf="acea.length>0" class="admin_content_block_label">Значения Acea</p>
+        <div class="validation_error"
+             *ngIf="addChangeGoods.get('acea').getError('required')">
+              Acea товара - обязательно.
+        </div>
+        <div class="used_types" *ngIf="acea">
+          <div *ngFor="let ac of acea">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения Acea</p>
+        <app-checkbox-component [options]='aceaOptions'
+                                (toggle)='onPropertiesChange($event, "acea")'
+                                >
+        </app-checkbox-component>
+      </div>
+
+      <!--Api-->
+
+      <div class="form-group">
+        <p *ngIf="api.length>0" class="admin_content_block_label">Значения Api</p>
+        <div class="validation_error"
+             *ngIf="addChangeGoods.get('api').getError('required')">
+          Api товара - обязательно.
+        </div>
+        <div class="used_types" *ngIf="api">
+          <div *ngFor="let ac of api">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения Api</p>
+        <app-checkbox-component [options]='apiOptions'
+                                (toggle)='onPropertiesChange($event, "api")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--Mb-->
+      <div class="form-group">
+        <p *ngIf="mbApprovals.length>0" class="admin_content_block_label">Значения допусков MB</p>
+        <div class="used_types" *ngIf="mbApprovals">
+          <div *ngFor="let ac of mbApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков MB</p>
+        <app-checkbox-component [options]='mbApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "mbApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--Bmw-->
+      <div class="form-group">
+        <p *ngIf="bmwApprovals.length>0" class="admin_content_block_label">Значения допусков BMW</p>
+        <div class="used_types" *ngIf="bmwApprovals">
+          <div *ngFor="let ac of bmwApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков BMW</p>
+        <app-checkbox-component [options]='bmwApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "bmwApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--Fiat-->
+      <div class="form-group">
+        <p *ngIf="fiatApprovals.length>0" class="admin_content_block_label">Значения допусков Fiat</p>
+        <div class="used_types" *ngIf="fiatApprovals">
+          <div *ngFor="let ac of fiatApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков Fiat</p>
+        <app-checkbox-component [options]='fiatApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "fiatApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--Ford-->
+      <div class="form-group">
+        <p *ngIf="fordApprovals.length>0" class="admin_content_block_label">Значения допусков Ford</p>
+        <div class="used_types" *ngIf="fordApprovals">
+          <div *ngFor="let ac of fordApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков Ford</p>
+        <app-checkbox-component [options]='fordApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "fordApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--Renault-->
+      <div class="form-group">
+        <p *ngIf="renApprovals.length>0" class="admin_content_block_label">Значения допусков Renault</p>
+        <div class="used_types" *ngIf="renApprovals">
+          <div *ngFor="let ac of renApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков Renault</p>
+        <app-checkbox-component [options]='renApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "renApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--Vw-->
+      <div class="form-group">
+        <p *ngIf="vwApprovals.length>0" class="admin_content_block_label">Значения допусков VW</p>
+        <div class="used_types" *ngIf="vwApprovals">
+          <div *ngFor="let ac of vwApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков VW</p>
+        <app-checkbox-component [options]='vwApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "vwApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--Porsche-->
+      <div class="form-group">
+        <p *ngIf="porscheApprovals.length>0" class="admin_content_block_label">Значения допусков Porsche</p>
+        <div class="used_types" *ngIf="porscheApprovals">
+          <div *ngFor="let ac of porscheApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков Porsche</p>
+        <app-checkbox-component [options]='porscheApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "porscheApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--GM-->
+      <div class="form-group">
+        <p *ngIf="gmApprovals.length>0" class="admin_content_block_label">Значения допусков GM</p>
+        <div class="used_types" *ngIf="gmApprovals">
+          <div *ngFor="let ac of gmApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков Gm</p>
+        <app-checkbox-component [options]='gmApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "gmApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--koenig-->
+      <div class="form-group">
+        <p *ngIf="koenigApprovals.length>0" class="admin_content_block_label">Значения допусков Koenig</p>
+        <div class="used_types" *ngIf="koenigApprovals">
+          <div *ngFor="let ac of koenigApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков Koenig</p>
+        <app-checkbox-component [options]='koenigApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "koenigApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--chrysler-->
+      <div class="form-group">
+        <p *ngIf="chryslerApprovals.length>0" class="admin_content_block_label">Значения допусков Chrysler</p>
+        <div class="used_types" *ngIf="chryslerApprovals">
+          <div *ngFor="let ac of chryslerApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков Chrysler</p>
+        <app-checkbox-component [options]='chryslerApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "chryslerApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--psa-->
+      <div class="form-group">
+        <p *ngIf="psaApprovals.length>0" class="admin_content_block_label">Значения допусков Psa</p>
+        <div class="used_types" *ngIf="psaApprovals">
+          <div *ngFor="let ac of psaApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков Psa</p>
+        <app-checkbox-component [options]='psaApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "psaApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--volvo-->
+      <div class="form-group">
+        <p *ngIf="volvoApprovals.length>0" class="admin_content_block_label">Значения допусков Volvo</p>
+        <div class="used_types" *ngIf="volvoApprovals">
+          <div *ngFor="let ac of volvoApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков Volvo</p>
+        <app-checkbox-component [options]='volvoApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "volvoApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--jaguar-->
+      <div class="form-group">
+        <p *ngIf="jaguarApprovals.length>0" class="admin_content_block_label">Значения допусков Jaguar</p>
+        <div class="used_types" *ngIf="jaguarApprovals">
+          <div *ngFor="let ac of jaguarApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков Jaguar</p>
+        <app-checkbox-component [options]='jaguarApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "jaguarApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--jaso-->
+      <div class="form-group">
+        <p *ngIf="jasoApprovals.length>0" class="admin_content_block_label">Значения допусков Jaso</p>
+        <div class="used_types" *ngIf="jasoApprovals">
+          <div *ngFor="let ac of jasoApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков Jaso</p>
+        <app-checkbox-component [options]='jasoApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "jasoApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--mazda-->
+      <div class="form-group">
+        <p *ngIf="mazdaApprovals.length>0" class="admin_content_block_label">Значения допусков Mazda</p>
+        <div class="used_types" *ngIf="mazdaApprovals">
+          <div *ngFor="let ac of mazdaApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков Mazda</p>
+        <app-checkbox-component [options]='mazdaApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "mazdaApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--nissan-->
+      <div class="form-group">
+        <p *ngIf="nissanApprovals.length>0" class="admin_content_block_label">Значения допусков Nissan</p>
+        <div class="used_types" *ngIf="nissanApprovals">
+          <div *ngFor="let ac of nissanApprovals">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения допусков Nissan</p>
+        <app-checkbox-component [options]='nissanApprovalsOptions'
+                                (toggle)='onPropertiesChange($event, "nissanApprovals")'>
+        </app-checkbox-component>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin_content_button_block">
+    <div *ngIf="addChangeGoods.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить значение</button>
+    </div>
+    <div *ngIf="addChangeGoods.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
+    </div>
+    <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>
+  </div>
+</form>
+<app-images-picker></app-images-picker>
+<app-server-response></app-server-response>

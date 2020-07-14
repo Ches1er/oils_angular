@@ -1,4 +1,4 @@
-import {Bmw} from "./Bmw";
+import {Bmw} from './Bmw';
 
 export class BmwResponse {
 

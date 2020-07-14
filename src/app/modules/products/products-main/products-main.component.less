@@ -1,0 +1,31 @@
+.main_content_list{
+  display: inline-flex;
+  flex-flow: row wrap;
+  .main-unit{
+    width: 400px;
+    height: 400px;
+    margin-right: 10px;
+    .category {
+      display: block;
+      width: 400px;
+      height: 400px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      font-size: 20px;
+      font-family: 'Varela Round', sans-serif;
+      transition: .5ms ease;
+      &:hover{
+        color: #1f37b7;
+        transition: .5ms ease;
+      }
+    }
+    .motor_oils {
+      background-image: url("http://oils/img/Motor_oil_category.jpg");
+    }
+    .trans_oils {
+      background-image: url("http://oils/img/transm_oil_category.jpg");
+    }
+  }
+
+}

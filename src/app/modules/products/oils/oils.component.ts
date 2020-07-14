@@ -28,6 +28,8 @@ import {Volume} from '../../../dto/mainProperties/Volume';
   styleUrls: ['./oils.component.less']
 })
 export class OilsComponent implements OnInit {
+  // "loading" variable use for ngx-loading component
+  public loading = false;
   get volume(): Array<Volume> {
     return this.pVolume;
   }
@@ -285,6 +287,16 @@ export class OilsComponent implements OnInit {
   fordOptions = [];
   renOptions = [];
   vwOptions = [];
+  porscheOptions = [];
+  gmOptions = [];
+  koenigOptions = [];
+  chryslerOptions = [];
+  psaOptions = [];
+  volvoOptions = [];
+  jaguarOptions = [];
+  jasoOptions = [];
+  mazdaOptions = [];
+  nissanOptions = [];
 
   // Hide-Show Approvals
 
@@ -295,8 +307,20 @@ export class OilsComponent implements OnInit {
   hideFiat = true;
   hideFord = true;
   hideBmw = true;
+  hidePorsche = true;
+  hideGm = true;
+  hideKoenig = true;
+  hideChrysler = true;
+  hidePsa = true;
+  hideVolvo = true;
+  hideJaguar = true;
+  hideJaso = true;
+  hideMazda = true;
+  hideNissan = true;
 
   private pProductType = 1;
+
+  approvalsArray = ['Mb', 'Bmw', 'Ford', 'Fiat', 'Ren', 'Vw', 'Porsche', 'Gm', 'Koenig', 'Chrysler', 'Psa', 'Volvo', 'Jaguar', 'Jaso', 'Mazda', 'Nissan'];
 
   private requestItem: RequestItem = new RequestItem(
     [],
@@ -310,7 +334,10 @@ export class OilsComponent implements OnInit {
     [],
     [],
     [],
-    []);
+    [],
+    [], [], [], [], [], [],
+    [], [], [], []
+  );
 
   constructor(private productsService: ProductsService,
               private brandsService: BrandsService,
@@ -323,6 +350,7 @@ export class OilsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.updateOils();
     this.updateBrands();
     this.updateAcea();
@@ -337,59 +365,24 @@ export class OilsComponent implements OnInit {
   private convertStrPropertiesToArray(e: Oils): Oils {
     const aceaArray = e.acea.split(',');
     const apiArray = e.api.split(',');
-    if (e.mbApprovals) {
-      const mbApprovalsArray = e.mbApprovals.split(',');
-      e.mbApprovals = mbApprovalsArray.map(e => Number(e));
-    }
-    if (e.bmwApprovals) {
-      const bmwApprovalsArray = e.bmwApprovals.split(',');
-      e.bmwApprovals = bmwApprovalsArray.map(e => Number(e));
-    }
-    if (e.fordApprovals) {
-      const fordApprovalsArray = e.fordApprovals.split(',');
-      e.fordApprovals = fordApprovalsArray.map(e => Number(e));
-    }
-    if (e.fiatApprovals) {
-      const fiatApprovalsArray = e.fiatApprovals.split(',');
-      e.fiatApprovals = fiatApprovalsArray.map(e => Number(e));
-    }
-    if (e.renApprovals) {
-      const renApprovalsArray = e.renApprovals.split(',');
-      e.renApprovals = renApprovalsArray.map(e => Number(e));
-    }
-    if (e.vwApprovals) {
-      const vwApprovalsArray = e.vwApprovals.split(',');
-      e.vwApprovals = vwApprovalsArray.map(e => Number(e));
-    }
+    this.approvalsArray.forEach(model => {
+      if (e[model.toLowerCase() + 'Approvals']) {
+        const approvalsArray = e[model.toLowerCase() + 'Approvals'].split(',');
+        e[model.toLowerCase() + 'Approvals'] = approvalsArray.map(elem => Number(elem));
+      }
+    });
     e.acea = aceaArray.map(e => Number(e));
     e.api = apiArray.map(e => Number(e));
     return e;
   }
 
   private updateApprovals() {
-    this.approvalsService.mbApprovals('prod').subscribe(resp => {
-      this.mbApprovals = resp;
-      this.mbOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
-    });
-    this.approvalsService.bmwApprovals('prod').subscribe(resp => {
-      this.bmwApprovals = resp;
-      this.bmwOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
-    });
-    this.approvalsService.fiatApprovals('prod').subscribe(resp => {
-      this.fiatApprovals = resp;
-      this.fiatOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
-    });
-    this.approvalsService.fordApprovals('prod').subscribe(resp => {
-      this.fordApprovals = resp;
-      this.fordOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
-    });
-    this.approvalsService.renaultApprovals('prod').subscribe(resp => {
-      this.renApprovals = resp;
-      this.renOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
-    });
-    this.approvalsService.vwApprovals('prod').subscribe(resp => {
-      this.vwApprovals = resp;
-      this.vwOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
+    this.approvalsArray.forEach(model => {
+      const toLowerCase = model.toLowerCase();
+      this.approvalsService.approvals('prod', model).subscribe(resp => {
+        this[toLowerCase + 'Approvals'] = resp;
+        this[toLowerCase + 'Options'] = resp.map(r => new CheckboxItem(r.id, r.name, false));
+      });
     });
   }
 
@@ -399,6 +392,7 @@ export class OilsComponent implements OnInit {
         this.convertStrPropertiesToArray(e);
       });
       this.products = resp;
+      this.loading = false;
     });
     this.nonEmptyProductList = true;
   }
@@ -475,7 +469,7 @@ export class OilsComponent implements OnInit {
     }
   }
 
-          // Hide-Show filter options
+  // Hide-Show filter options
 
   // Api
 

@@ -1,13 +1,13 @@
-import {Oils} from "./oils";
+import {Oils} from './oils';
 
 export class OilsResponse {
-  constructor(private pData: Array<Oils>) {
+  constructor(private pData) {
   }
-  get data(): Array<Oils> {
+  get data() {
     return this.pData;
   }
 
-  set data(value: Array<Oils>) {
+  set data(value) {
     this.pData = value;
   }
 

@@ -1,18 +1,19 @@
 <div class="main_content">
+  <ngx-loading [show]="loading"></ngx-loading>
   <div class="filters">
-    <div>Производители</div>
+    <div class="filter_unit">Производители</div>
     <app-checkbox-component [options]='brandsOptions' (toggle)='onBrandsChange($event)'></app-checkbox-component>
-    <div>Объем, л.</div>
+    <div class="filter_unit">Объем, л.</div>
     <app-checkbox-component [options]="volOptions" (toggle)="onVolumeChange($event)"></app-checkbox-component>
-    <div>Вязкость</div>
+    <div class="filter_unit">Вязкость</div>
     <app-checkbox-component [options]="viscOptions" (toggle)="onViscosityChange($event)"></app-checkbox-component>
-    <div>Классификация ACEA</div>
+    <div class="filter_unit">Классификация ACEA</div>
     <app-checkbox-component [options]='aceaOptions' (toggle)='onAceaChange($event)'></app-checkbox-component>
-    <div>Классификация API</div>
+    <div class="filter_unit">Классификация API</div>
     <app-checkbox-component [options]='apiOptions' (toggle)='onApiChange($event)'></app-checkbox-component>
-    <div>База</div>
+    <div class="filter_unit">База</div>
     <app-checkbox-component [options]='baseOptions' (toggle)='onBaseChange($event)'></app-checkbox-component>
-    <span (click)="hideAll=!hideAll">Допуски {{hideAll?'+':'-'}}</span>
+    <span class="filter_unit" (click)="hideAll=!hideAll">Допуски {{hideAll?'+':'-'}}</span>
     <div [hidden]="hideAll">
       <div class="approval">
         <div class="approval_data">
@@ -86,9 +87,132 @@
         </app-checkbox-component>
       </div>
 
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">Porsche</div>
+          <div class="approval_fold" (click)="hidePorsche=!hidePorsche">{{hidePorsche?'+':'-'}}</div>
+        </div>
+        <app-checkbox-component
+          [hidden]="hidePorsche"
+          [options]='porscheOptions'
+          (toggle)='onApprovalChange($event, "porscheApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">Gm</div>
+          <div class="approval_fold" (click)="hideGm=!hideGm">{{hideGm?'+':'-'}}</div>
+        </div>
+        <app-checkbox-component
+          [hidden]="hideGm"
+          [options]='gmOptions'
+          (toggle)='onApprovalChange($event, "gmApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">Koenig</div>
+          <div class="approval_fold" (click)="hideKoenig=!hideKoenig">{{hideKoenig?'+':'-'}}</div>
+        </div>
+        <app-checkbox-component
+          [hidden]="hideKoenig"
+          [options]='koenigOptions'
+          (toggle)='onApprovalChange($event, "koenigApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <div class="approval">
+      <div class="approval_data">
+        <div class="approval_name">Chrysler</div>
+        <div class="approval_fold" (click)="hideChrysler=!hideChrysler">{{hideChrysler?'+':'-'}}</div>
+      </div>
+      <app-checkbox-component
+        [hidden]="hideChrysler"
+        [options]='chryslerOptions'
+        (toggle)='onApprovalChange($event, "chryslerApprovals")'>
+      </app-checkbox-component>
+      </div>
+
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">Psa</div>
+          <div class="approval_fold" (click)="hidePsa=!hidePsa">{{hidePsa?'+':'-'}}</div>
+        </div>
+        <app-checkbox-component
+          [hidden]="hidePsa"
+          [options]='psaOptions'
+          (toggle)='onApprovalChange($event, "psaApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">Volvo</div>
+          <div class="approval_fold" (click)="hideVolvo=!hideVolvo">{{hideVolvo?'+':'-'}}</div>
+        </div>
+        <app-checkbox-component
+          [hidden]="hideVolvo"
+          [options]='volvoOptions'
+          (toggle)='onApprovalChange($event, "volvoApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">Jaguar</div>
+          <div class="approval_fold" (click)="hideJaguar=!hideJaguar">{{hideJaguar?'+':'-'}}</div>
+        </div>
+        <app-checkbox-component
+          [hidden]="hideJaguar"
+          [options]='jaguarOptions'
+          (toggle)='onApprovalChange($event, "jaguarApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">Jaso</div>
+          <div class="approval_fold" (click)="hideJaso=!hideJaso">{{hideJaso?'+':'-'}}</div>
+        </div>
+        <app-checkbox-component
+          [hidden]="hideJaso"
+          [options]='jasoOptions'
+          (toggle)='onApprovalChange($event, "jasoApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+      <div class="approval">
+      <div class="approval_data">
+        <div class="approval_name">Mazda</div>
+        <div class="approval_fold" (click)="hideMazda=!hideMazda">{{hideMazda?'+':'-'}}</div>
+      </div>
+      <app-checkbox-component
+        [hidden]="hideMazda"
+        [options]='mazdaOptions'
+        (toggle)='onApprovalChange($event, "mazdaApprovals")'>
+      </app-checkbox-component>
+      </div>
+
+      <div class="approval">
+        <div class="approval_data">
+          <div class="approval_name">Nissan</div>
+          <div class="approval_fold" (click)="hideNissan=!hideNissan">{{hideNissan?'+':'-'}}</div>
+        </div>
+        <app-checkbox-component
+          [hidden]="hideNissan"
+          [options]='nissanOptions'
+          (toggle)='onApprovalChange($event, "nissanApprovals")'>
+        </app-checkbox-component>
+      </div>
+
+
+
     </div>
   </div>
   <div class="products">
+    <div class="products_header">Список моторных масел</div>
     <div *ngIf="!nonEmptyProductList">Товаров нет</div>
     <div class="products_list" *ngIf="nonEmptyProductList">
         <div class="product" *ngFor="let product of products; let i = index">

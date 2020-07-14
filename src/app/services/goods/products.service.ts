@@ -6,6 +6,8 @@ import {Oils} from "../../dto/oils/oils";
 import {OilsResponse} from "../../dto/oils/oilsResponse";
 import {map} from 'rxjs/operators';
 import {RequestItem} from "../../classes/RequestItem";
+import {ServerResponse} from '../../dto/ServerResponse/ServerResponse';
+import {FormControl, Validators} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -33,11 +35,55 @@ export class ProductsService {
     params.append('ford', requestItem.fordApprovals.join(','));
     params.append('ren', requestItem.renApprovals.join(','));
     params.append('vw', requestItem.vwApprovals.join(','));
+    params.append('porsche', requestItem.porscheApprovals.join(','));
+    params.append('gm', requestItem.gmApprovals.join(','));
+    params.append('koenig', requestItem.koenigApprovals.join(','));
+    params.append('chrysler', requestItem.chryslerApprovals.join(','));
+    params.append('psa', requestItem.psaApprovals.join(','));
+    params.append('volvo', requestItem.volvoApprovals.join(','));
+    params.append('jaguar', requestItem.jaguarApprovals.join(','));
+    params.append('jaso', requestItem.jasoApprovals.join(','));
+    params.append('mazda', requestItem.mazdaApprovals.join(','));
+    params.append('nissan', requestItem.nissanApprovals.join(','));
     return this.http.post(this.urlConfig.GETOILSWPROPERTIES, params)
       .pipe(map(resp => OilsResponse.fromJson(resp)))
       .pipe(map(or => {
         return or.data;
       }));
   }
-
+  public addOils(data, action: string): Observable<string> {
+    const params = new FormData();
+    params.append('action', action);
+    params.append('id', data.id);
+    params.append('name', data.name);
+    params.append('art', data.art);
+    params.append('id_volume', data.idVolume);
+    params.append('id_viscosity', data.idViscosity);
+    params.append('id_base', data.idBase);
+    params.append('id_brand', data.idBrand);
+    params.append('id_image', data.idImg);
+    params.append('short_desc', data.shortDesc);
+    params.append('full_desc', data.fullDesc);
+    params.append('acea', data.acea);
+    params.append('api', data.api);
+    params.append('mbApproval', data.mbApprovals);
+    params.append('bmwApproval', data.bmwApprovals);
+    params.append('fiatApproval', data.fiatApprovals);
+    params.append('fordApproval', data.fordApprovals);
+    params.append('renApproval', data.renApprovals);
+    params.append('vwApproval', data.vwApprovals);
+    params.append('porscheApproval', data.porscheApprovals);
+    params.append('gmApproval', data.gmApprovals);
+    params.append('koenigApproval', data.koenigApprovals);
+    params.append('chryslerApproval', data.chryslerApprovals);
+    params.append('psaApproval', data.psaApprovals);
+    params.append('volvoApproval', data.volvoApprovals);
+    params.append('jaguarApproval', data.jaguarApprovals);
+    params.append('jasoApproval', data.jasoApprovals);
+    params.append('mazdaApproval', data.mazdaApprovals);
+    params.append('nissanApproval', data.nissanApprovals);
+    return this.http.post(this.urlConfig.ADDOIL, params)
+      .pipe(map(resp => ServerResponse.fromJson(resp)))
+      .pipe(map(sr => sr.response));
+  }
 }

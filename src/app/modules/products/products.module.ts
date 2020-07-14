@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterModule, Routes} from "@angular/router";
+import {RouterModule, Routes} from '@angular/router';
 import { OilsComponent } from './oils/oils.component';
 import { ProductsMainComponent } from './products-main/products-main.component';
-import {TransmissionComponent} from "./transmission/transmission.component";
-import {ReactiveFormsModule} from "@angular/forms";
-import {SharedModule} from "../shared/shared.module";
+import {TransmissionComponent} from './transmission/transmission.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from '../shared/shared.module';
+import {ngxLoadingAnimationTypes, NgxLoadingModule} from 'ngx-loading';
 
 const routes: Routes = [
   {path: 'main', component: ProductsMainComponent},
@@ -16,6 +17,14 @@ const routes: Routes = [
 @NgModule({
   declarations: [OilsComponent, ProductsMainComponent, TransmissionComponent],
   imports: [
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.circleSwish,
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)',
+      backdropBorderRadius: '4px',
+      primaryColour: '#252525',
+      secondaryColour: '#252525',
+      tertiaryColour: '#252525'
+    }),
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
