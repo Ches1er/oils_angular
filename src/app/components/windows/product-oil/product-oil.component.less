@@ -1,0 +1,81 @@
+@import "../../../common";
+
+.product {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  border: 1px solid @main_content_border;
+  margin-top: 114px;
+  height: auto;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  background-color: white;
+  .close_button_block{
+    width: 100%;
+    display: inline-flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    .close_button{
+      color: @button_font_color;
+      margin-right: 2px;
+      cursor: pointer;
+      .fa {
+        font-size: 20px;
+      }
+      &:hover{
+        color: @button_hover_font_color;
+      }
+    }
+  }
+  .product_block{
+    display: inline-flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    box-sizing: border-box;
+    img {
+      padding: 5px;
+      border: 1px solid @main_content_border;
+      border-radius: 3px;
+      height: 300px;
+    }
+    .product_block_text{
+      display: inline-flex;
+      flex-flow: column nowrap;
+      width: 100%;
+      .product_name{
+        margin: 5px;
+        font-family: @products_name_font;
+        text-transform: uppercase;
+        color: @main_content_font_color;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+      .brand{
+        font-family: @products_name_font;
+        text-transform: uppercase;
+        color: lightslategray;
+        margin: 5px;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+      .short_desk {
+        width: 100%;
+        margin-top: 15px;
+        text-indent: 10px;
+        color: @main_content_font_color;
+        padding: 10px;
+        border-bottom: 1px solid @main_content_border;
+        border-top: 1px solid @main_content_border;
+        font-family: @short_desc_font;
+        box-sizing: border-box;
+      }
+      .full_desk {
+        margin: 15px;
+        text-indent: 10px;
+        color: @full_desc_font_color;
+        box-sizing: border-box;
+        font-family: @full_desc_font;
+      }
+    }
+  }
+}

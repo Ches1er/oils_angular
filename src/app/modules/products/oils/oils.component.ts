@@ -21,6 +21,7 @@ import {RequestItem} from '../../../classes/RequestItem';
 import {MainPropertiesService} from '../../../services/goods/mainProperties/main-properties.service';
 import {Viscosity} from '../../../dto/mainProperties/Viscosity';
 import {Volume} from '../../../dto/mainProperties/Volume';
+import {WindowsMessagesService} from '../../../services/messages/windows-messages.service';
 
 @Component({
   selector: 'app-oils',
@@ -345,7 +346,8 @@ export class OilsComponent implements OnInit {
               private apiService: ApiService,
               private baseService: BaseService,
               private approvalsService: ApprovalsService,
-              private mainPropertiesService: MainPropertiesService
+              private mainPropertiesService: MainPropertiesService,
+              private windowsMessagesService: WindowsMessagesService
   ) {
   }
 
@@ -815,5 +817,9 @@ export class OilsComponent implements OnInit {
         this[propertyIdsArray] = this[propertyIdsArray].concat(p[productProperty]);
       }
     });
+  }
+
+  public onClickProduct(productId: Oils) {
+    this.windowsMessagesService.productOilWindowShow(productId);
   }
 }

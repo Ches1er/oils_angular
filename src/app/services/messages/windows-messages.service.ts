@@ -5,7 +5,9 @@ import {Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class WindowsMessagesService {
+
   private pLoginWindowShow: Subject<null> = new Subject<null>();
+  private pProductOilWindowShow: Subject<any> = new Subject<any>();
 
   constructor() {
   }
@@ -16,9 +18,17 @@ export class WindowsMessagesService {
     return this.pLoginWindowShow;
   }
 
+  get productOilWindowShowMessage(): Subject<any> {
+    return this.pProductOilWindowShow;
+  }
+
   // FUNCTIONS
 
   public loginWindowShow() {
     this.pLoginWindowShow.next(null);
+  }
+
+  public productOilWindowShow(id) {
+    this.pProductOilWindowShow.next(id);
   }
 }

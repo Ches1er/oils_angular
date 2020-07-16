@@ -51,14 +51,28 @@
     .products_list{
       width: 100%;
       display: inline-flex;
-      justify-content: flex-start;
-      flex-flow: row nowrap;
+      justify-content: space-around;
+      flex-flow: row wrap;
       .product {
         margin: 5px;
         font-family: @products_name_font;
         text-transform: uppercase;
         color: @main_content_font_color;
+        padding: 5px;
+        border: 1px solid @main_content_border;
+        box-sizing: border-box;
+        width: 310px;
+        cursor: pointer;
+        &:hover{
+          color: #1b6ab8;
+          border-color: @main_content_border_hover;
+        }
+        .product_name{
+          border-bottom: 1px solid @main_content_border;
+          margin-bottom: 5px;
+        }
       }
+
     }
   }
 }

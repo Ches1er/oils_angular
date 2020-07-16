@@ -144,10 +144,10 @@ export class urlConfig {
   GETNISSANAPPROVALS = this.nissanApprovalsBase + 'all';
 
   // GOODS
-
   private goodsBase = this.CORE + 'goods/';
   // OILS
   GETOILS = this.goodsBase + 'oils';
+  GETOIL = this.goodsBase + 'oil';
   GETOILSWPROPERTIES = this.goodsBase + 'oilswprop';
   ADDOIL = this.goodsBase + 'addoil';
 

@@ -1,6 +1,13 @@
 import {HttpUrlEncodingCodec} from '@angular/common/http';
 
 export class Oils {
+  get brandName() {
+    return this.pBrandName;
+  }
+
+  set brandName(value) {
+    this.pBrandName = value;
+  }
   get porscheApprovals() {
     return this.pPorscheApprovals;
   }
@@ -157,6 +164,7 @@ export class Oils {
     private pIdViscosity,
     private pIdBase,
     private pIdBrand,
+    private pBrandName,
     private pIdImage,
     private pShortDesc,
     private pFullDesc,
@@ -281,6 +289,7 @@ export class Oils {
       jsonObj.id_viscosity,
       jsonObj.id_base,
       jsonObj.id_brand,
+      jsonObj.brand_name,
       jsonObj.id_image,
       jsonObj.short_desc,
       jsonObj.full_desc,
