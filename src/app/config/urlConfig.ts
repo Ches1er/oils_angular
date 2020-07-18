@@ -156,4 +156,13 @@ export class urlConfig {
   GETIMAGES = this.imagesBase + 'all';
   GETIMAGE = this.imagesBase + 'image/';
   UPLOAD_IMAGE = this.imagesBase + 'upload_image';
+
+  // ARTICLES
+
+  private articlesBase = this.CORE + 'articles/';
+  GETTHEMES = this.articlesBase + 'getthemes';
+  GETARTICLESBYTHEME = this.articlesBase + 'getbytheme/';
+  GETARTICLE = this.articlesBase + 'getarticle/';
+  ADDTHEME = this.articlesBase + 'addtheme';
+  ADDARTICLE = this.articlesBase + 'addarticle'
 }

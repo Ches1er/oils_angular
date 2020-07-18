@@ -1,0 +1,33 @@
+<div class="articles_block">
+  <div class="articles_nav">
+    <div *ngIf="!themes">
+      К сожалению статей пока-что нет!
+    </div>
+    <div *ngIf="themes" class="themes_list">
+      <div *ngFor="let theme of themes" class="theme" (click)="getArticles(theme.id)">
+        {{theme.name}}
+        <div *ngIf="articles && theme.id===choosenTheme" >
+          <div class="articles_list">
+            <div class="article_list_unit" *ngFor="let article of articles" (click)="getArticle($event, article.id)">
+              <i class="fa fa-shield fa-rotate-270"></i> {{article.name}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="article_main">
+    <div class="article_info" *ngIf="article">
+      <div class="article_name">{{article.name}}</div>
+      <div class="article_short">{{article.shortDesc}}</div>
+      <div class="article_full">{{article.fullDesc}}</div>
+      <div class="goods_in_articles">Товары, упомянутые в статье:</div>
+      <div class="goods_name" *ngIf="!article.goods">Нет товаров</div>
+      <div class="article_goods" *ngIf="article.goods">
+        <div class="goods" *ngFor="let g of goods" (click)="showGoods(g.id)">
+          <div class="goods_name">{{g.name}}</div>
+          <img src="{{g.img}}" alt="">
+        </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -819,7 +819,7 @@ export class OilsComponent implements OnInit {
     });
   }
 
-  public onClickProduct(productId: Oils) {
+  public onClickProduct(productId) {
     this.windowsMessagesService.productOilWindowShow(productId);
   }
 }

@@ -17,6 +17,7 @@ import { CurrentUserBlockComponent } from './components/header/header-auth-block
 import {ngxLoadingAnimationTypes, NgxLoadingModule} from 'ngx-loading';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import { ProductOilComponent } from './components/windows/product-oil/product-oil.component';
+import { ArticlesComponent } from './components/articles/articles.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ProductOilComponent } from './components/windows/product-oil/product-oi
     LoginComponent,
     AuthButtonsBlockComponent,
     CurrentUserBlockComponent,
-    ProductOilComponent
+    ProductOilComponent,
+    ArticlesComponent
   ],
   imports: [
     NgxLoadingModule.forRoot({
