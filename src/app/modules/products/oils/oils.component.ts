@@ -789,7 +789,6 @@ export class OilsComponent implements OnInit {
     this.nonEmptyProductList = false;
     const fullAppArray = ['mbApprovals', 'bmwApprovals', 'fiatApprovals', 'fordApprovals', 'renApprovals', 'vwApprovals'];
     const appArrayWithoutDefiner = fullAppArray.filter(e => e !== definer);
-
     this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
       this.nonEmptyProductList = true;
       this.products = resp;
@@ -820,6 +819,6 @@ export class OilsComponent implements OnInit {
   }
 
   public onClickProduct(productId) {
-    this.windowsMessagesService.productOilWindowShow(productId);
+    this.windowsMessagesService.productOilWindowShow([productId, 'goods_oils']);
   }
 }

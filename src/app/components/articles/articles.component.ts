@@ -80,14 +80,14 @@ export class ArticlesComponent implements OnInit {
   private getArticlesGoods(): void {
     this.article.goods.map(e => {
       e = e.split(':');
-      if (e[0] === 'goods_oils') {
-        this.productService.getOil(e[1]).subscribe(resp => {
+      if (e[1] === 'goods_oils') {
+        this.productService.getOil(e[0]).subscribe(resp => {
           this.goods.push(resp);
         });
       }
     });
   }
-  showGoods(id: any) {
-    this.windowsMessagesService.productOilWindowShow(id);
+  showGoods(id: any, tableDefiner: any) {
+    this.windowsMessagesService.productOilWindowShow([id, tableDefiner]);
   }
 }

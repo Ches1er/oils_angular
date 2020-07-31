@@ -41,11 +41,11 @@ export class AdminParamsAceaComponent implements OnInit {
     });
   }
   fillInAcea(value: any) {
-    this.acea.filter(volume => {
-      if (volume.id == value) {
+    this.acea.filter(acea => {
+      if (acea.id == value) {
         this.addChangeAcea.patchValue({
-          id: volume.id,
-          name: volume.name
+          id: acea.id,
+          name: acea.name
         });
       }
     });

@@ -1,6 +1,13 @@
 import {HttpUrlEncodingCodec} from '@angular/common/http';
 
 export class Oils {
+  get tableDefiner() {
+    return this.pTableDefiner;
+  }
+
+  set tableDefiner(value) {
+    this.pTableDefiner = value;
+  }
   get brandName() {
     return this.pBrandName;
   }
@@ -187,7 +194,8 @@ export class Oils {
     private pJaguarApprovals,
     private pJasoApprovals,
     private pMazdaApprovals,
-    private pNissanApprovals
+    private pNissanApprovals,
+    private pTableDefiner
   ) {
   }
 
@@ -313,6 +321,7 @@ export class Oils {
       jsonObj.jasoApproval,
       jsonObj.mazdaApproval,
       jsonObj.nissanApproval,
+      jsonObj.table_definer
       );
   }
 }

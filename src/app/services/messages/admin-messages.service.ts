@@ -7,6 +7,16 @@ import {Image} from '../../dto/images/Image';
 })
 export class AdminMessagesService {
 
+  private pImagesPickerWindowShow: Subject<null> = new Subject<null>();
+  private pImageHasChoosen: Subject<Image> = new Subject<Image>();
+  private pDataToServerResponse: Subject<string> = new Subject<string>();
+  private pShowServerResponseWindowMessage: Subject<null> = new Subject<null>();
+  private pTypeUpdateCreateMessage: Subject<null> = new Subject<null>();
+  private pArticlesThemesChangesMessage: Subject<null> = new Subject<null>();
+
+  constructor() {
+  }
+
   // Windows
 
   get ShowServerResponseWindowMessage(): Subject<null> {
@@ -46,17 +56,15 @@ export class AdminMessagesService {
   get typeUpdateCreateMessage(): Subject<null> {
     return this.pTypeUpdateCreateMessage;
   }
+  get articlesThemesChangesMessage(): Subject<null> {
+    return this.pArticlesThemesChangesMessage;
+  }
 
   public typeUpdateCreate() {
     this.pTypeUpdateCreateMessage.next();
   }
-
-  private pImagesPickerWindowShow: Subject<null> = new Subject<null>();
-  private pImageHasChoosen: Subject<Image> = new Subject<Image>();
-  private pDataToServerResponse: Subject<string> = new Subject<string>();
-  private pShowServerResponseWindowMessage: Subject<null> = new Subject<null>();
-  private pTypeUpdateCreateMessage: Subject<null> = new Subject<null>()
-
-  constructor() {
+  public articlesThemesChanges() {
+    this.pArticlesThemesChangesMessage.next();
   }
+
 }

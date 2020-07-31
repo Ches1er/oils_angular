@@ -1,0 +1,38 @@
+<form class="admin_content_form" [formGroup]="addChangeTheme" (ngSubmit)="onThemeSubmit()">
+  <div class="admin_block_header_small">Форма добавления-изменения тем для статей</div>
+  <div class="form-group">
+    <select name="" id="themes" formControlName = "id" (change)="fillInTheme($event.target.value)">
+      <option disabled selected value> -- Выберите тему -- </option>
+      <option *ngFor="let theme of themes" value="{{theme.id}}">{{theme.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <p class="admin_content_block_label">Название темы</p>
+    <input class="admin_content_input" type="text" id="name" formControlName = "name">
+    <div class="validation_error"
+         *ngIf="addChangeTheme.get('name').getError('required') &&
+                (addChangeTheme.get('name').dirty || addChangeTheme.get('name').touched)">
+      Введите пожалуйста название темы.
+    </div>
+  </div>
+  <div class="form-group">
+    <p class="admin_content_block_label">Выберите картинку для статьи</p>
+    <div class="form-group" *ngIf="choosenImg">
+      <img class="choosenImg" src="{{choosenImg.path}}" alt="">
+    </div>
+    <p class="admin_content_block_label_small" *ngIf="!choosenImg">
+      *Если картинка не будет выбрана, то будет установлена картинка по-умолчанию
+    </p>
+    <button class="admin-btn" (click)="imagesPickerShow($event)">Выберите картинку для темы</button>
+  </div>
+  <div class="admin_content_button_block">
+    <div *ngIf="addChangeTheme.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить значение</button>
+    </div>
+    <div *ngIf="addChangeTheme.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
+    </div>
+    <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>
+  </div>
+</form>
+

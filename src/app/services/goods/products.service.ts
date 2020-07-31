@@ -7,7 +7,7 @@ import {OilsResponse} from '../../dto/oils/oilsResponse';
 import {map} from 'rxjs/operators';
 import {RequestItem} from '../../classes/RequestItem';
 import {ServerResponse} from '../../dto/ServerResponse/ServerResponse';
-import {FormControl, Validators} from '@angular/forms';
+import {FindGoodsResponse} from '../../dto/findGoods/FindGoodsResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class ProductsService {
   constructor(@Inject(HttpClient) private http: HttpClient) {
   }
 
-  get oils(): Observable<Array<Oils>> {
+  get oils(): Observable<any> {
     return this.http.get(this.urlConfig.GETOILS)
       .pipe(map(resp => OilsResponse.fromJson(resp)))
       .pipe(map(or => or.data));
@@ -29,8 +29,15 @@ export class ProductsService {
       .pipe(map(resp => OilsResponse.fromJson(resp)))
       .pipe(map(or => or.data[0]));
   }
+  public getGoodsUnit(id: any, tableDefiner: any): Observable<any> {
+    if (tableDefiner === 'goods_oils') {
+      return this.http.get(this.urlConfig.GETGOODSUNIT + '/' + id + '/' + tableDefiner)
+        .pipe(map(resp => OilsResponse.fromJson(resp)))
+        .pipe(map(or => or.data[0]));
+    }
+  }
 
-  public oilsWProperties(requestItem: RequestItem): Observable<Array<Oils>> {
+  public oilsWProperties(requestItem: RequestItem): Observable<any> {
     const params = new FormData();
     params.append('brands', requestItem.brand.join(','));
     params.append('volume', requestItem.volume.join(','));
@@ -96,4 +103,10 @@ export class ProductsService {
       .pipe(map(resp => ServerResponse.fromJson(resp)))
       .pipe(map(sr => sr.response));
   }
+  public findGoods(keyword): Observable<any> {
+    return this.http.get(this.urlConfig.FIND + keyword)
+      .pipe(map(resp => FindGoodsResponse.fromJson(resp)))
+      .pipe(map(fgr => fgr.data));
+  }
 }
+

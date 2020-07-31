@@ -1,0 +1,18 @@
+<div class="articles_nav">
+  <div *ngIf="!themes">
+    К сожалению статей пока-что нет!
+  </div>
+  <div *ngIf="themes" class="themes_list">
+    <div *ngFor="let theme of themes" class="theme" (click)="getArticles(theme.id)">
+      {{theme.name}}
+      <div *ngIf="articles && theme.id===choosenTheme" >
+        <div class="articles_list">
+          <div *ngFor="let article of articles">
+            <a routerLink="article/{{article.id}}" [routerLinkActive]="'active'" class="article_list_unit" >
+              <i class="fa fa-shield fa-rotate-270"></i> {{article.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

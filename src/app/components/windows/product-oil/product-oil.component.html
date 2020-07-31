@@ -1,15 +1,15 @@
 <div class="fade" *ngIf="visible">
-  <div class="product">
+  <div class="product" *ngIf="product">
     <div class="close_button_block">
       <div class="close_button" (click)="cancel()"><i class="fa fa-window-close" aria-hidden="true"></i></div>
     </div>
     <div class="product_block">
-      <img src="{{oil.img}}" alt="">
+      <img src="{{product.img}}" alt="">
       <div class="product_block_text">
-        <div class="product_name">Название: {{oil.name}}</div>
-        <div class="brand">Бренд: {{oil.brandName}}</div>
-        <div class="short_desk">{{oil.shortDesc}}</div>
-        <div class="full_desk" [innerHTML] = oil.fullDesc></div>
+        <div class="product_name">Название: {{product.name}}</div>
+        <div class="brand">Бренд: {{product.brandName}}</div>
+        <div class="short_desk">{{product.shortDesc}}</div>
+        <div class="full_desk" [innerHTML] = product.fullDesc></div>
       </div>
     </div>
   </div>

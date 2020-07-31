@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {AuthMessagesService} from '../../../services/messages/auth-messages.service';
+import {ProductsService} from '../../../services/goods/products.service';
 
 @Component({
   selector: 'app-header-nav',
@@ -24,7 +25,7 @@ export class HeaderNavComponent implements OnInit {
   }
   private pAdminLoggedIn;
   private pUserLoggedIn;
-  constructor(@Inject(AuthMessagesService) private authMessagesService: AuthMessagesService) { }
+  constructor(private authMessagesService: AuthMessagesService) { }
 
   ngOnInit() {
     this.unlogUser();

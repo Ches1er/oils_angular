@@ -1,0 +1,29 @@
+@import "../../../../../common";
+
+.themes_list{
+  padding: 10px;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  box-sizing: border-box;
+  .theme{
+    padding: 10px;
+    border-bottom: 1px solid @main_content_border;
+    cursor: pointer;
+    font-size: larger;
+    &:hover{
+      color: @articles_nav_hover;
+      border-color: #d94f5c;
+    }
+    .articles_list{
+      margin-top: 10px;
+      .article_list_unit {
+        margin-top: 5px;
+        font-family: @full_desc_font;
+        color: @main_content_font_color;
+        &:hover{
+          color: #d94f5c;
+        }
+      }
+    }
+  }
+}

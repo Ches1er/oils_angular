@@ -145,9 +145,11 @@ export class urlConfig {
 
   // GOODS
   private goodsBase = this.CORE + 'goods/';
+  FIND = this.goodsBase + 'find/';
   // OILS
   GETOILS = this.goodsBase + 'oils';
-  GETOIL = this.goodsBase + 'oil';
+  GETOIL = this.goodsBase + 'unit';
+  GETGOODSUNIT = this.goodsBase + 'unit';
   GETOILSWPROPERTIES = this.goodsBase + 'oilswprop';
   ADDOIL = this.goodsBase + 'addoil';
 
@@ -164,5 +166,5 @@ export class urlConfig {
   GETARTICLESBYTHEME = this.articlesBase + 'getbytheme/';
   GETARTICLE = this.articlesBase + 'getarticle/';
   ADDTHEME = this.articlesBase + 'addtheme';
-  ADDARTICLE = this.articlesBase + 'addarticle'
+  ADDARTICLE = this.articlesBase + 'addarticle';
 }

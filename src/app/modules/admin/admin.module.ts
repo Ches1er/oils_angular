@@ -18,6 +18,8 @@ import { AdminParamsAceaComponent } from './admin-main/admin-content/admin-oils-
 import { AdminParamsApiComponent } from './admin-main/admin-content/admin-oils-params/admin-params-api/admin-params-api.component';
 import {ngxLoadingAnimationTypes, NgxLoadingModule} from 'ngx-loading';
 import {AngularEditorModule} from '@kolkov/angular-editor';
+import { AdminArticlesComponent } from './admin-main/admin-content/admin-articles/admin-articles.component';
+import { AdminArticlesThemesComponent } from './admin-main/admin-content/admin-articles/admin-articles-themes/admin-articles-themes.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '', pathMatch: 'full'},
@@ -25,12 +27,13 @@ const routes: Routes = [
       {path: '', redirectTo: 'oils', pathMatch: 'full'},
       {path: 'oils', component: AdminOilsGoodsComponent},
       {path: 'oils_params', component: AdminOilsParamsComponent},
-      {path: 'oils_approvals', component: AdminOilsApprovalsComponent}
+      {path: 'oils_approvals', component: AdminOilsApprovalsComponent},
+      {path: 'admin_articles', component: AdminArticlesComponent}
     ]}
 ];
 
 @NgModule({
-  declarations: [AdminMainComponent, AdminNavComponent, AdminOilsParamsComponent, AdminOilsApprovalsComponent, AdminOilsGoodsComponent, AdminParamsProductsGroupsComponent, AdminParamsBrandsComponent, AdminParamsVolumeComponent, AdminParamsViscComponent, AdminParamsAceaComponent, AdminParamsApiComponent],
+  declarations: [AdminMainComponent, AdminNavComponent, AdminOilsParamsComponent, AdminOilsApprovalsComponent, AdminOilsGoodsComponent, AdminParamsProductsGroupsComponent, AdminParamsBrandsComponent, AdminParamsVolumeComponent, AdminParamsViscComponent, AdminParamsAceaComponent, AdminParamsApiComponent, AdminArticlesComponent, AdminArticlesThemesComponent],
   imports: [
     NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.circleSwish,

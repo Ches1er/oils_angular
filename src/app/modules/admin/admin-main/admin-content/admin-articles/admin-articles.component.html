@@ -1,0 +1,110 @@
+<div class="admin_unit_block">
+  <div class="admin_block_header">В данном блоке вы можете изменять существующие или добавлять новые статьи</div>
+  <div class="articles_main">
+    <div class="articles_nav">
+      <div *ngIf="!articles">К сожалению пока-что нет статей</div>
+      <div *ngIf="articles">
+        <div class="article" *ngFor="let article of articles" (click)="getArticle(article)">
+          {{article.name}}
+        </div>
+      </div>
+    </div>
+    <div class="article_block">
+      <app-admin-articles-themes></app-admin-articles-themes>
+      <form class="admin_content_form" [formGroup]="addChangeArticle" (ngSubmit)="onArticleSubmit()">
+        <div class="admin_block_header_small">Форма добавления-изменения статей. Для изменения существующей статьи, выберите ее из меню слева</div>
+
+        <div class="form-group">
+          <p class="admin_content_block_label">Выберите тему</p>
+          <select name="" id="themes" formControlName = "idTheme">
+            <option disabled selected value> -- Выберите тему -- </option>
+            <option *ngFor="let theme of themes" value="{{theme.id}}">{{theme.name}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <p class="admin_content_block_label">Название статьи</p>
+          <input class="admin_content_input" type="text" id="name" formControlName = "name">
+          <div class="validation_error"
+               *ngIf="addChangeArticle.get('name').getError('required') &&
+                (addChangeArticle.get('name').dirty || addChangeArticle.get('name').touched)">
+            Введите пожалуйста название статьи.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p class="admin_content_block_label">Выберите картинку для статьи</p>
+          <div class="form-group" *ngIf="choosenImg">
+            <img class="choosenImg" src="{{choosenImg.path}}" alt="">
+          </div>
+          <p class="admin_content_block_label_small" *ngIf="!choosenImg">
+            *Если картинка не будет выбрана, то будет установлена картинка по-умолчанию
+          </p>
+          <button class="admin-btn" (click)="imagesPickerShow($event)">Выберите картинку для статьи</button>
+        </div>
+
+        <div class="form-group">
+          <p class="admin_content_block_label">Введите короткое описание статьи</p>
+          <textarea name="" id="short_news" cols="30" rows="10" formControlName = "shortDesc"></textarea>
+          <div class="validation_error"
+               *ngIf="addChangeArticle.get('shortDesc').getError('required') &&
+                (addChangeArticle.get('shortDesc').dirty || addChangeArticle.get('shortDesc').touched)">
+            Добавьте пожалуйста короткое описание статьи.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p class="admin_content_block_label">Введите текст статьи</p>
+          <angular-editor formControlName="fullDesc" [config]="config" style="background-color: white"></angular-editor>
+          <div class="validation_error"
+               *ngIf="addChangeArticle.get('fullDesc').getError('required') &&
+                (addChangeArticle.get('fullDesc').dirty || addChangeArticle.get('fullDesc').touched)">
+            В статье должен быть текст!
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="goods_in_articles">Товары, упомянутые в статье:</div>
+          <p class="admin_content_block_label">Для поиска товаров, введите ключевое слово в поле.
+            Кликнув по найденому товару, вы добавите его к статье.
+          </p>
+          <div class="find_block">
+            <div class="find_info">
+              <input class="input_find" id="findFieldArt" type="text" formControlName="foundGoods">
+              <div class="btn_find"><i class="fa fa-search" aria-hidden="true"></i></div>
+            </div>
+            <div class="sup">
+              <div class="find_data" *ngIf="products">
+                <div class="find_data_unit" *ngFor="let pr of products" (click)="addProduct(pr.id, pr.tableDefiner)">{{pr.name}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="goods_name" *ngIf="goods.length === 0">Нет товаров</div>
+          <p class="admin_content_block_label_small" *ngIf="goods.length!==0">
+            *Если хотите убрать товар из статьи, просто кликните на него!
+          </p>
+          <div class="article_goods" *ngIf="goods.length!==0">
+            <div class="goods" *ngFor="let g of goods" title="Если хотите убрать товар, просто кликните по нему."
+                 (click)="removeGoods(g.id)">
+              <div class="goods_name">{{g.name}}</div>
+              <img src="{{g.img}}" alt="">
+            </div>
+          </div>
+        </div>
+
+        <div class="admin_content_button_block">
+          <div *ngIf="addChangeArticle.valid">
+            <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить статью</button>
+          </div>
+          <div *ngIf="addChangeArticle.valid">
+            <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
+          </div>
+          <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-images-picker></app-images-picker>
+<app-server-response></app-server-response>
+

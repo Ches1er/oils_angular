@@ -6,6 +6,7 @@ import {map} from 'rxjs/operators';
 import {ArticlesThemesResponse} from '../../dto/articles_themes/ArticlesThemesResponse';
 import {ArticleResponse} from '../../dto/articles/ArticleResponse';
 import {ServerResponse} from '../../dto/ServerResponse/ServerResponse';
+import {Article} from '../../dto/articles/Article';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +26,16 @@ export class ArticlesService {
       .pipe(map(resp => ArticleResponse.fromJson(resp)))
       .pipe(map(ar => ar.data));
   }
+  public article(id): Observable<Article> {
+    return this.http.get(this.urlConfig.GETARTICLE + id)
+      .pipe(map(resp => ArticleResponse.fromJson(resp)))
+      .pipe(map(ar => ar.data));
+  }
   public addTheme(data, action): Observable<string> {
     const params = new FormData();
     params.append('action', action);
     params.append('id', data.id);
-    params.append('id_image', data.idImg);
+    params.append('id_image', data.imgId);
     params.append('name', data.name);
     return this.http.post(this.urlConfig.ADDTHEME, params)
       .pipe(map(resp => ServerResponse.fromJson(resp)))
@@ -42,8 +48,7 @@ export class ArticlesService {
     params.append('name', data.name);
     params.append('short_desc', data.shortDesc);
     params.append('full_desc', data.fullDesc);
-    params.append('short_desc', data.shortDesc);
-    params.append('id_image', data.idImg);
+    params.append('id_image', data.imgId);
     params.append('id_theme', data.idTheme);
     params.append('goods', data.goods);
     return this.http.post(this.urlConfig.ADDARTICLE, params)

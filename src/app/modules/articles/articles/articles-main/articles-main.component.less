@@ -1,0 +1,24 @@
+@import "../../../../common";
+:host {width: 100%}
+.articles_block{
+  display: inline-flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  border: 1px solid @main_content_border;
+  padding: 10px;
+  box-sizing: border-box;
+  .articles_nav{
+    font-family: @nav_filters_font;
+    color: @filter_font_color;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid @main_content_border;
+  }
+  .article_main{
+    border: 1px solid @main_content_border;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-left: 10px;
+    flex-grow: 1;
+  }
+}

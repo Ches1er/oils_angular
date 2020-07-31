@@ -18,6 +18,7 @@ import {ngxLoadingAnimationTypes, NgxLoadingModule} from 'ngx-loading';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import { ProductOilComponent } from './components/windows/product-oil/product-oil.component';
 import { ArticlesComponent } from './components/articles/articles.component';
+import {DeviceDetectorModule} from 'ngx-device-detector';
 
 
 @NgModule({
@@ -49,7 +50,7 @@ import { ArticlesComponent } from './components/articles/articles.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule, FormsModule
+    ReactiveFormsModule, FormsModule, DeviceDetectorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

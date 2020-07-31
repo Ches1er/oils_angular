@@ -28,7 +28,7 @@ export class WindowsMessagesService {
     this.pLoginWindowShow.next(null);
   }
 
-  public productOilWindowShow(id) {
-    this.pProductOilWindowShow.next(id);
+  public productOilWindowShow(data) {
+    this.pProductOilWindowShow.next(data);
   }
 }

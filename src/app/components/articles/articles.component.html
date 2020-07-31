@@ -23,11 +23,11 @@
       <div class="goods_in_articles">Товары, упомянутые в статье:</div>
       <div class="goods_name" *ngIf="!article.goods">Нет товаров</div>
       <div class="article_goods" *ngIf="article.goods">
-        <div class="goods" *ngFor="let g of goods" (click)="showGoods(g.id)">
+        <div class="goods" *ngFor="let g of goods" (click)="showGoods(g.id, g.tableDefiner)">
           <div class="goods_name">{{g.name}}</div>
           <img src="{{g.img}}" alt="">
         </div>
-    </div>
+      </div>
   </div>
 </div>
 </div>

@@ -1,0 +1,85 @@
+@import "../../../../../common";
+
+:host {width: 100%}
+.article_main{
+  border: 1px solid @main_content_border;
+  padding: 5px;
+  box-sizing: border-box;
+  margin-left: 10px;
+  flex-grow: 1;
+  width: 100%;
+  .article_info{
+    display: inline-flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    .article_name{
+      font-size: 24px;
+      border-bottom: 1px solid @main_content_border;
+      color: @main_nav_font_color;
+      margin-bottom: 10px;
+      font-family: @headers_font;
+      font-weight: bold;
+      text-align: center;
+      width: 100%;
+    }
+    .article_short{
+      width: 100%;
+      margin-top: 15px;
+      text-indent: 10px;
+      color: @main_content_font_color;
+      padding: 10px;
+      border-bottom: 1px solid @main_content_border;
+      border-top: 1px solid @main_content_border;
+      font-family: @short_desc_font;
+      box-sizing: border-box;
+    }
+    .article_full{
+      margin: 15px;
+      text-indent: 10px;
+      color: @full_desc_font_color;
+      box-sizing: border-box;
+      font-family: @full_desc_font;
+    }
+    .goods_in_articles{
+      font-size:20px;
+      border-bottom: 1px solid @main_content_border;
+      border-top: 1px solid @main_content_border;
+      color: @main_nav_font_color;
+      margin-bottom: 10px;
+      font-family: @headers_font;
+      font-weight: bold;
+      text-align: center;
+      width: 100%;
+    }
+    .article_goods{
+      display: inline-flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+      font-family: @headers_font;
+      color: @main_content_font_color;
+      .goods{
+        display: inline-flex;
+        flex-flow: column nowrap;
+        margin-right: 10px;
+        cursor: pointer;
+        border: 1px solid @main_content_border;
+        box-sizing: border-box;
+        color: @main_content_font_color;
+        padding: 5px;
+        width: 160px;
+        &:hover{
+          color: #1b6ab8;
+          border-color: @main_content_border_hover;
+        }
+        .goods_name{
+          font-family: @products_name_font;
+          text-transform: uppercase;
+        }
+        img {
+          width: 150px;
+          height: 150px;
+        }
+      }
+    }
+  }
+}
