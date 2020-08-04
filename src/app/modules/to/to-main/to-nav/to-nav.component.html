@@ -1,0 +1,18 @@
+<div class="articles_nav">
+  <div *ngIf="!brands">
+    К сожалению статей пока-что нет!
+  </div>
+  <div *ngIf="brands" class="themes_list">
+    <div *ngFor="let brand of brands" class="theme" (click)="getArticles(brand.id)">
+      {{brand.name}}
+      <div *ngIf="autos && brand.id === choosenTheme" >
+        <div class="articles_list">
+          <div *ngFor="let auto of autos">
+            <a routerLink="auto_goods/{{auto.id}}" [routerLinkActive]="'active'" class="article_list_unit" >
+              <i class="fa fa-shield fa-rotate-270"></i> {{auto.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

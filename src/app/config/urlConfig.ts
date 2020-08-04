@@ -167,4 +167,11 @@ export class urlConfig {
   GETARTICLE = this.articlesBase + 'getarticle/';
   ADDTHEME = this.articlesBase + 'addtheme';
   ADDARTICLE = this.articlesBase + 'addarticle';
+
+  // TO
+  private toBase = this.CORE + 'to/';
+  GETBRANDS = this.toBase + 'brands';
+  GETGROUPS = this.toBase + 'groups';
+  GETAUTOS = this.toBase + 'autos';
+  GETAUTOGOODS = this.toBase + 'auto_goods';
 }
