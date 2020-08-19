@@ -20,6 +20,9 @@ import {ngxLoadingAnimationTypes, NgxLoadingModule} from 'ngx-loading';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import { AdminArticlesComponent } from './admin-main/admin-content/admin-articles/admin-articles.component';
 import { AdminArticlesThemesComponent } from './admin-main/admin-content/admin-articles/admin-articles-themes/admin-articles-themes.component';
+import {AdminToComponent} from './admin-main/admin-content/admin-to/admin-to.component';
+import {AdminToBrandsComponent} from './admin-main/admin-content/admin-to/admin-to-brands/admin-to-brands.component';
+import { AdminToExchangeComponent } from './admin-main/admin-content/admin-to/admin-to-exchange/admin-to-exchange.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '', pathMatch: 'full'},
@@ -28,12 +31,13 @@ const routes: Routes = [
       {path: 'oils', component: AdminOilsGoodsComponent},
       {path: 'oils_params', component: AdminOilsParamsComponent},
       {path: 'oils_approvals', component: AdminOilsApprovalsComponent},
-      {path: 'admin_articles', component: AdminArticlesComponent}
+      {path: 'admin_articles', component: AdminArticlesComponent},
+      {path: 'admin_to', component: AdminToComponent}
     ]}
 ];
 
 @NgModule({
-  declarations: [AdminMainComponent, AdminNavComponent, AdminOilsParamsComponent, AdminOilsApprovalsComponent, AdminOilsGoodsComponent, AdminParamsProductsGroupsComponent, AdminParamsBrandsComponent, AdminParamsVolumeComponent, AdminParamsViscComponent, AdminParamsAceaComponent, AdminParamsApiComponent, AdminArticlesComponent, AdminArticlesThemesComponent],
+  declarations: [AdminMainComponent, AdminNavComponent, AdminOilsParamsComponent, AdminOilsApprovalsComponent, AdminOilsGoodsComponent, AdminParamsProductsGroupsComponent, AdminParamsBrandsComponent, AdminParamsVolumeComponent, AdminParamsViscComponent, AdminParamsAceaComponent, AdminParamsApiComponent, AdminArticlesComponent, AdminArticlesThemesComponent, AdminToComponent, AdminToBrandsComponent, AdminToExchangeComponent],
   imports: [
     NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.circleSwish,

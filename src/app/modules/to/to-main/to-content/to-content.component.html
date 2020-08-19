@@ -1,1 +1,35 @@
-<p>to-content works!</p>
+<div class="to_content_main">
+  <div class="to_content_auto" *ngIf="auto">
+    <div class="auto_name">{{auto.name}}</div>
+    <img src="{{auto.img}}" alt="">
+  </div>
+  <div class="to_content_header">Материалы для техобслуживания</div>
+  <div class="to_content_goods">
+    <div class="groups" *ngIf="groups">
+      <div class="groups_header">
+        <div class="groups_header_group">Название группы</div>
+        <div class="groups_header_goods">Наименование</div>
+        <div class="groups_header_goods">Номер по каталогу</div>
+        <div class="groups_header_goods">Цена, грн</div>
+        <div class="groups_header_price">Цена макс</div>
+        <div class="groups_header_price">Цена мин</div>
+        <div class="groups_header_price">Цена средняя</div>
+      </div>
+      <div class="group" *ngFor="let group of groups">
+        <div class="group_name">{{group.name}}</div>
+        <div class="goods">
+        <div *ngFor="let g of goods">
+            <div class="goods_unit" *ngIf="g.idGroup === group.id">
+              <div class="goods_unit_name">{{g.name}}</div>
+              <div class="goods_unit_cat">{{g.catNumber}}</div>
+              <div class="goods_unit_price">{{g.price}}</div>
+              <div class="goods_unit_max_min" ><span *ngIf="g.max && !g.min">max</span></div>
+              <div class="goods_unit_max_min" ><span *ngIf="g.min && !g.max">min</span></div>
+              <div class="goods_unit_max_min" ><span *ngIf="g.min && g.max">avg</span></div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

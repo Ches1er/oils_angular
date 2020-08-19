@@ -35,7 +35,7 @@ import {DeviceDetectorModule} from 'ngx-device-detector';
     AuthButtonsBlockComponent,
     CurrentUserBlockComponent,
     ProductOilComponent,
-    ArticlesComponent
+    ArticlesComponent,
   ],
   imports: [
     NgxLoadingModule.forRoot({

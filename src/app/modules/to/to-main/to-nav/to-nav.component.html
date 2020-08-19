@@ -1,6 +1,9 @@
 <div class="articles_nav">
-  <div *ngIf="!brands">
+  <div class="articles_nav_header" *ngIf="!brands">
     К сожалению статей пока-что нет!
+  </div>
+  <div class="articles_nav_header" *ngIf="brands">
+    Марки автомобилей:
   </div>
   <div *ngIf="brands" class="themes_list">
     <div *ngFor="let brand of brands" class="theme" (click)="getArticles(brand.id)">
@@ -12,6 +15,9 @@
               <i class="fa fa-shield fa-rotate-270"></i> {{auto.name}}</a>
           </div>
         </div>
+      </div>
+      <div *ngIf="!autos && brand.id === choosenTheme">
+        <div class="article_list_unit">К сожалению пока авто нет.</div>
       </div>
     </div>
   </div>

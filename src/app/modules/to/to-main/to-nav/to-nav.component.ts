@@ -32,7 +32,10 @@ export class ToNavComponent implements OnInit {
   getArticles(id: any) {
     this.autos = null;
     this.choosenTheme = id;
-    this.toService.autos.subscribe(resp => this.autos = resp);
+    this.toService.autos(id).subscribe(resp => {
+      this.autos = resp;
+      if (this.autos.length == 0) this.autos = null;
+    });
   }
 
 }

@@ -10,18 +10,20 @@
     border-bottom: 1px solid @main_content_border;
     cursor: pointer;
     font-size: larger;
+    color: @filter_font_color;
+    font-family: @products_name_font;
     &:hover{
-      color: @articles_nav_hover;
-      border-color: #d94f5c;
+      color: @article_theme_hover_font_color;
     }
     .articles_list{
       margin-top: 10px;
       .article_list_unit {
-        margin-top: 5px;
-        font-family: @full_desc_font;
-        color: @main_content_font_color;
+        font-size: 16px;
+        text-decoration: none;
+        color: @article_article_font_color;
         &:hover{
-          color: #d94f5c;
+          color: @article_article_hover_font_color;
+          border-bottom: 1px solid #d94f5c;
         }
       }
     }

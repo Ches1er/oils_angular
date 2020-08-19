@@ -12,7 +12,7 @@ export class ProductsMainComponent implements OnInit {
 
   ngOnInit() {
     // ngx-device-detector
-    console.log(this.deviceService.isDesktop());
+    // console.log(this.deviceService.isDesktop());
   }
 
 }

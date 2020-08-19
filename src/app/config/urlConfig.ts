@@ -170,8 +170,12 @@ export class urlConfig {
 
   // TO
   private toBase = this.CORE + 'to/';
-  GETBRANDS = this.toBase + 'brands';
   GETGROUPS = this.toBase + 'groups';
   GETAUTOS = this.toBase + 'autos';
-  GETAUTOGOODS = this.toBase + 'auto_goods';
+  GETAUTOGOODS = this.toBase + 'auto_goods/';
+  GETAUTO = this.toBase + 'auto/';
+  GETEXCHANGES = this.toBase + 'exchanges';
+  GETTOBRANDS = this.toBase + 'brands';
+  ADDEXCHANGE = this.toBase + 'addexchange';
+  ADDTO = this.toBase + 'addto';
 }

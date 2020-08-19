@@ -1,0 +1,27 @@
+@import "../../../../common";
+
+.articles_nav_header{
+  margin-bottom: 10px;
+  border-bottom: 1px solid @main_content_border;
+  color: #000;
+  text-align: center;
+}
+.theme{
+  cursor: pointer;
+  color: @filter_font_color;
+  border-bottom: 1px solid @main_content_border;
+  &:hover{
+    color: @article_theme_hover_font_color;
+    border-color: #d94f5c;
+  }
+  .article_list_unit {
+    font-size: 16px;
+    text-decoration: none;
+    color: @article_article_font_color;
+    &:hover{
+      color: @article_article_hover_font_color;
+      border-bottom: 1px solid #d94f5c;
+    }
+  }
+}
+

@@ -1,0 +1,60 @@
+@import "../../../../../common";
+
+.articles_main{
+  display: inline-flex;
+  flex-flow: row nowrap;
+  border: 1px solid @main_content_border;
+  width: 100%;
+  .articles_nav{
+    border: 1px solid @main_content_border;
+    margin: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    flex-grow: 0;
+    display: inline-flex;
+    flex-flow: column nowrap;
+    .article{
+      margin: 5px 0;
+      cursor: pointer;
+      font-family: @products_name_font;
+      color: @main_nav_font_color;
+      border-bottom: 1px solid @main_content_border;
+      &:hover{
+        color: @main_nav_font_color_hover;
+        border-bottom-color: @main_content_border_hover;
+      }
+    }
+  }
+  .article_block {
+    border: 1px solid @main_content_border;
+    margin: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    display: inline-flex;
+    flex-flow: column nowrap;
+    .goods{
+      display: inline-flex;
+      flex-flow: column nowrap;
+      .admin-btn{
+        margin: 0;
+        max-width: 40px;
+      }
+      div {
+        display: inline-flex;
+        flex-flow: column nowrap;
+        .goods_unit{
+          display: inline-flex;
+          flex-flow: row nowrap;
+          padding: 5px;
+          margin-bottom: 5px;
+          input, select{
+            margin-right: 3px;
+          }
+
+        }
+      }
+
+    }
+  }
+}

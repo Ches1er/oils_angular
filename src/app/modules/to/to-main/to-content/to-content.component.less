@@ -1,0 +1,101 @@
+@import "../../../../common";
+:host {width: 100%}
+.to_content_main{
+  width: 100%;
+  display: inline-flex ;
+  flex-flow: column nowrap;
+  .to_content_auto{
+    .auto_name {
+      font-size: 24px;
+      margin-bottom: 10px;
+      font-family: @headers_font;
+      font-weight: bold;
+      text-align: center;
+      width: 100%;
+    }
+  }
+  .to_content_header{
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-family: @headers_font;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .to_content_goods{
+    display: inline-flex;
+    flex-flow: column nowrap;
+    .groups{
+      display: inline-flex ;
+      flex-flow: column nowrap;
+      border: 1px solid @goods_table_border;
+      padding: 10px;
+      .groups_header{
+        display: inline-flex;
+        flex-flow: row nowrap;
+        font-family: @headers_font;
+        color: #0a155a;
+        font-weight: bold;
+        font-size: larger;
+        text-align: center;
+        border: 1px solid @main_content_border;
+        box-sizing: border-box;
+        margin-bottom: 2px;
+        width: 100%;
+        div {
+          border-right: 1px solid @main_content_border;
+          box-sizing: border-box;
+          &:last-child {border-right:none}
+        }
+        .groups_header_group{
+          width: 19%;
+        }
+        .groups_header_goods{
+          width: 17%;
+        }
+        .groups_header_price{
+          width: 10%;
+        }
+      }
+      .group {
+        display: inline-flex ;
+        flex-flow: row nowrap;
+        margin-bottom: 5px;
+        border: 1px solid @main_content_border;
+        box-sizing: border-box;
+        .group_name {
+          width: 19%;
+          color: @main_content_font_color;
+          font-family: @short_desc_font;
+          font-size: 14px;
+          border-right: 1px solid @main_content_border;
+          box-sizing: border-box;
+          padding: 5px;
+        }
+        .goods{
+          display: inline-flex ;
+          flex-flow: column nowrap;
+          width: 81%;
+          .goods_unit{
+            display: inline-flex ;
+            flex-flow: row nowrap;
+            width: 100%;
+            div{
+              border-right: 1px solid @main_content_border;
+              width: 22.1%;
+              box-sizing: border-box;
+              padding: 5px;
+              font-family: @full_desc_font;
+              color: #000;
+            }
+            .goods_unit_max_min{
+              width: 13%;
+              &:last-child{border-right: none}
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -26,6 +26,7 @@ export class BrandsService {
       .pipe(map(br => br.data));
   }
   public addBrand(data: any, action: string): Observable<string> {
+    console.log(data);
     const params = new FormData();
     params.append('name', data.name);
     params.append('id', data.id);
