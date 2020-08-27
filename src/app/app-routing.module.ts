@@ -6,11 +6,13 @@ import {AdminModule} from './modules/admin/admin.module';
 import {ContactsComponent} from './components/contacts/contacts.component';
 import {ArticlesModule} from './modules/articles/articles/articles.module';
 import {ToModule} from './modules/to/to.module';
+import {RolesGuard} from './dto/guards/roles.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'main', pathMatch: 'full'},
   {path: 'main', loadChildren: './modules/products/products.module#ProductsModule'},
-  {path: 'admin', loadChildren: './modules/admin/admin.module#AdminModule'},
+  {path: 'admin', canActivate: [RolesGuard], loadChildren: './modules/admin/admin.module#AdminModule', data: {
+      expectedRole: ['admin']}},
   {path: 'contacts', component: ContactsComponent},
   {path: 'products', loadChildren: './modules/product/product.module#ProductModule'},
   {path: 'articles', loadChildren: './modules/articles/articles/articles.module#ArticlesModule'},

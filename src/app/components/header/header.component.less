@@ -79,6 +79,24 @@
 @media print {
   .header_nav {display: none}
 }
+@media (min-width: 640px) and (max-width: 860px){
+  .header_nav{
+    flex-flow: column nowrap;
+    .header_menu{
+      display: inline-flex;
+      flex-flow: row nowrap;
+      padding: 5px;
+      width: 100%;
+    }
+    .header_auth{
+      width: 100%;
+    }
+    .header_find{
+      width: 100%;
+    }
+  }
+
+}
 
 
 

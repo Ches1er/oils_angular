@@ -57,7 +57,7 @@ export class CurrentUserBlockComponent implements OnInit {
         });
     }
     this.authMessagesService.loginSuccessMessage.subscribe(user => {
-        if (this.tokenData.remember_token === null) {
+      if (this.tokenData.remember_token === null) {
           this.pCurrentUser = user;
           this.authService.roles(user.apiToken).subscribe(roles => {
             if (roles.includes('admin')) {

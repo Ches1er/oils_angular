@@ -1,6 +1,8 @@
+:host {width: 100%}
 .main_content_list{
   display: inline-flex;
   flex-flow: column wrap;
+  width: 100%;
   .main_group{
     display: inline-flex;
     flex-flow: row nowrap;
@@ -41,6 +43,18 @@
         &:hover{
           border-color: #1d4ebe;
         }
+      }
+    }
+  }
+}
+@media (min-width: 640px) and (max-width: 860px){
+  .main_content_list{
+    .main_group{
+      flex-flow: column nowrap;
+      align-items: center;
+      .main-unit{
+        margin-right: 0;
+        margin-bottom: 10px;
       }
     }
   }

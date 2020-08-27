@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~8.0.0",
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
+    "@auth0/angular-jwt": "^5.0.1",
     "@kolkov/angular-editor": "^1.1.2",
     "ngx-device-detector": "^1.4.6",
     "ngx-loading": "^8.0.0",

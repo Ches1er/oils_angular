@@ -19,6 +19,7 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
 import { ProductOilComponent } from './components/windows/product-oil/product-oil.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 import {DeviceDetectorModule} from 'ngx-device-detector';
+import {JwtModule} from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -49,6 +50,18 @@ import {DeviceDetectorModule} from 'ngx-device-detector';
     AngularEditorModule,
     BrowserModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('api_token');
+        },
+        whitelistedDomains: ['http://localhost:4200'],
+        blacklistedRoutes: [
+          'http://mydomain/api/login',
+          'http://mydomain/api/login_remember'
+        ]
+      }
+    }),
     AppRoutingModule,
     ReactiveFormsModule, FormsModule, DeviceDetectorModule
   ],

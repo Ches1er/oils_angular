@@ -120,22 +120,22 @@ export class AdminToComponent implements OnInit {
     this.toService.addTo(this.addChangeArticle.value, this.whatHaveToDo, this.isGoodsChanges).subscribe(resp => {
       this.adminMessageService.ShowServerResponseWindow();
       if (resp === 'update success') {
-        const data = ['обновление данных о бренде', 'Данные успешно обновлены'];
+        const data = ['обновление данных о ТО', 'Данные успешно обновлены'];
         this.adminMessageService.DataToServerResponseData(data.join(';'));
         this.clearFields();
       }
       if (resp === 'insert success') {
-        const data = ['добавление нового бренда', 'Данные успешно добавлены'];
+        const data = ['добавление нового ТО', 'Данные успешно добавлены'];
         this.adminMessageService.DataToServerResponseData(data.join(';'));
         this.clearFields();
       }
       if (resp === 'error') {
-        const data = ['добавление нового бренда', 'Ой, что-то пошло не так! Повторите попытку.'];
+        const data = ['добавление нового ТО', 'Ой, что-то пошло не так! Повторите попытку.'];
         this.adminMessageService.DataToServerResponseData(data.join(';'));
       }
       if (resp === 'this object exists') {
-        const data = ['добавление нового бренда',
-          'Бренд с таким названием уже существует! Если хотите изменить его данные, выберите из списка.'];
+        const data = ['добавление нового ТО',
+          'ТО с таким авто уже существует! Если хотите изменить его данные, выберите из списка.'];
         this.adminMessageService.DataToServerResponseData(data.join(';'));
       }
       this.updateArticles();
