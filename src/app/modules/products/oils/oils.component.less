@@ -6,7 +6,7 @@
   width: 100%;
   .filters {
     margin-right: 10px;
-    width: 15%;
+    width: 19%;
     .filter_unit{
       display: block;
       color: @filter_font_color;
@@ -73,6 +73,40 @@
         }
       }
 
+    }
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1320px){
+  .main_content{
+    .filters {
+      .filter_unit{
+        font-size: 14px;
+      }
+      span {
+      }
+      .approval{
+        .approval_data{
+          .approval_name {
+          }
+          .approval_fold {
+          }
+        }
+      }
+    }
+    .products{
+      .products_header{
+        font-size: 20px;
+        text-align: center;
+      }
+      .products_list{
+        .product {
+          &:hover{
+          }
+          .product_name{
+          }
+        }
+      }
     }
   }
 }

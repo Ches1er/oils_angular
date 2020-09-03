@@ -29,215 +29,355 @@ import {WindowsMessagesService} from '../../../services/messages/windows-message
   styleUrls: ['./oils.component.less']
 })
 export class OilsComponent implements OnInit {
+  get nissanApprovals(): any {
+    return this.pNissanApprovals;
+  }
+
+  set nissanApprovals(value: any) {
+    this.pNissanApprovals = value;
+  }
+  get mazdaApprovals(): any {
+    return this.pMazdaApprovals;
+  }
+
+  set mazdaApprovals(value: any) {
+    this.pMazdaApprovals = value;
+  }
+  get jasoApprovals(): any {
+    return this.pJasoApprovals;
+  }
+
+  set jasoApprovals(value: any) {
+    this.pJasoApprovals = value;
+  }
+  get jaguarApprovals(): any {
+    return this.pJaguarApprovals;
+  }
+
+  set jaguarApprovals(value: any) {
+    this.pJaguarApprovals = value;
+  }
+  get volvoApprovals(): any {
+    return this.pVolvoApprovals;
+  }
+
+  set volvoApprovals(value: any) {
+    this.pVolvoApprovals = value;
+  }
+  get psaApprovals(): any {
+    return this.pPsaApprovals;
+  }
+
+  set psaApprovals(value: any) {
+    this.pPsaApprovals = value;
+  }
+  get chryslerApprovals(): any {
+    return this.pChryslerApprovals;
+  }
+
+  set chryslerApprovals(value: any) {
+    this.pChryslerApprovals = value;
+  }
+  get koenigApprovals(): any {
+    return this.pKoenigApprovals;
+  }
+
+  set koenigApprovals(value: any) {
+    this.pKoenigApprovals = value;
+  }
+  get gmApprovals(): any {
+    return this.pGmApprovals;
+  }
+
+  set gmApprovals(value: any) {
+    this.pGmApprovals = value;
+  }
+  get porscheApprovals(): any {
+    return this.pPorscheApprovals;
+  }
+
+  set porscheApprovals(value: any) {
+    this.pPorscheApprovals = value;
+  }
+  get nissanApprovalsIdsArray(): any[] {
+    return this.pNissanApprovalsIdsArray;
+  }
+
+  set nissanApprovalsIdsArray(value: any[]) {
+    this.pNissanApprovalsIdsArray = value;
+  }
+  get mazdaApprovalsIdsArray(): any[] {
+    return this.pMazdaApprovalsIdsArray;
+  }
+
+  set mazdaApprovalsIdsArray(value: any[]) {
+    this.pMazdaApprovalsIdsArray = value;
+  }
+  get jasoApprovalsIdsArray(): any[] {
+    return this.pJasoApprovalsIdsArray;
+  }
+
+  set jasoApprovalsIdsArray(value: any[]) {
+    this.pJasoApprovalsIdsArray = value;
+  }
+  get jaguarApprovalsIdsArray(): any[] {
+    return this.pJaguarApprovalsIdsArray;
+  }
+
+  set jaguarApprovalsIdsArray(value: any[]) {
+    this.pJaguarApprovalsIdsArray = value;
+  }
+  get volvoApprovalsIdsArray(): any[] {
+    return this.pVolvoApprovalsIdsArray;
+  }
+
+  set volvoApprovalsIdsArray(value: any[]) {
+    this.pVolvoApprovalsIdsArray = value;
+  }
+  set psaApprovalsIdsArray(value: any[]) {
+    this.pPsaApprovalsIdsArray = value;
+  }
+  get psaApprovalsIdsArray(): any[] {
+    return this.pPsaApprovalsIdsArray;
+  }
+  get chryslerApprovalsIdsArray(): any[] {
+    return this.pChryslerApprovalsIdsArray;
+  }
+
+  set chryslerApprovalsIdsArray(value: any[]) {
+    this.pChryslerApprovalsIdsArray = value;
+  }
+  get koenigApprovalsIdsArray(): any[] {
+    return this.pKoenigApprovalsIdsArray;
+  }
+
+  set koenigApprovalsIdsArray(value: any[]) {
+    this.pKoenigApprovalsIdsArray = value;
+  }
+  get gmApprovalsIdsArray(): any[] {
+    return this.pGmApprovalsIdsArray;
+  }
+
+  set gmApprovalsIdsArray(value: any[]) {
+    this.pGmApprovalsIdsArray = value;
+  }
+  get porscheApprovalsIdsArray(): any[] {
+    return this.pPorscheApprovalsIdsArray;
+  }
+
+  set porscheApprovalsIdsArray(value: any[]) {
+    this.pPorscheApprovalsIdsArray = value;
+  }
   // "loading" variable use for ngx-loading component
   public loading = false;
-  get volume(): Array<Volume> {
-    return this.pVolume;
-  }
-
-  set volume(value: Array<Volume>) {
-    this.pVolume = value;
-  }
-
-  get viscosity(): Array<Viscosity> {
-    return this.pViscosity;
-  }
-
-  set viscosity(value: Array<Viscosity>) {
-    this.pViscosity = value;
-  }
-
-  get volumeIdsArray(): Array<number> {
-    return this.pVolumeIdsArray;
-  }
-
-  set volumeIdsArray(value: Array<number>) {
-    this.pVolumeIdsArray = value;
-  }
-
-  get viscosityIdsArray(): Array<number> {
-    return this.pViscosityIdsArray;
-  }
-
-  set viscosityIdsArray(value: Array<number>) {
-    this.pViscosityIdsArray = value;
-  }
 
   // GETTERS AND SETTERS
 
-  get products(): Array<Oils> {
+  get volume(): any {
+    return this.pVolume;
+  }
+
+  set volume(value: any) {
+    this.pVolume = value;
+  }
+
+  get viscosity(): any {
+    return this.pViscosity;
+  }
+
+  set viscosity(value: any) {
+    this.pViscosity = value;
+  }
+
+  get volumeIdsArray(): any {
+    return this.pVolumeIdsArray;
+  }
+
+  set volumeIdsArray(value: any) {
+    this.pVolumeIdsArray = value;
+  }
+
+  get viscosityIdsArray(): any {
+    return this.pViscosityIdsArray;
+  }
+
+  set viscosityIdsArray(value: any) {
+    this.pViscosityIdsArray = value;
+  }
+
+  get products(): any {
     return this.pProducts;
   }
 
-  set products(value: Array<Oils>) {
+  set products(value: any) {
     this.pProducts = value;
   }
 
-  get brands(): Array<Brand> {
+  get brands(): any {
     return this.pBrands;
   }
 
-  set brands(value: Array<Brand>) {
+  set brands(value: any) {
     this.pBrands = value;
   }
 
-  get productType(): number {
+  get productType(): any {
     return this.pProductType;
   }
 
-  get mbApprovals(): Array<Mb> {
+  get mbApprovals(): any {
     return this.pMbApprovals;
   }
 
-  set mbApprovals(value: Array<Mb>) {
+  set mbApprovals(value: any) {
     this.pMbApprovals = value;
   }
 
-  get bmwApprovals(): Array<Bmw> {
+  get bmwApprovals(): any {
     return this.pBmwApprovals;
   }
 
-  set bmwApprovals(value: Array<Bmw>) {
+  set bmwApprovals(value: any) {
     this.pBmwApprovals = value;
   }
 
-  get fiatApprovals(): Array<Fiat> {
+  get fiatApprovals(): any {
     return this.pFiatApprovals;
   }
 
-  set fiatApprovals(value: Array<Fiat>) {
+  set fiatApprovals(value: any) {
     this.pFiatApprovals = value;
   }
 
-  get fordApprovals(): Array<Ford> {
+  get fordApprovals(): any {
     return this.pFordApprovals;
   }
 
-  set fordApprovals(value: Array<Ford>) {
+  set fordApprovals(value: any) {
     this.pFordApprovals = value;
   }
 
-  get renApprovals(): Array<Ren> {
+  get renApprovals(): any {
     return this.pRenApprovals;
   }
 
-  set renApprovals(value: Array<Ren>) {
+  set renApprovals(value: any) {
     this.pRenApprovals = value;
   }
 
-  get vwApprovals(): Array<Vw> {
+  get vwApprovals(): any {
     return this.pVwApprovals;
   }
 
-  set vwApprovals(value: Array<Vw>) {
+  set vwApprovals(value: any) {
     this.pVwApprovals = value;
   }
 
-  get brandIdsArray(): Array<number> {
+  get brandIdsArray(): any {
     return this.pBrandIdsArray;
   }
 
-  set brandIdsArray(value: Array<number>) {
+  set brandIdsArray(value: any) {
     this.pBrandIdsArray = value;
   }
 
-  get apiIdsArray(): Array<number> {
+  get apiIdsArray(): any {
     return this.pApiIdsArray;
   }
 
-  set apiIdsArray(value: Array<number>) {
+  set apiIdsArray(value: any) {
     this.pApiIdsArray = value;
   }
 
-  get aceaIdsArray(): Array<number> {
+  get aceaIdsArray(): any {
     return this.pAceaIdsArray;
   }
 
-  set aceaIdsArray(value: Array<number>) {
+  set aceaIdsArray(value: any) {
     this.pAceaIdsArray = value;
   }
 
-  get baseIdsArray(): Array<number> {
+  get baseIdsArray(): any {
     return this.pBaseIdsArray;
   }
 
-  set baseIdsArray(value: Array<number>) {
+  set baseIdsArray(value: any) {
     this.pBaseIdsArray = value;
   }
 
-  get base(): Array<Base> {
+  get base(): any {
     return this.pBase;
   }
 
-  set base(value: Array<Base>) {
+  set base(value: any) {
     this.pBase = value;
   }
 
-  get Api(): Array<Api> {
+  get Api(): any {
     return this.pApi;
   }
 
-  set Api(value: Array<Api>) {
+  set Api(value: any) {
     this.pApi = value;
   }
 
-  get acea(): Array<Acea> {
+  get acea(): any {
     return this.pAcea;
   }
 
-  set acea(value: Array<Acea>) {
+  set acea(value: any) {
     this.pAcea = value;
   }
 
-  get nonEmptyProductList(): boolean {
+  get nonEmptyProductList(): any {
     return this.pNonEmptyProductList;
   }
 
-  set nonEmptyProductList(value: boolean) {
+  set nonEmptyProductList(value: any) {
     this.pNonEmptyProductList = value;
   }
 
-  get mbApprovalsIdsArray(): Array<number> {
+  get mbApprovalsIdsArray(): any {
     return this.pMbApprovalsIdsArray;
   }
 
-  set mbApprovalsIdsArray(value: Array<number>) {
+  set mbApprovalsIdsArray(value: any) {
     this.pMbApprovalsIdsArray = value;
   }
 
-  get bmwApprovalsIdsArray(): Array<number> {
+  get bmwApprovalsIdsArray(): any {
     return this.pBmwApprovalsIdsArray;
   }
 
-  set bmwApprovalsIdsArray(value: Array<number>) {
+  set bmwApprovalsIdsArray(value: any) {
     this.pBmwApprovalsIdsArray = value;
   }
 
-  get fiatApprovalsIdsArray(): Array<number> {
+  get fiatApprovalsIdsArray(): any {
     return this.pFiatApprovalsIdsArray;
   }
 
-  set fiatApprovalsIdsArray(value: Array<number>) {
+  set fiatApprovalsIdsArray(value: any) {
     this.pFiatApprovalsIdsArray = value;
   }
 
-  get fordApprovalsIdsArray(): Array<number> {
+  get fordApprovalsIdsArray(): any {
     return this.pFordApprovalsIdsArray;
   }
 
-  set fordApprovalsIdsArray(value: Array<number>) {
+  set fordApprovalsIdsArray(value: any) {
     this.pFordApprovalsIdsArray = value;
   }
 
-  get renApprovalsIdsArray(): Array<number> {
+  get renApprovalsIdsArray(): any {
     return this.pRenApprovalsIdsArray;
   }
 
-  set renApprovalsIdsArray(value: Array<number>) {
+  set renApprovalsIdsArray(value: any) {
     this.pRenApprovalsIdsArray = value;
   }
 
-  get vwApprovalsIdsArray(): Array<number> {
+  get vwApprovalsIdsArray(): any {
     return this.pVwApprovalsIdsArray;
   }
 
@@ -257,20 +397,40 @@ export class OilsComponent implements OnInit {
   private pFordApprovalsIdsArray = [];
   private pRenApprovalsIdsArray = [];
   private pVwApprovalsIdsArray = [];
+  private pPorscheApprovalsIdsArray = [];
+  private pGmApprovalsIdsArray = [];
+  private pKoenigApprovalsIdsArray = [];
+  private pChryslerApprovalsIdsArray = [];
+  private pPsaApprovalsIdsArray = [];
+  private pVolvoApprovalsIdsArray = [];
+  private pJaguarApprovalsIdsArray = [];
+  private pJasoApprovalsIdsArray = [];
+  private pMazdaApprovalsIdsArray = [];
+  private pNissanApprovalsIdsArray = [];
 
-  private pProducts: Array<Oils> = [];
-  private pBrands: Array<Brand> = [];
-  private pAcea: Array<Acea> = [];
-  private pApi: Array<Api> = [];
-  private pBase: Array<Base> = [];
-  private pViscosity: Array<Viscosity> = [];
-  private pVolume: Array<Volume> = [];
-  private pMbApprovals: Array<Mb> = [];
-  private pBmwApprovals: Array<Bmw> = [];
-  private pFiatApprovals: Array<Fiat> = [];
-  private pFordApprovals: Array<Ford> = [];
-  private pRenApprovals: Array<Ren> = [];
-  private pVwApprovals: Array<Vw> = [];
+  private pProducts: any = [];
+  private pBrands: any = [];
+  private pAcea: any = [];
+  private pApi: any = [];
+  private pBase: any = [];
+  private pViscosity: any = [];
+  private pVolume: any = [];
+  private pMbApprovals: any = [];
+  private pBmwApprovals: any = [];
+  private pFiatApprovals: any = [];
+  private pFordApprovals: any = [];
+  private pRenApprovals: any = [];
+  private pVwApprovals: any = [];
+  private pPorscheApprovals: any = [];
+  private pGmApprovals: any = [];
+  private pKoenigApprovals: any = [];
+  private pChryslerApprovals: any = [];
+  private pPsaApprovals: any = [];
+  private pVolvoApprovals: any = [];
+  private pJaguarApprovals: any = [];
+  private pJasoApprovals: any = [];
+  private pMazdaApprovals: any = [];
+  private pNissanApprovals: any = [];
 
   private pNonEmptyProductList = false;
   brandsOptions = [];
@@ -375,6 +535,9 @@ export class OilsComponent implements OnInit {
     });
     e.acea = aceaArray.map(e => Number(e));
     e.api = apiArray.map(e => Number(e));
+    e.idBrand = Number(e.idBrand);
+    e.idViscosity = Number(e.idViscosity);
+    e.idVolume = Number(e.idVolume);
     return e;
   }
 
@@ -382,6 +545,7 @@ export class OilsComponent implements OnInit {
     this.approvalsArray.forEach(model => {
       const toLowerCase = model.toLowerCase();
       this.approvalsService.approvals('prod', model).subscribe(resp => {
+        console.log(resp);
         this[toLowerCase + 'Approvals'] = resp;
         this[toLowerCase + 'Options'] = resp.map(r => new CheckboxItem(r.id, r.name, false));
       });
@@ -443,25 +607,23 @@ export class OilsComponent implements OnInit {
   // Hide-Show checkboxes elements
 
   private nullIdsArrays() {
+    const approvals = this.approvalsArray.map(model => {
+      return model.toLowerCase() + 'Approvals';
+    });
     const idsArrays = [
       'api',
       'acea',
       'base',
       'brand',
       'volume',
-      'viscosity',
-      'mbApprovals',
-      'bmwApprovals',
-      'renApprovals',
-      'fiatApprovals',
-      'fordApprovals',
-      'vwApprovals'];
+      'viscosity'
+    ].concat(approvals);
     idsArrays.forEach(e => {
       this[e + 'IdsArray'] = [];
     });
   }
 
-  private commonCheckboxFade(definers: Array<string>) {
+  private commonCheckboxFade(definers: any) {
     for (let i = 0; i < definers.length; i++) {
       const methodName = definers[i] + 'CheckboxFade';
       const arrName = definers[i] + 'IdsArray';
@@ -475,7 +637,7 @@ export class OilsComponent implements OnInit {
 
   // Api
 
-  private apiCheckboxFade(apiArr: Array<number>): void {
+  private apiCheckboxFade(apiArr: any): void {
     const unique = this.uniqueElementsInArray(apiArr);
     this.apiOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -484,7 +646,7 @@ export class OilsComponent implements OnInit {
 
   // Acea
 
-  private aceaCheckboxFade(aceaArr: Array<number>): void {
+  private aceaCheckboxFade(aceaArr: any): void {
     const unique = this.uniqueElementsInArray(aceaArr);
     this.aceaOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -492,7 +654,7 @@ export class OilsComponent implements OnInit {
   }
 
   // Base
-  private baseCheckboxFade(baseArr: Array<number>): void {
+  private baseCheckboxFade(baseArr: any): void {
     const unique = this.uniqueElementsInArray(baseArr);
     this.baseOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -501,7 +663,7 @@ export class OilsComponent implements OnInit {
 
   // Brand
 
-  private brandCheckboxFade(brandArr: Array<number>): void {
+  private brandCheckboxFade(brandArr: any): void {
     const unique = this.uniqueElementsInArray(brandArr);
     this.brandsOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -528,7 +690,7 @@ export class OilsComponent implements OnInit {
 
   // MBApprovals
 
-  private mbApprovalsCheckboxFade(mbArray: Array<number>): void {
+  private mbApprovalsCheckboxFade(mbArray: any): void {
     const unique = this.uniqueElementsInArray(mbArray);
     this.mbOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -537,7 +699,7 @@ export class OilsComponent implements OnInit {
 
   // BmwApprovals
 
-  private bmwApprovalsCheckboxFade(bmwArray: Array<number>): void {
+  private bmwApprovalsCheckboxFade(bmwArray: any): void {
     const unique = this.uniqueElementsInArray(bmwArray);
     this.bmwOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -546,7 +708,7 @@ export class OilsComponent implements OnInit {
 
   // FiatApprovals
 
-  private fiatApprovalsCheckboxFade(fiatArray: Array<number>): void {
+  private fiatApprovalsCheckboxFade(fiatArray: any): void {
     const unique = this.uniqueElementsInArray(fiatArray);
     this.fiatOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -555,7 +717,7 @@ export class OilsComponent implements OnInit {
 
   // FordApprovals
 
-  private fordApprovalsCheckboxFade(fordArray: Array<number>): void {
+  private fordApprovalsCheckboxFade(fordArray: any): void {
     const unique = this.uniqueElementsInArray(fordArray);
     this.fordOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -564,7 +726,7 @@ export class OilsComponent implements OnInit {
 
   // RenaultApprovals
 
-  private renApprovalsCheckboxFade(renArray: Array<number>): void {
+  private renApprovalsCheckboxFade(renArray: any): void {
     const unique = this.uniqueElementsInArray(renArray);
     this.renOptions.map(e => {
       e.fade = !unique.includes(e.value);
@@ -573,16 +735,106 @@ export class OilsComponent implements OnInit {
 
   // VwApprovals
 
-  private vwApprovalsCheckboxFade(vwArray: Array<number>): void {
+  private vwApprovalsCheckboxFade(vwArray: any): void {
     const unique = this.uniqueElementsInArray(vwArray);
     this.vwOptions.map(e => {
       e.fade = !unique.includes(e.value);
     });
   }
 
+  // PorscheApprovals
+
+  private porscheApprovalsCheckboxFade(porscheArray: any): void {
+    const unique = this.uniqueElementsInArray(porscheArray);
+    this.porscheOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
+  }
+
+  // GmApprovals
+
+  private gmApprovalsCheckboxFade(gmArray: any): void {
+    const unique = this.uniqueElementsInArray(gmArray);
+    this.gmOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
+  }
+
+  // KoenigApprovals
+
+  private koenigApprovalsCheckboxFade(koenigArray: any): void {
+    const unique = this.uniqueElementsInArray(koenigArray);
+    this.koenigOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
+  }
+
+  // ChryslerApprovals
+
+  private chryslerApprovalsCheckboxFade(chryslerArray: any): void {
+    const unique = this.uniqueElementsInArray(chryslerArray);
+    this.chryslerOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
+  }
+
+  // PsaApprovals
+
+  private psaApprovalsCheckboxFade(psaArray: any): void {
+    const unique = this.uniqueElementsInArray(psaArray);
+    this.psaOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
+  }
+
+  // VolvoApprovals
+
+  private volvoApprovalsCheckboxFade(volvoArray: any): void {
+    const unique = this.uniqueElementsInArray(volvoArray);
+    this.volvoOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
+  }
+
+  // JaguarApprovals
+
+  private jaguarApprovalsCheckboxFade(jaguarArray: any): void {
+    const unique = this.uniqueElementsInArray(jaguarArray);
+    this.jaguarOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
+  }
+
+  // JasoApprovals
+
+  private jasoApprovalsCheckboxFade(jasoArray: any): void {
+    const unique = this.uniqueElementsInArray(jasoArray);
+    this.jasoOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
+  }
+
+  // MazdaApprovals
+
+  private mazdaApprovalsCheckboxFade(mazdaArray: any): void {
+    const unique = this.uniqueElementsInArray(mazdaArray);
+    this.mazdaOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
+  }
+
+  // NissanApprovals
+
+  private nissanApprovalsCheckboxFade(nissanArray: any): void {
+    const unique = this.uniqueElementsInArray(nissanArray);
+    this.nissanOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
+  }
+
   // Finding unique elements in array
 
-  private uniqueElementsInArray(arr: Array<number>): Array<number> {
+  private uniqueElementsInArray(arr: any): any {
     const result = [];
     if (arr.length === 0) {
       return result;
@@ -596,7 +848,7 @@ export class OilsComponent implements OnInit {
   }
 
   // Brands
-  onBrandsChange(value: Array<number>) {
+  onBrandsChange(value: any) {
     this.requestItem.brand = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
@@ -612,23 +864,19 @@ export class OilsComponent implements OnInit {
         this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
         this.approvalsIdsConcat(p, 'none');
       });
+      const approvals = this.approvalsArray.map(model => {
+        return model.toLowerCase() + 'Approvals';
+      });
       this.commonCheckboxFade(['base',
         'api',
         'acea',
         'volume',
-        'viscosity',
-        'mbApprovals',
-        'bmwApprovals',
-        'fiatApprovals',
-        'fordApprovals',
-        'renApprovals',
-        'vwApprovals']);
+        'viscosity'].concat(approvals));
     });
-
   }
 
   // Acea
-  onAceaChange(value: Array<number>) {
+  onAceaChange(value: any) {
     this.requestItem.acea = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
@@ -644,22 +892,20 @@ export class OilsComponent implements OnInit {
         this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
         this.approvalsIdsConcat(p, 'none');
       });
+      const approvals = this.approvalsArray.map(model => {
+        return model.toLowerCase() + 'Approvals';
+      });
       this.commonCheckboxFade(['base',
         'api',
         'brand',
         'volume',
-        'viscosity',
-        'mbApprovals',
-        'bmwApprovals',
-        'fiatApprovals',
-        'fordApprovals',
-        'renApprovals',
-        'vwApprovals']);
+        'viscosity'].concat(approvals));
     });
   }
 
   // Api
-  onApiChange(value: Array<number>) {
+  onApiChange(value: any) {
+    console.log(this.brandsOptions);
     this.requestItem.api = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
@@ -668,24 +914,21 @@ export class OilsComponent implements OnInit {
       this.products = resp;
       this.products.forEach(p => {
         this.convertStrPropertiesToArray(p);
-        this.aceaIdsArray = this.aceaIdsArray.concat(p.api);
-        this.brandIdsArray = this.brandIdsArray.concat(p.acea);
+        this.aceaIdsArray = this.aceaIdsArray.concat(p.acea);
+        this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
         this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
         this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
         this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
         this.approvalsIdsConcat(p, 'none');
       });
+      const approvals = this.approvalsArray.map(model => {
+        return model.toLowerCase() + 'Approvals';
+      });
       this.commonCheckboxFade(['base',
         'acea',
         'brand',
         'volume',
-        'viscosity',
-        'mbApprovals',
-        'bmwApprovals',
-        'fiatApprovals',
-        'fordApprovals',
-        'renApprovals',
-        'vwApprovals']);
+        'viscosity'].concat(approvals));
     });
   }
 
@@ -706,17 +949,14 @@ export class OilsComponent implements OnInit {
         this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
         this.approvalsIdsConcat(p, 'none');
       });
+      const approvals = this.approvalsArray.map(model => {
+        return model.toLowerCase() + 'Approvals';
+      });
       this.commonCheckboxFade(['base',
         'acea',
         'api',
         'brand',
-        'viscosity',
-        'mbApprovals',
-        'bmwApprovals',
-        'fiatApprovals',
-        'fordApprovals',
-        'renApprovals',
-        'vwApprovals']);
+        'viscosity'].concat(approvals));
     });
   }
 
@@ -737,22 +977,19 @@ export class OilsComponent implements OnInit {
         this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
         this.approvalsIdsConcat(p, 'none');
       });
+      const approvals = this.approvalsArray.map(model => {
+        return model.toLowerCase() + 'Approvals';
+      });
       this.commonCheckboxFade(['base',
         'acea',
         'api',
         'brand',
-        'volume',
-        'mbApprovals',
-        'bmwApprovals',
-        'fiatApprovals',
-        'fordApprovals',
-        'renApprovals',
-        'vwApprovals']);
+        'volume'].concat(approvals));
     });
   }
 
   // Base
-  onBaseChange(value: Array<number>) {
+  onBaseChange(value: any) {
     this.requestItem.base = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
@@ -768,17 +1005,14 @@ export class OilsComponent implements OnInit {
         this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
         this.approvalsIdsConcat(p, 'none');
       });
+      const approvals = this.approvalsArray.map(model => {
+        return model.toLowerCase() + 'Approvals';
+      });
       this.commonCheckboxFade(['api',
         'acea',
         'brand',
         'volume',
-        'viscosity',
-        'mbApprovals',
-        'bmwApprovals',
-        'fiatApprovals',
-        'fordApprovals',
-        'renApprovals',
-        'vwApprovals']);
+        'viscosity'].concat(approvals));
     });
   }
 
@@ -787,7 +1021,9 @@ export class OilsComponent implements OnInit {
     this.requestItem[definer] = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
-    const fullAppArray = ['mbApprovals', 'bmwApprovals', 'fiatApprovals', 'fordApprovals', 'renApprovals', 'vwApprovals'];
+    const fullAppArray = this.approvalsArray.map(model => {
+      return model.toLowerCase() + 'Approvals';
+    });
     const appArrayWithoutDefiner = fullAppArray.filter(e => e !== definer);
     this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
       this.nonEmptyProductList = true;
@@ -808,7 +1044,9 @@ export class OilsComponent implements OnInit {
   }
 
   private approvalsIdsConcat(p: Oils, exception: string): void {
-    const approvalsArray = ['mb', 'bmw', 'ford', 'fiat', 'ren', 'vw'];
+    const approvalsArray = this.approvalsArray.map(model => {
+      return model = model.toLowerCase();
+    });
     approvalsArray.forEach(e => {
       if (e !== exception) {
         const propertyIdsArray = e + 'ApprovalsIdsArray';

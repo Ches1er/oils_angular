@@ -1,17 +1,28 @@
-.auth-btn {
-  margin-right: 5px;
-  background-color: #a5d7ff;
-  color: white;
-  cursor: pointer;
-  padding: 0 5px;
-  border: 1px solid rgba(0,0,0,.1);
-  border-radius: 2px;
-  transition: all .218s ease 0s;
-  height: 27px;
-  .fa {
-    font-size: 20px;
+:host {width: 100%}
+.auth-buttons-block{
+  display: inline-flex;
+  flex-flow: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  .auth-btn {
+    margin-right: 5px;
+    background-color: #a5d7ff;
+    color: white;
+    cursor: pointer;
+    padding: 0 5px;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 2px;
+    transition: all .218s ease 0s;
+    height: 27px;
+    .fa {
+      font-size: 20px;
+    }
+  }
+  .auth-btn:hover{
+    background-color: #124071;
   }
 }
-.auth-btn:hover{
-  background-color: #124071;
-}
+

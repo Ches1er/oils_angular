@@ -40,7 +40,7 @@ import {JwtModule} from '@auth0/angular-jwt';
   ],
   imports: [
     NgxLoadingModule.forRoot({
-      animationType: ngxLoadingAnimationTypes.circleSwish,
+      animationType: ngxLoadingAnimationTypes.threeBounce,
       backdropBackgroundColour: 'rgba(0,0,0,0.1)',
       backdropBorderRadius: '4px',
       primaryColour: '#ffffff',
@@ -55,10 +55,12 @@ import {JwtModule} from '@auth0/angular-jwt';
         tokenGetter: () => {
           return localStorage.getItem('api_token');
         },
-        whitelistedDomains: ['http://localhost:4200'],
-        blacklistedRoutes: [
+        allowedDomains: ['http://localhost:4200', 'http://oilexpress.online'],
+        disallowedRoutes: [
           'http://mydomain/api/login',
-          'http://mydomain/api/login_remember'
+          'http://mydomain/api/login_remember',
+          'http://oilexpress.online/api/login',
+          'http://oilexpress.online/api/login_remember',
         ]
       }
     }),

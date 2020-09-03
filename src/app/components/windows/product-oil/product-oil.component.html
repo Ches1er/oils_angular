@@ -1,4 +1,4 @@
-<div class="fade" *ngIf="visible">
+<div class="fade" *ngIf="visible" (click)="cancel()">
   <div class="product" *ngIf="product">
     <div class="close_button_block">
       <div class="close_button" (click)="cancel()"><i class="fa fa-window-close" aria-hidden="true"></i></div>

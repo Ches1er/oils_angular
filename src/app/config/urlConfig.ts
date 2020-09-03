@@ -1,5 +1,5 @@
 export class urlConfig {
-  private base = 'http://oils/api/';
+  private base = 'http://oilexpress.online/api/';
   CORE = this.base;
 
   // AUTH
