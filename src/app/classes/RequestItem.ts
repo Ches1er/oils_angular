@@ -1,4 +1,11 @@
 export class RequestItem {
+  get ilsac(): any {
+    return this.pIlsac;
+  }
+
+  set ilsac(value: any) {
+    this.pIlsac = value;
+  }
   get porscheApprovals(): any {
     return this.pPorscheApprovals;
   }
@@ -93,18 +100,19 @@ export class RequestItem {
     this.pVolume = value;
   }
 
-  constructor(private pBrand: Array<any>,
-              private pBase: Array<any>,
-              private pApi: Array<any>,
-              private pAcea: Array<any>,
+  constructor(private pBrand: any,
+              private pBase: any,
+              private pApi: any,
+              private pAcea: any,
+              private pIlsac: any,
               private pVolume,
               private pViscosity,
-              private pMbApprovals: Array<any>,
-              private pBmwApprovals: Array<any>,
-              private pFiatApprovals: Array<any>,
-              private pFordApprovals: Array<any>,
-              private pRenApprovals: Array<any>,
-              private pVwApprovals: Array<any>,
+              private pMbApprovals: any,
+              private pBmwApprovals: any,
+              private pFiatApprovals: any,
+              private pFordApprovals: any,
+              private pRenApprovals: any,
+              private pVwApprovals: any,
               private pPorscheApprovals: any,
               private pGmApprovals: any,
               private pKoenigApprovals: any,
@@ -118,83 +126,83 @@ export class RequestItem {
               ) {
   }
 
-  get brand(): Array<any> {
+  get brand(): any {
     return this.pBrand;
   }
 
-  set brand(value: Array<any>) {
+  set brand(value: any) {
     this.pBrand = value;
   }
 
-  get base(): Array<any> {
+  get base(): any {
     return this.pBase;
   }
 
-  set base(value: Array<any>) {
+  set base(value: any) {
     this.pBase = value;
   }
 
-  get api(): Array<any> {
+  get api(): any {
     return this.pApi;
   }
 
-  set api(value: Array<any>) {
+  set api(value: any) {
     this.pApi = value;
   }
 
-  get acea(): Array<any> {
+  get acea(): any {
     return this.pAcea;
   }
 
-  set acea(value: Array<any>) {
+  set acea(value: any) {
     this.pAcea = value;
   }
 
-  get mbApprovals(): Array<any> {
+  get mbApprovals(): any {
     return this.pMbApprovals;
   }
 
-  set mbApprovals(value: Array<any>) {
+  set mbApprovals(value: any) {
     this.pMbApprovals = value;
   }
 
-  get bmwApprovals(): Array<any> {
+  get bmwApprovals(): any {
     return this.pBmwApprovals;
   }
 
-  set bmwApprovals(value: Array<any>) {
+  set bmwApprovals(value: any) {
     this.pBmwApprovals = value;
   }
 
-  get fiatApprovals(): Array<any> {
+  get fiatApprovals(): any {
     return this.pFiatApprovals;
   }
 
-  set fiatApprovals(value: Array<any>) {
+  set fiatApprovals(value: any) {
     this.pFiatApprovals = value;
   }
 
-  get fordApprovals(): Array<any> {
+  get fordApprovals(): any {
     return this.pFordApprovals;
   }
 
-  set fordApprovals(value: Array<any>) {
+  set fordApprovals(value: any) {
     this.pFordApprovals = value;
   }
 
-  get renApprovals(): Array<any> {
+  get renApprovals(): any {
     return this.pRenApprovals;
   }
 
-  set renApprovals(value: Array<any>) {
+  set renApprovals(value: any) {
     this.pRenApprovals = value;
   }
 
-  get vwApprovals(): Array<any> {
+  get vwApprovals(): any {
     return this.pVwApprovals;
   }
 
-  set vwApprovals(value: Array<any>) {
+  set vwApprovals(value: any) {
     this.pVwApprovals = value;
   }
 }

@@ -5,6 +5,8 @@
   display: inline-flex ;
   flex-flow: column nowrap;
   .to_content_auto{
+    display: inline-flex;
+    flex-flow: column wrap;
     .auto_name {
       font-size: 24px;
       margin-bottom: 10px;
@@ -12,6 +14,9 @@
       font-weight: bold;
       text-align: center;
       width: 100%;
+    }
+    img {
+      width: max-content;
     }
   }
   .to_content_header{
@@ -49,13 +54,13 @@
           &:last-child {border-right:none}
         }
         .groups_header_group{
-          width: 19%;
+          width: 30%;
         }
         .groups_header_goods{
-          width: 17%;
+          width: 30%;
         }
         .groups_header_price{
-          width: 10%;
+          width: 20%;
         }
       }
       .group {
@@ -65,7 +70,7 @@
         border: 1px solid @main_content_border;
         box-sizing: border-box;
         .group_name {
-          width: 19%;
+          width: 25%;
           color: @main_content_font_color;
           font-family: @short_desc_font;
           font-size: 14px;
@@ -76,22 +81,24 @@
         .goods{
           display: inline-flex ;
           flex-flow: column nowrap;
-          width: 81%;
+          width: 75%;
           .goods_unit{
             display: inline-flex ;
             flex-flow: row nowrap;
             width: 100%;
+            .goods_unit_price_min{
+              background-color: @button_font_color;
+            }
             div{
               border-right: 1px solid @main_content_border;
-              width: 22.1%;
+              width: 33.4%;
               box-sizing: border-box;
               padding: 5px;
               font-family: @full_desc_font;
               color: #000;
-            }
-            .goods_unit_max_min{
-              width: 13%;
-              &:last-child{border-right: none}
+              &:last-child{
+                border-right: none;
+              }
             }
           }
         }
@@ -136,6 +143,58 @@
             .goods_unit{
               div{
 
+              }
+              .goods_unit_max_min{
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 200px) and (max-width: 640px) {
+  .to_content_main{
+    .to_content_auto{
+      align-items: center;
+      .auto_name{
+        font-size: 16px;
+      }
+      img {
+        width: 90%;
+      }
+    }
+    .to_content_header{
+      font-size: 18px;
+    }
+    .to_content_goods{
+      .groups{
+        padding: 2px;
+        .groups_header{
+          font-size: 14px;
+          div{
+
+          }
+          .groups_header_group{
+
+          }
+          .groups_header_goods{
+
+          }
+          .groups_header_price{
+
+          }
+        }
+        .group{
+          .group_name{
+            padding: 1px;
+            font-family: "Times New Roman";
+          }
+          .goods{
+            .goods_unit{
+              div{
+                 font-size: 12px;
               }
               .goods_unit_max_min{
 

@@ -50,6 +50,6 @@ export class ServerResponseComponent implements OnInit {
   }
   public cancel() {
     this.visible = false;
+    window.location.reload();
   }
-
 }

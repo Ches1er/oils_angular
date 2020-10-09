@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AdminMessagesService} from '../../../../../../services/messages/admin-messages.service';
 import {BrandsService} from '../../../../../../services/goods/brands/brands.service';
 import {Image} from '../../../../../../dto/images/Image';
+import {ToService} from '../../../../../../services/to/to.service';
 
 @Component({
   selector: 'app-admin-to-brands',
@@ -45,8 +46,8 @@ export class AdminToBrandsComponent implements OnInit {
     types: new FormControl('')
   });
 
-  constructor(private brandsService: BrandsService,
-              private adminMessageService: AdminMessagesService) {
+  constructor(
+              private adminMessageService: AdminMessagesService, private brandsService: BrandsService) {
   }
 
   ngOnInit() {
@@ -64,7 +65,7 @@ export class AdminToBrandsComponent implements OnInit {
   }
 
   private updateBrands() {
-    this.brandsService.brands.subscribe(resp => {
+    this.brandsService.brandsByType(4, 'all').subscribe(resp => {
       resp.forEach(e => {
         if (e.types) e.types = e.types.split(',');
       });
@@ -86,11 +87,13 @@ export class AdminToBrandsComponent implements OnInit {
       this.adminMessageService.ShowServerResponseWindow();
       if (resp === 'update success') {
         const data = ['обновление данных о бренде', 'Данные успешно обновлены'];
+        this.adminMessageService.brandUpdateCreate();
         this.adminMessageService.DataToServerResponseData(data.join(';'));
         this.clearFields();
       }
       if (resp === 'insert success') {
         const data = ['добавление нового бренда', 'Данные успешно добавлены'];
+        this.adminMessageService.brandUpdateCreate();
         this.adminMessageService.DataToServerResponseData(data.join(';'));
         this.clearFields();
       }
@@ -130,6 +133,7 @@ export class AdminToBrandsComponent implements OnInit {
   fillInBrand(value) {
     this.brands.filter(brand => {
       if (brand.id == value) {
+        console.log(brand);
         this.addChangeBrands.patchValue({
           id: brand.id,
           name: brand.name,

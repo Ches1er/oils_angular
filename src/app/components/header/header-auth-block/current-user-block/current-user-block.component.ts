@@ -31,6 +31,7 @@ export class CurrentUserBlockComponent implements OnInit {
 
   private pCurrentUser: User = null;
   private pTokenData;
+  private isLoginByRemember = false;
   admin = false;
 
   private static isAdmin(roles: any) {
@@ -48,6 +49,7 @@ export class CurrentUserBlockComponent implements OnInit {
       }
     }
     if (localStorage.length > 0 && this.tokenData.remember_token !== null) {
+      this.isLoginByRemember = true;
       this.authService.loginByRememberMeToken(this.tokenData.remember_token)
         .subscribe(user => {
           if (user) {
@@ -57,7 +59,7 @@ export class CurrentUserBlockComponent implements OnInit {
         });
     }
     this.authMessagesService.loginSuccessMessage.subscribe(user => {
-      if (this.tokenData.remember_token === null) {
+      if (!this.isLoginByRemember) {
           this.pCurrentUser = user;
           this.authService.roles(user.apiToken).subscribe(roles => {
             if (roles.includes('admin')) {

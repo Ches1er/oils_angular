@@ -3,20 +3,34 @@
     К сожалению статей пока-что нет!
   </div>
   <div class="articles_nav_header" *ngIf="brands">
-    Марки автомобилей:
+    <div class="header">Марки автомобилей:</div>
+    <div class="header_remark">*Для отображения списка моделей, кликните на марке</div>
   </div>
   <div *ngIf="brands" class="themes_list">
-    <div *ngFor="let brand of brands" class="theme" (click)="getArticles(brand.id)">
+    <div *ngFor="let brand of brands" class="theme" (click)="getModels(brand.id)">
       {{brand.name}}
-      <div *ngIf="autos && brand.id === choosenTheme" >
-        <div class="articles_list">
-          <div *ngFor="let auto of autos">
-            <a routerLink="auto_goods/{{auto.id}}" [routerLinkActive]="'active'" class="article_list_unit" >
-              <i class="fa fa-shield fa-rotate-270"></i> {{auto.name}}</a>
+      <div *ngIf="models && brand.id === choosenTheme">
+        <div class="models_list">
+          <div *ngFor="let model of models" class="model" (click)="getArticles(model.id)">
+            <i class="fa fa-arrow-right"></i>{{model.name}}
+            <div *ngIf="autos && model.id === choosenModel" >
+              <div class="autos_list">
+                <div *ngFor="let auto of autos" class="auto">
+                  <a routerLink="auto_goods/{{auto.id}}" [routerLinkActive]="'active'" class="article_list_unit" >
+                    <i class="fa fa-arrow-right"></i> {{auto.name}}</a>
+                </div>
+              </div>
+              <div *ngIf="!autos && model.id === choosenModel">
+                <div class="article_list_unit">К сожалению пока авто нет.</div>
+              </div>
+            </div>
           </div>
         </div>
+
+
       </div>
-      <div *ngIf="!autos && brand.id === choosenTheme">
+
+      <div *ngIf="!models && brand.id === choosenTheme">
         <div class="article_list_unit">К сожалению пока авто нет.</div>
       </div>
     </div>

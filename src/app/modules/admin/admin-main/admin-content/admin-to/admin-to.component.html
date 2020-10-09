@@ -1,34 +1,60 @@
 <div class="admin_unit_block">
   <div class="admin_block_header">В данном блоке вы можете изменять существующие или добавлять новые автомобильные марки и статьи о техобслуживании для конкретных моделей</div>
   <div class="articles_main">
-    <div class="articles_nav">
+<!--    <div class="articles_nav">
       <div *ngIf="!articles">К сожалению пока-что нет статей</div>
       <div *ngIf="articles">
         <div class="article" *ngFor="let article of articles" (click)="getArticle(article)">
           {{article.name}}
         </div>
       </div>
-    </div>
+    </div>-->
     <div class="article_block">
       <app-admin-to-brands></app-admin-to-brands>
-      <app-admin-to-exchange></app-admin-to-exchange>
+      <app-admin-to-models></app-admin-to-models>
       <form class="admin_content_form" [formGroup]="addChangeArticle" (ngSubmit)="onArticleSubmit()">
-        <div class="admin_block_header_small">Форма добавления-изменения статей. Для изменения существующей статьи, выберите ее из меню слева</div>
-
-        <div class="form-group">
-          <p class="admin_content_block_label">Выберите марку</p>
-          <select name="" id="themes" formControlName = "idBrand">
-            <option disabled selected value> -- Выберите авто -- </option>
-            <option *ngFor="let brand of brands" value="{{brand.id}}">{{brand.name}}</option>
-          </select>
+        <div class="admin_block_header_small">Форма добавления-изменения авто. Для изменения существующего авто,
+          выберите модель из списка, а потом авто из меню слева.
         </div>
 
         <div class="form-group">
-          <p class="admin_content_block_label">Модель автомобиля</p>
+          <p class="admin_content_block_label">Для поиска модели по бренду, выберите последний из списка</p>
+          <p class="admin_content_block_label_small">*При добавлении модели обязательно выберите из списка бренд</p>
+          <p class="admin_content_block_label">Бренд</p>
+          <select name="" id="brands" (change)="updateModels($event.target.value)">
+            <option disabled selected value> -- Выберите значение бренд -- </option>
+            <option *ngFor="let br of brands" value="{{br.id}}">{{br.name}}</option>
+          </select>
+        </div>
+        <div *ngIf="models">
+          <div class="form-group">
+            <p class="admin_content_block_label">Для поиска авто по модели, выберите модель из списка</p>
+            <p class="admin_content_block_label_small">*При добавлении авто обязательно выберите из списка модель</p>
+            <p class="admin_content_block_label">Модель</p>
+            <select name="" id="models" (change)="updateAutos($event.target.value)">
+              <option disabled selected value> -- Выберите значение модель -- </option>
+              <option *ngFor="let br of models" value="{{br.id}}">{{br.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div *ngIf="articles">
+          <div class="form-group">
+            <p class="admin_content_block_label">Для изменения авто, выберите его из списка</p>
+            <p class="admin_content_block_label">Авто</p>
+            <select name="" id="auto" (change)="getAuto($event.target.value)">
+              <option disabled selected value> -- Выберите авто -- </option>
+              <option *ngFor="let br of models" value="{{br.id}}">{{br.name}}</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <p class="admin_content_block_label">Автомобиль</p>
           <input class="admin_content_input" type="text" id="name" formControlName = "name">
           <div class="validation_error"
-               *ngIf="addChangeArticle.get('name').getError('required') &&
-                (addChangeArticle.get('name').dirty || addChangeArticle.get('name').touched)">
+               *ngIf="ca.get('name').getError('required') &&
+                (ca.get('name').dirty || ca.get('name').touched)">
             Введите пожалуйста название автомобиля.
           </div>
         </div>
@@ -39,6 +65,7 @@
         <div class="form-group">
           <p class="admin_content_block_label">Выберите картинку авто</p>
           <p class="admin_content_block_label_small">*Если картинка не будет выбрана, то будет установлена картинка по-умолчанию</p>
+          <p class="admin_content_block_label_small red">*Формат картинки 400*225 px.</p>
           <button class="admin-btn" (click)="imagesPickerShow($event)">Выберите картинку авто</button>
         </div>
 
@@ -54,7 +81,7 @@
                   <!--[selected]="g.idGroup === group.id" - выбор группы-->
                   <option
                     *ngFor="let group of groups"
-                    [selected]="g.idGroup === group.id"
+                    [selected]="g.idGroup == group.id"
                     value="{{group.id}}"
                   >
                     {{group.name}}
@@ -75,13 +102,16 @@
 
               <div class="form-group">
                 <p class="admin_content_block_label">Добавление товарных позиций</p>
+                <p class="admin_content_block_label_small">
+                  *После того, как заполните все поля, нажмите кнопку "+", это добавит товарную позицию к автобомилю.
+                </p>
                 <form class="admin_content_form" [formGroup]="addGoodsItem" (ngSubmit)="onGoodsItemSubmit()">
                   <div class="form-group">
                     <p class="admin_content_block_label">Название</p>
                     <input class="admin_content_input" type="text" formControlName = "name">
                     <div class="validation_error"
-                         *ngIf="addGoodsItem.get('name').getError('required') &&
-                (addGoodsItem.get('name').dirty || addGoodsItem.get('name').touched)">
+                         *ngIf="gi.get('name').getError('required') &&
+                (gi.get('name').dirty || gi.get('name').touched)">
                       Введите пожалуйста название автомобиля.
                     </div>
                   </div>
@@ -102,8 +132,8 @@
                       </option>
                     </select>
                     <div class="validation_error"
-                         *ngIf="addGoodsItem.get('idGroup').getError('required') &&
-                (addGoodsItem.get('idGroup').dirty || addGoodsItem.get('idGroup').touched)">
+                         *ngIf="gi.get('idGroup').getError('required') &&
+                (gi.get('idGroup').dirty || gi.get('idGroup').touched)">
                       Выберите пожалуйста группу.
                     </div>
                   </div>
@@ -112,9 +142,14 @@
                     <p class="admin_content_block_label">Цена</p>
                     <input class="admin_content_input" type="text" formControlName = "price">
                     <div class="validation_error"
-                         *ngIf="addGoodsItem.get('price').getError('required') &&
-                (addGoodsItem.get('price').dirty || addGoodsItem.get('price').touched)">
+                         *ngIf="gi.get('price').getError('required') &&
+                (gi.get('price').dirty || gi.get('price').touched)">
                       Введите цену.
+                    </div>
+                    <div class="validation_error"
+                         *ngIf="gi.get('price').getError('pattern') &&
+                (gi.get('price').dirty || gi.get('price').touched)">
+                      К вводу допускаются только цифры.
                     </div>
                   </div>
 
@@ -129,8 +164,8 @@
                       </option>
                     </select>
                     <div class="validation_error"
-                         *ngIf="addGoodsItem.get('idExchange').getError('required') &&
-                (addGoodsItem.get('idExchange').dirty || addGoodsItem.get('idExchange').touched)">
+                         *ngIf="gi.get('idExchange').getError('required') &&
+                (gi.get('idExchange').dirty || gi.get('idExchange').touched)">
                       Выберите пожалуйста валюту.
                     </div>
                   </div>
@@ -142,10 +177,30 @@
         </div>
 
         <div class="admin_content_button_block">
-          <div *ngIf="addChangeArticle.valid">
+          <div *ngIf="ca.valid">
             <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить значение</button>
           </div>
-          <div *ngIf="addChangeArticle.valid">
+          <div *ngIf="goodsItemNameError.length > 0 || goodsItemArtError.length > 0 || goodsItemPriceError.length > 0">
+            <div class="validation_error">
+              <b>Ошибки в блоке: "Удаление-изменение товарных позиций, ошибки указаны ниже:</b>
+            </div>
+            <div *ngIf="goodsItemNameError.length > 0">
+              <div class="validation_error" *ngFor="let er of goodsItemNameError">
+                {{er}}
+              </div>
+            </div>
+            <div *ngIf="goodsItemArtError.length > 0">
+              <div class="validation_error" *ngFor="let er of goodsItemArtError">
+                {{er}}
+              </div>
+            </div>
+            <div *ngIf="goodsItemPriceError.length > 0">
+              <div class="validation_error" *ngFor="let er of goodsItemPriceError">
+                {{er}}
+              </div>
+            </div>
+          </div>
+          <div *ngIf="ca.valid && goodsItemNameError.length === 0 && goodsItemArtError.length === 0 && goodsItemPriceError.length === 0">
             <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
           </div>
           <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>

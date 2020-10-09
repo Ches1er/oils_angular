@@ -1,3 +1,4 @@
+@import "../../../common";
 :host {width: 100%}
 .main_content_list{
   display: inline-flex;
@@ -26,28 +27,20 @@
         }
       }
       .motor_oils {
-        background-image: url("http://oils/img/Motor_oil_category.jpg");
+        background-image: url("http://oilexpress.online/img/Motor_oil_category.jpg");
       }
       .trans_oils {
-        background-image: url("http://oils/img/transm_oil_category.jpg");
+        background-image: url("http://oilexpress.online/img/transm_oil_category.jpg");
       }
     }
   }
   .text_info{
-    margin-bottom: 5px;
-    .viber{
-      a{
-        display: block;
-        border: 1px solid grey;
-        width: 40px;
-        &:hover{
-          border-color: #1d4ebe;
-        }
-      }
-    }
+    margin-bottom: 15px;
+    border-bottom: 1px solid @main_content_border;
+
   }
 }
-@media (min-width: 640px) and (max-width: 860px){
+@media (min-width: 480px) and (max-width: 640px){
   .main_content_list{
     .main_group{
       flex-flow: column nowrap;
@@ -55,6 +48,13 @@
       .main-unit{
         margin-right: 0;
         margin-bottom: 10px;
+      }
+    }
+    .text_info{
+      .viber {
+        a {
+          font-size: 16px;
+        }
       }
     }
   }

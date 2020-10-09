@@ -1,0 +1,38 @@
+<form class="admin_content_form" [formGroup]="addChangeModels" (ngSubmit)="onChangeModelsSubmit()">
+  <div class="admin_block_header_small">Форма добавления-изменения моделей авто.</div>
+  <div class="form-group">
+    <p class="admin_content_block_label">Для поиска модели по бренду, выберите последний из списка</p>
+    <p class="admin_content_block_label_small">*При добавлении модели обязательно выберите из списка бренд</p>
+    <p class="admin_content_block_label">Бренд</p>
+    <select name="" id="brands" (change)="updateModels($event.target.value)">
+      <option disabled selected value> -- Выберите значение бренд -- </option>
+      <option *ngFor="let br of brands" value="{{br.id}}">{{br.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <div *ngIf="models.length > 0">
+      <select name="" id="models" formControlName = "id" (change)="fillInModel($event.target.value)">
+        <option disabled selected value> -- Выберите модель -- </option>
+        <option *ngFor="let model of models" value="{{model.id}}">{{model.name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <p class="admin_content_block_label">Название модели</p>
+    <input class="admin_content_input" type="text" id="name" formControlName = "name">
+    <div class="validation_error"
+         *ngIf="fc.name.getError('required') &&
+                (fc.name.dirty || fc.name.touched)">
+      Введите пожалуйста название модели.
+    </div>
+  </div>
+  <div class="admin_content_button_block">
+    <div *ngIf="f.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить модель</button>
+    </div>
+    <div *ngIf="f.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
+    </div>
+    <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>
+  </div>
+</form>

@@ -1,4 +1,7 @@
+import {HttpUrlEncodingCodec} from '@angular/common/http';
+
 export class Article {
+  private urlEncode = new HttpUrlEncodingCodec();
 
   constructor(private pId, private pName, private pIdImg, private pShortDesc, private pFullDesc, private pGoods, private pIdTheme, private pImg) {
   }
@@ -36,7 +39,11 @@ export class Article {
   }
 
   get fullDesc() {
-    return this.pFullDesc;
+    try {
+      return this.urlEncode.decodeValue(this.pFullDesc);
+    } catch (e) {
+      return 'Ошибка! В тексте присутствуют символы, которые не могут быть декодированы';
+    }
   }
 
   set fullDesc(value) {
@@ -66,6 +73,7 @@ export class Article {
   set img(value) {
     this.pImg = value;
   }
+
   public static fromJson(jsonObj): Article {
     return new Article(jsonObj.id, jsonObj.name, jsonObj.id_image, jsonObj.short_desc, jsonObj.full_desc, jsonObj.goods, jsonObj.id_theme, jsonObj.img);
   }

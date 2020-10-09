@@ -23,6 +23,8 @@ import { AdminArticlesThemesComponent } from './admin-main/admin-content/admin-a
 import {AdminToComponent} from './admin-main/admin-content/admin-to/admin-to.component';
 import {AdminToBrandsComponent} from './admin-main/admin-content/admin-to/admin-to-brands/admin-to-brands.component';
 import { AdminToExchangeComponent } from './admin-main/admin-content/admin-to/admin-to-exchange/admin-to-exchange.component';
+import { AdminParamsIlsacComponent } from './admin-main/admin-content/admin-oils-params/admin-params-ilsac/admin-params-ilsac.component';
+import { AdminToModelsComponent } from './admin-main/admin-content/admin-to/admin-to-models/admin-to-models.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '', pathMatch: 'full'},
@@ -37,7 +39,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AdminMainComponent, AdminNavComponent, AdminOilsParamsComponent, AdminOilsApprovalsComponent, AdminOilsGoodsComponent, AdminParamsProductsGroupsComponent, AdminParamsBrandsComponent, AdminParamsVolumeComponent, AdminParamsViscComponent, AdminParamsAceaComponent, AdminParamsApiComponent, AdminArticlesComponent, AdminArticlesThemesComponent, AdminToComponent, AdminToBrandsComponent, AdminToExchangeComponent],
+  declarations: [AdminMainComponent, AdminNavComponent, AdminOilsParamsComponent, AdminOilsApprovalsComponent, AdminOilsGoodsComponent, AdminParamsProductsGroupsComponent, AdminParamsBrandsComponent, AdminParamsVolumeComponent, AdminParamsViscComponent, AdminParamsAceaComponent, AdminParamsApiComponent, AdminArticlesComponent, AdminArticlesThemesComponent, AdminToComponent, AdminToBrandsComponent, AdminToExchangeComponent, AdminParamsIlsacComponent, AdminToModelsComponent],
   imports: [
     NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.circleSwish,

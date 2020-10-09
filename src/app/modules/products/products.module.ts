@@ -7,6 +7,7 @@ import {TransmissionComponent} from './transmission/transmission.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SharedModule} from '../shared/shared.module';
 import {ngxLoadingAnimationTypes, NgxLoadingModule} from 'ngx-loading';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const routes: Routes = [
   {path: 'main', component: ProductsMainComponent},
@@ -28,7 +29,7 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule, NgxPaginationModule
   ]
 })
 export class ProductsModule { }

@@ -1,0 +1,29 @@
+<form class="admin_content_form" [formGroup]="addChangeIlsac" (ngSubmit)="onIlsacSubmit()">
+  <div class="admin_block_header_small">Форма добавления-изменения значений Ilsac</div>
+  <div class="form-group">
+    <select name="" id="brands" formControlName = "id" (change)="fillInIlsac($event.target.value)">
+      <option disabled selected value> -- Выберите значение Ilsac -- </option>
+      <option *ngFor="let item of ilsac" value="{{item.id}}">{{item.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <p class="admin_content_block_label">Значение Ilsac</p>
+    <input class="admin_content_input" type="text" id="name" formControlName = "name">
+    <div class="validation_error"
+         *ngIf="fc.name.getError('required') &&
+                (fc.name.dirty || fc.name.touched)">
+      Введите пожалуйста значение Ilsac.
+    </div>
+  </div>
+
+  <div class="admin_content_button_block">
+    <div *ngIf="f.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить значение</button>
+    </div>
+    <div *ngIf="f.valid">
+      <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
+    </div>
+    <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>
+  </div>
+</form>

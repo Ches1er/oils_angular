@@ -14,19 +14,18 @@ export class BrandsService {
   urlConfig: urlConfig = new urlConfig();
   constructor(@Inject(HttpClient) private http: HttpClient) { }
 
-  get brands(): Observable<Array<Brand>> {
+  get brands(): Observable<any> {
     return this.http.get(this.urlConfig.GETBRANDS)
       .pipe(map(resp => BrandResponse.fromJson(resp)))
       .pipe(map(br => br.data));
   }
 
-  public brandsByType(type: number): Observable<Array<Brand>> {
-    return this.http.get(this.urlConfig.GETBRANDSBYTYPE + type)
+  public brandsByType(type, definer?): Observable<any> {
+    return this.http.get(this.urlConfig.GETBRANDSBYTYPE + type + '/' + definer)
       .pipe(map(resp => BrandResponse.fromJson(resp)))
       .pipe(map(br => br.data));
   }
   public addBrand(data: any, action: string): Observable<string> {
-    console.log(data);
     const params = new FormData();
     params.append('name', data.name);
     params.append('id', data.id);

@@ -1,0 +1,95 @@
+@import "../../common";
+:host {width: 100%}
+.contacts_block{
+  display: inline-flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  .contacts_header{
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    border-bottom: 1px solid @main_content_border;
+    color: @main_nav_font_color;
+    margin-bottom: 20px;
+    font-family: @headers_font;
+    font-weight: bold;
+  }
+  .contacts{
+    padding: 150px;
+    display: inline-flex;
+    flex-flow: column nowrap;
+    .delivery_info{
+      width: 100%;
+      text-align: center;
+        padding: 10px;
+        text-decoration: none;
+        font-size: 20px;
+        color: @main_nav_font_color;
+        font-family: @headers_font;
+        font-weight: bold;
+    }
+    .phones{
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 22px;
+      color: @main_nav_font_color;
+      font-family: @headers_font;
+      font-weight: bold;
+      span {
+        color: #1b6ab8;
+      }
+    }
+  }
+}
+@media (min-width: 640px) and (max-width: 860px){
+  .contacts_block{
+    .contacts{
+      padding: 50px;
+    }
+  }
+}
+@media (min-width: 200px) and (max-width: 640px) {
+  .contacts_block{
+    display: inline-flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    .contacts_header{
+      width: 100%;
+      text-align: center;
+      font-size: 22px;
+      border-bottom: 1px solid @main_content_border;
+      color: @main_nav_font_color;
+      margin-bottom: 20px;
+      font-family: @headers_font;
+      font-weight: bold;
+    }
+    .contacts{
+      padding: 80px;
+      display: inline-flex;
+      flex-flow: column nowrap;
+      .delivery_info{
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        text-decoration: none;
+        font-size: 16px;
+        color: @main_nav_font_color;
+        font-family: @headers_font;
+        font-weight: bold;
+      }
+      .phones{
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 18px;
+        color: @main_nav_font_color;
+        font-family: @headers_font;
+        font-weight: bold;
+        span {
+          color: #1b6ab8;
+        }
+      }
+    }
+  }
+}

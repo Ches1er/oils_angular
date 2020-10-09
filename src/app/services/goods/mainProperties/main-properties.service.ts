@@ -8,6 +8,7 @@ import {Viscosity} from "../../../dto/mainProperties/Viscosity";
 import {VolumeResponse} from "../../../dto/mainProperties/VolumeResponse";
 import {Volume} from "../../../dto/mainProperties/Volume";
 import {ServerResponse} from '../../../dto/ServerResponse/ServerResponse';
+import {IlsacResponse} from '../../../dto/mainProperties/IlsacResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +16,22 @@ import {ServerResponse} from '../../../dto/ServerResponse/ServerResponse';
 export class MainPropertiesService {
   urlConfig: urlConfig = new urlConfig();
   constructor(@Inject(HttpClient) private http: HttpClient) { }
-  viscosity(definer: string): Observable<Array<Viscosity>> {
+  viscosity(definer: string): Observable<any> {
     return this.http.get(this.urlConfig.GETVISCOSITY + '/' + definer)
       .pipe(map(resp => ViscosityResponse.fromJson(resp)))
       .pipe(map(vr => vr.data));
   }
-  volume(definer: string): Observable<Array<Volume>> {
+  volume(definer: string): Observable<any> {
     return this.http.get(this.urlConfig.GETVOLUME + '/' + definer)
       .pipe(map(resp => VolumeResponse.fromJson(resp)))
       .pipe(map(vr => vr.data));
   }
+  ilsac(definer: string): Observable<any> {
+    return this.http.get(this.urlConfig.GETILSAC + '/' + definer)
+      .pipe(map(resp => IlsacResponse.fromJson(resp)))
+      .pipe(map(ir => ir.data));
+  }
+
   addVolume(data: any, action: string): Observable<string> {
     const params = new FormData();
     params.append('volume', data.name);
@@ -40,6 +47,15 @@ export class MainPropertiesService {
     params.append('id', data.id);
     params.append('action', action);
     return this.http.post(this.urlConfig.ADDVISCOSITY, params)
+      .pipe(map(resp => ServerResponse.fromJson(resp)))
+      .pipe(map(sr => sr.response));
+  }
+  addIlsac(data: any, action: string): Observable<string> {
+    const params = new FormData();
+    params.append('name', data.name);
+    params.append('id', data.id);
+    params.append('action', action);
+    return this.http.post(this.urlConfig.ADDILSAC, params)
       .pipe(map(resp => ServerResponse.fromJson(resp)))
       .pipe(map(sr => sr.response));
   }

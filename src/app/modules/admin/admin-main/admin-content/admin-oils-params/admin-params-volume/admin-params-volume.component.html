@@ -7,21 +7,28 @@
     </select>
   </div>
 
+  <!-- fc - means form controls, f - form -->
+
   <div class="form-group">
     <p class="admin_content_block_label">Объем</p>
     <input class="admin_content_input" type="text" id="name" formControlName = "name">
     <div class="validation_error"
-         *ngIf="addChangeVolume.get('name').getError('required') &&
-                (addChangeVolume.get('name').dirty || addChangeVolume.get('name').touched)">
+         *ngIf="fc.name.getError('required') &&
+                (fc.name.dirty || fc.name.touched)">
       Введите пожалуйста объем.
+    </div>
+    <div class="validation_error"
+         *ngIf="fc.name.getError('pattern') &&
+                (fc.name.dirty || fc.name.touched)">
+      К вводу допускаются только цифры.
     </div>
   </div>
 
   <div class="admin_content_button_block">
-    <div *ngIf="addChangeVolume.valid">
+    <div *ngIf="f.valid">
       <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить объем</button>
     </div>
-    <div *ngIf="addChangeVolume.valid">
+    <div *ngIf="f.valid">
       <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
     </div>
     <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>

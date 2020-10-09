@@ -28,7 +28,7 @@ export class AdminParamsVolumeComponent implements OnInit {
   private pWhatHaveToDo: string;
   addChangeVolume: FormGroup = new FormGroup({
     id: new FormControl(''),
-    name: new FormControl('', Validators.required)
+    name: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')])
   });
   constructor(private adminMessageService: AdminMessagesService, private mainProperties: MainPropertiesService) { }
 
@@ -36,6 +36,8 @@ export class AdminParamsVolumeComponent implements OnInit {
     this.whatHaveToDo = 'add';
     this.updateVolumes();
   }
+  get fc() { return this.addChangeVolume.controls; }
+  get f() { return this.addChangeVolume; }
   private updateVolumes() {
     this.mainProperties.volume('all').subscribe(resp => {
       this.pVolumes = resp;

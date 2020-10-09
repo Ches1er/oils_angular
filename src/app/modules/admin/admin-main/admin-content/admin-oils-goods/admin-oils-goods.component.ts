@@ -18,6 +18,14 @@ import {AngularEditorCfg} from '../../../../../config/AngularEditorConfig';
   styleUrls: ['./admin-oils-goods.component.less']
 })
 export class AdminOilsGoodsComponent implements OnInit {
+  get ilsac(): any[] {
+    return this.pIlsac;
+  }
+
+  set ilsac(value: any[]) {
+    this.pIlsac = value;
+  }
+
   // "loading" variable use for ngx-loading component
   public loading = false;
 
@@ -221,7 +229,7 @@ export class AdminOilsGoodsComponent implements OnInit {
     this.pChoosenImg = value;
   }
 
-  get productType(): number {
+  get productType() {
     return this.pProductType;
   }
 
@@ -260,8 +268,10 @@ export class AdminOilsGoodsComponent implements OnInit {
   private pNissanApprovals = [];
   private pAcea = [];
   private pApi = [];
+  private pIlsac = []
   aceaOptions = [];
   apiOptions = [];
+  ilsacOptions = [];
   mbApprovalsOptions = [];
   bmwApprovalsOptions = [];
   fiatApprovalsOptions = [];
@@ -297,22 +307,23 @@ export class AdminOilsGoodsComponent implements OnInit {
     fullDesc: new FormControl('', Validators.required),
     acea: new FormControl('', Validators.required),
     api: new FormControl('', Validators.required),
-    mbApprovals: new FormControl(''),
-    bmwApprovals: new FormControl(''),
-    fiatApprovals: new FormControl(''),
-    fordApprovals: new FormControl(''),
-    renApprovals: new FormControl(''),
-    vwApprovals: new FormControl(''),
-    porscheApprovals: new FormControl(''),
-    gmApprovals: new FormControl(''),
-    koenigApprovals: new FormControl(''),
-    chryslerApprovals: new FormControl(''),
-    psaApprovals: new FormControl(''),
-    volvoApprovals: new FormControl(''),
-    jaguarApprovals: new FormControl(''),
-    jasoApprovals: new FormControl(''),
-    mazdaApprovals: new FormControl(''),
-    nissanApprovals: new FormControl('')
+    ilsac: new FormControl('', Validators.required),
+    mbApprovals: new FormControl('null'),
+    bmwApprovals: new FormControl('null'),
+    fiatApprovals: new FormControl('null'),
+    fordApprovals: new FormControl('null'),
+    renApprovals: new FormControl('null'),
+    vwApprovals: new FormControl('null'),
+    porscheApprovals: new FormControl('null'),
+    gmApprovals: new FormControl('null'),
+    koenigApprovals: new FormControl('null'),
+    chryslerApprovals: new FormControl('null'),
+    psaApprovals: new FormControl('null'),
+    volvoApprovals: new FormControl('null'),
+    jaguarApprovals: new FormControl('null'),
+    jasoApprovals: new FormControl('null'),
+    mazdaApprovals: new FormControl('null'),
+    nissanApprovals: new FormControl('null')
   });
   angularEditorCfg = new AngularEditorCfg();
   config = this.angularEditorCfg.CONFIG;
@@ -324,6 +335,7 @@ export class AdminOilsGoodsComponent implements OnInit {
     this.updateBrands();
     this.updateAcea();
     this.updateApi();
+    this.updateIlsac();
     this.updateBase();
     this.updateApprovals();
     this.updateMainProperties();
@@ -333,8 +345,21 @@ export class AdminOilsGoodsComponent implements OnInit {
     });
   }
 
+  get f() {
+    return this.addChangeGoods;
+  }
+
+  get fc() {
+    return this.addChangeGoods.controls;
+  }
+
   private updateGoods() {
     this.productsService.oils.subscribe(resp => {
+      this.goods = resp;
+    });
+  }
+  private updateGoodsByBrand(brandId: any) {
+    this.productsService.oilsByBrandId(brandId).subscribe(resp => {
       this.goods = resp;
     });
   }
@@ -367,6 +392,12 @@ export class AdminOilsGoodsComponent implements OnInit {
     });
   }
 
+  private updateIlsac() {
+    this.mainPropertiesService.ilsac('all').subscribe(resp => {
+      this.ilsacOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
+    });
+  }
+
   private updateBase() {
     this.baseService.base.subscribe(resp => {
       this.base = resp;
@@ -394,12 +425,14 @@ export class AdminOilsGoodsComponent implements OnInit {
     });
   }
 
-  fillInGoods(value: any) {
+  fillInGoodsItem(value: any) {
     this.goods.filter(item => {
       if (item.id == value) {
+        console.log(item);
         this.addChangeGoods.patchValue({
           id: item.id, name: item.name, art: item.art, idVolume: item.idVolume, idViscosity: item.idViscosity, idBase: item.idBase,
           idBrand: item.idBrand, idImg: item.idImage, shortDesc: item.shortDesc, fullDesc: item.fullDesc, acea: item.acea, api: item.api,
+          ilsac: item.ilsac,
           mbApprovals: item.mbApprovals, bmwApprovals: item.bmwApprovals, fiatApprovals: item.fiatApprovals,
           fordApprovals: item.fordApprovals, renApprovals: item.renApprovals, vwApprovals: item.vwApprovals,
           porscheApprovals: item.porscheApprovals, gmApprovals: item.gmApprovals, koenigApprovals: item.koenigApprovals,
@@ -409,7 +442,7 @@ export class AdminOilsGoodsComponent implements OnInit {
         });
         this.choosenImg = new Image(item.id_image, 'name', item.img);
         this.whatHaveToDo = 'update';
-        this.addOilProperties(item.acea, item.api, item.mbApprovals, item.bmwApprovals, item.fiatApprovals, item.fordApprovals,
+        this.addOilProperties(item.acea, item.api, item.ilsac, item.mbApprovals, item.bmwApprovals, item.fiatApprovals, item.fordApprovals,
           item.renApprovals, item.vwApprovals, item.porscheApprovals, item.gmApprovals, item.koenigApprovals, item.chryslerApprovals,
           item.psaApprovals, item.volvoApprovals, item.jaguarApprovals, item.jasoApprovals, item.mazdaApprovals, item.nissanApprovals);
       }
@@ -425,7 +458,7 @@ export class AdminOilsGoodsComponent implements OnInit {
     });
   }
 
-  private addOilProperties(acea, api, mbApprovals, bmwApprovals, fiatApprovals, fordApprovals, renApprovals, vwApprovals,
+  private addOilProperties(acea, api, ilsac, mbApprovals, bmwApprovals, fiatApprovals, fordApprovals, renApprovals, vwApprovals,
                            porscheApprovals, gmApprovals, koenigApprovals, chryslerApprovals, psaApprovals, volvoApprovals,
                            jaguarApprovals, jasoApprovals, mazdaApprovals, nissanApprovals) {
     this.emptyPropArrays();
@@ -434,6 +467,9 @@ export class AdminOilsGoodsComponent implements OnInit {
     }
     if (api) {
       this.optionsForItem(api, 'api');
+    }
+    if (ilsac) {
+      this.optionsForItem(ilsac, 'ilsac');
     }
     if (porscheApprovals) {
       this.optionsForItem(porscheApprovals, 'porscheApprovals');
@@ -496,7 +532,7 @@ export class AdminOilsGoodsComponent implements OnInit {
   }
 
   private emptyPropArrays() {
-    const arrays = ['acea', 'api', 'mbApprovals', 'bmwApprovals', 'fiatApprovals', 'fordApprovals', 'renApprovals', 'vwApprovals',
+    const arrays = ['acea', 'api', 'ilsac', 'mbApprovals', 'bmwApprovals', 'fiatApprovals', 'fordApprovals', 'renApprovals', 'vwApprovals',
       'porscheApprovals', 'gmApprovals', 'koenigApprovals', 'chryslerApprovals', 'psaApprovals', 'volvoApprovals',
       'jaguarApprovals', 'jasoApprovals', 'mazdaApprovals', 'nissanApprovals'];
     arrays.map(e => {
@@ -549,6 +585,7 @@ export class AdminOilsGoodsComponent implements OnInit {
       fullDesc: '',
       acea: '',
       api: '',
+      ilsac: '',
       mbApprovals: '',
       bmwApprovals: '',
       fiatApprovals: '',

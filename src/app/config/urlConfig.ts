@@ -38,6 +38,12 @@ export class urlConfig {
   GETAPI = this.apiBase + 'all';
   ADDAPI = this.apiBase + 'add';
 
+  // ILSAC
+
+  private ilsacBase = this.CORE + 'ilsac/';
+  GETILSAC = this.ilsacBase + 'all';
+  ADDILSAC = this.ilsacBase + 'add';
+
   // BASE
 
   private baseBase = this.CORE + 'base/';
@@ -148,6 +154,7 @@ export class urlConfig {
   FIND = this.goodsBase + 'find/';
   // OILS
   GETOILS = this.goodsBase + 'oils';
+  GETOILSBYBRANDID = this.goodsBase + 'oils_by_brand/';
   GETOIL = this.goodsBase + 'unit';
   GETGOODSUNIT = this.goodsBase + 'unit';
   GETOILSWPROPERTIES = this.goodsBase + 'oilswprop';
@@ -171,11 +178,13 @@ export class urlConfig {
   // TO
   private toBase = this.CORE + 'to/';
   GETGROUPS = this.toBase + 'groups';
+  GETMODELS = this.toBase + 'models/';
   GETAUTOS = this.toBase + 'autos';
   GETAUTOGOODS = this.toBase + 'auto_goods/';
   GETAUTO = this.toBase + 'auto/';
   GETEXCHANGES = this.toBase + 'exchanges';
   GETTOBRANDS = this.toBase + 'brands';
   ADDEXCHANGE = this.toBase + 'addexchange';
+  ADDMODEL = this.toBase + 'addmodel';
   ADDTO = this.toBase + 'addto';
 }

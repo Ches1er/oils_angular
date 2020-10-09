@@ -1,6 +1,13 @@
 import {HttpUrlEncodingCodec} from '@angular/common/http';
 
 export class Oils {
+  get ilsac() {
+    return this.pIlsac;
+  }
+
+  set ilsac(value) {
+    this.pIlsac = value;
+  }
   get tableDefiner() {
     return this.pTableDefiner;
   }
@@ -179,6 +186,7 @@ export class Oils {
     private pShow,
     private pAcea,
     private pApi,
+    private pIlsac,
     private pMbApprovals,
     private pBmwApprovals,
     private pFordApprovals,
@@ -273,7 +281,11 @@ export class Oils {
   }
 
   get fullDesc() {
-    return this.urlEncode.decodeValue(this.pFullDesc);
+    try {
+      return this.urlEncode.decodeValue(this.pFullDesc);
+    } catch (e) {
+      return 'Ошибка! В тексте присутствуют символы, которые не могут быть декодированы';
+    }
   }
 
   set fullDesc(value) {
@@ -305,6 +317,7 @@ export class Oils {
       true,
       jsonObj.acea,
       jsonObj.api,
+      jsonObj.ilsac,
       jsonObj.mbApproval,
       jsonObj.bmwApproval,
       jsonObj.fordApproval,

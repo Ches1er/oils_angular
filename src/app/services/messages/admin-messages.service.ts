@@ -13,6 +13,7 @@ export class AdminMessagesService {
   private pShowServerResponseWindowMessage: Subject<null> = new Subject<null>();
   private pTypeUpdateCreateMessage: Subject<null> = new Subject<null>();
   private pArticlesThemesChangesMessage: Subject<null> = new Subject<null>();
+  private pBrandsUpdateCreateMessage: Subject<null> = new Subject<null>();
 
   constructor() {
   }
@@ -59,9 +60,16 @@ export class AdminMessagesService {
   get articlesThemesChangesMessage(): Subject<null> {
     return this.pArticlesThemesChangesMessage;
   }
+  get brandsUpdateCreateMessage(): Subject<null> {
+    return this.pBrandsUpdateCreateMessage;
+  }
+
 
   public typeUpdateCreate() {
     this.pTypeUpdateCreateMessage.next();
+  }
+  public brandUpdateCreate() {
+    this.pBrandsUpdateCreateMessage.next();
   }
   public articlesThemesChanges() {
     this.pArticlesThemesChangesMessage.next();

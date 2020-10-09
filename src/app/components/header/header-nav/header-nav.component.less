@@ -10,7 +10,6 @@
       height: 50px;
       transition: background-position-x 0.9s linear;
       text-align: center;
-
       a {
         font-family: @nav_filters_font;
         font-size: 20px;
@@ -41,15 +40,34 @@
       }
     }
   }
-@media (min-width: 640px) and (max-width: 860px) {
+@media (min-width: 641px) and (max-width: 860px){
+  :host {width: 100%}
   .menu{
+    width: 100%;
     li {
       &:hover {
         background: none;
         animation: line 1.5s;
       }
       a {
-        font-size: 16px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+@media (min-width: 200px) and (max-width: 640px) {
+  :host {width: 100%}
+  .menu{
+    li {
+      &:hover {
+        background: none;
+        animation: line 1.5s;
+      }
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+      a {
+        font-size: 14px;
       }
     }
   }

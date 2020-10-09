@@ -1,15 +1,15 @@
-import {Brand} from "./Brand";
+import {Brand} from './Brand';
 
 export class BrandResponse {
 
-  constructor(private pData: Array<Brand>) {
+  constructor(private pData) {
   }
 
-  get data(): Array<Brand> {
+  get data() {
     return this.pData;
   }
 
-  set data(value: Array<Brand>) {
+  set data(value) {
     this.pData = value;
   }
   public static fromJson(jsonObj: any): BrandResponse {

@@ -1,13 +1,13 @@
 export class Auto {
-  get idBrand() {
-    return this.pIdBrand;
+  get idModel() {
+    return this.pIdModel;
   }
 
-  set idBrand(value) {
-    this.pIdBrand = value;
+  set idModel(value) {
+    this.pIdModel = value;
   }
 
-  constructor(private pId, private pName, private pImgId, private pImg, private pIdBrand) {
+  constructor(private pId, private pName, private pImgId, private pImg, private pIdModel) {
   }
 
   get id() {
@@ -42,6 +42,6 @@ export class Auto {
     this.pImg = value;
   }
   public static fromJson(jsonObj: any): Auto {
-    return new Auto(jsonObj.id, jsonObj.name, jsonObj.id_image, jsonObj.img, jsonObj.id_brand);
+    return new Auto(jsonObj.id, jsonObj.name, jsonObj.id_image, jsonObj.img, jsonObj.id_model);
   }
 }

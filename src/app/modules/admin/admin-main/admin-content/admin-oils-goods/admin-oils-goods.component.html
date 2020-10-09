@@ -2,8 +2,15 @@
 <form class="admin_content_form" [formGroup]="addChangeGoods" (ngSubmit)="onChangeGoodsSubmit()">
   <div class="admin_block_header_small">Форма добавления-изменения моторного масла</div>
   <div class="form-group">
+    <p class="admin_content_block_label">Для поиска товара по бренду, выберите последний из списка</p>
+    <select name="" id="brands" (change)="updateGoodsByBrand($event.target.value)">
+      <option disabled selected value> -- Выберите значение бренд -- </option>
+      <option *ngFor="let br of brand" value="{{br.id}}">{{br.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
     <p class="admin_content_block_label">Для изменения товара, выберите его из списка</p>
-    <select name="" id="brands" formControlName = "id" (change)="fillInGoods($event.target.value)">
+    <select name="" id="goods" formControlName = "id" (change)="fillInGoodsItem($event.target.value)">
       <option disabled selected value> -- Выберите значение товар -- </option>
       <option *ngFor="let good of goods" value="{{good.id}}">{{good.name}}</option>
     </select>
@@ -17,8 +24,8 @@
       <p class="admin_content_block_label">Артикул товара</p>
       <input class="admin_content_input" type="text" id="art" formControlName = "art">
       <div class="validation_error"
-           *ngIf="addChangeGoods.get('art').getError('required') &&
-                (addChangeGoods.get('art').dirty || addChangeGoods.get('art').touched)">
+           *ngIf="fc.art.getError('required') &&
+                (fc.art.dirty || fc.art.touched)">
         Введите пожалуйста артикул.
       </div>
     </div>
@@ -27,8 +34,8 @@
       <p class="admin_content_block_label">Название товара</p>
       <input class="admin_content_input" type="text" id="name" formControlName = "name">
       <div class="validation_error"
-           *ngIf="addChangeGoods.get('name').getError('required') &&
-                (addChangeGoods.get('name').dirty || addChangeGoods.get('name').touched)">
+           *ngIf="fc.name.getError('required') &&
+                (fc.name.dirty || fc.name.touched)">
         Введите пожалуйста название.
       </div>
     </div>
@@ -73,8 +80,8 @@
       <p class="admin_content_block_label">Введите короткое описание товара</p>
       <textarea name="" id="short_news" cols="30" rows="10" formControlName = "shortDesc"></textarea>
       <div class="validation_error"
-           *ngIf="addChangeGoods.get('shortDesc').getError('required') &&
-                (addChangeGoods.get('shortDesc').dirty || addChangeGoods.get('shortDesc').touched)">
+           *ngIf="fc.shortDesc.getError('required') &&
+                (fc.shortDesc.dirty || fc.shortDesc.touched)">
         Добавьте пожалуйста короткое описание товара.
       </div>
     </div>
@@ -83,8 +90,8 @@
       <p class="admin_content_block_label">Введите полное описание товара</p>
       <angular-editor formControlName="fullDesc" [config]="config" style="background-color: white"></angular-editor>
       <div class="validation_error"
-           *ngIf="addChangeGoods.get('fullDesc').getError('required') &&
-                (addChangeGoods.get('fullDesc').dirty || addChangeGoods.get('fullDesc').touched)">
+           *ngIf="fc.fullDesc.getError('required') &&
+                (fc.fullDesc.dirty || fc.fullDesc.touched)">
         Добавьте полное описание товара.
       </div>
     </div>
@@ -103,8 +110,8 @@
       <div class="form-group">
         <p *ngIf="acea.length>0" class="admin_content_block_label">Значения Acea</p>
         <div class="validation_error"
-             *ngIf="addChangeGoods.get('acea').getError('required')">
-              Acea товара - обязательно.
+             *ngIf="fc.acea.getError('required')">
+              Укажите Acea товара или (пусто).
         </div>
         <div class="used_types" *ngIf="acea">
           <div *ngFor="let ac of acea">
@@ -123,8 +130,8 @@
       <div class="form-group">
         <p *ngIf="api.length>0" class="admin_content_block_label">Значения Api</p>
         <div class="validation_error"
-             *ngIf="addChangeGoods.get('api').getError('required')">
-          Api товара - обязательно.
+             *ngIf="fc.api.getError('required')">
+          Укажите Api товара или (пусто).
         </div>
         <div class="used_types" *ngIf="api">
           <div *ngFor="let ac of api">
@@ -134,6 +141,25 @@
         <p class="admin_content_block_label">Все значения Api</p>
         <app-checkbox-component [options]='apiOptions'
                                 (toggle)='onPropertiesChange($event, "api")'>
+        </app-checkbox-component>
+      </div>
+
+      <!--Ilsac-->
+
+      <div class="form-group">
+        <p *ngIf="ilsac.length>0" class="admin_content_block_label">Значения Ilsac</p>
+        <div class="validation_error"
+             *ngIf="fc.ilsac.getError('required')">
+          Укажите Ilsac товара или (пусто).
+        </div>
+        <div class="used_types" *ngIf="ilsac">
+          <div *ngFor="let ac of ilsac">
+            <div class="used_type">{{ac}}</div>
+          </div>
+        </div>
+        <p class="admin_content_block_label">Все значения Ilsac</p>
+        <app-checkbox-component [options]='ilsacOptions'
+                                (toggle)='onPropertiesChange($event, "ilsac")'>
         </app-checkbox-component>
       </div>
 
@@ -364,10 +390,10 @@
   </div>
 
   <div class="admin_content_button_block">
-    <div *ngIf="addChangeGoods.valid">
+    <div *ngIf="f.valid">
       <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='add'">Добавить значение</button>
     </div>
-    <div *ngIf="addChangeGoods.valid">
+    <div *ngIf="f.valid">
       <button class="admin-btn" type="submit" *ngIf="whatHaveToDo==='update'">Обновить информацию</button>
     </div>
     <button class="admin-btn" type="submit" (click)="clearFields($event)">Очистить поля</button>

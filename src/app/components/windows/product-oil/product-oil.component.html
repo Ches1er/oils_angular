@@ -9,7 +9,7 @@
         <div class="product_name">Название: {{product.name}}</div>
         <div class="brand">Бренд: {{product.brandName}}</div>
         <div class="short_desk">{{product.shortDesc}}</div>
-        <div class="full_desk" [innerHTML] = product.fullDesc></div>
+        <div class="full_desk" [innerHTML] = "product.fullDesc | noSanitize"></div>
       </div>
     </div>
   </div>

@@ -7,12 +7,14 @@
     <app-checkbox-component [options]="volOptions" (toggle)="onVolumeChange($event)"></app-checkbox-component>
     <div class="filter_unit">Вязкость</div>
     <app-checkbox-component [options]="viscOptions" (toggle)="onViscosityChange($event)"></app-checkbox-component>
-    <div class="filter_unit">Классификация ACEA</div>
+    <div class="filter_unit">ACEA</div>
     <app-checkbox-component [options]='aceaOptions' (toggle)='onAceaChange($event)'></app-checkbox-component>
-    <div class="filter_unit">Классификация API</div>
+    <div class="filter_unit">ILSAC</div>
+    <app-checkbox-component [options]='ilsacOptions' (toggle)='onIlsacChange($event)'></app-checkbox-component>
+    <div class="filter_unit">API</div>
     <app-checkbox-component [options]='apiOptions' (toggle)='onApiChange($event)'></app-checkbox-component>
-    <div class="filter_unit">База</div>
-    <app-checkbox-component [options]='baseOptions' (toggle)='onBaseChange($event)'></app-checkbox-component>
+<!--    <div class="filter_unit">База</div>
+    <app-checkbox-component [options]='baseOptions' (toggle)='onBaseChange($event)'></app-checkbox-component>-->
     <span class="filter_unit" (click)="hideAll=!hideAll">Допуски {{hideAll?'+':'-'}}</span>
     <div [hidden]="hideAll">
       <div class="approval">
@@ -215,7 +217,7 @@
     <div class="products_header">Список моторных масел</div>
     <div *ngIf="!nonEmptyProductList">Товаров нет</div>
     <div class="products_list" *ngIf="nonEmptyProductList">
-        <div class="product" *ngFor="let product of products; let i = index" (click)="onClickProduct(product.id)">
+        <div class="product" *ngFor="let product of products| paginate: { itemsPerPage: 6, currentPage: p, totalItems: totalItems }" (click)="onClickProduct(product.id)">
           <div *ngIf="product.show">
             <div class="product_name">{{product.name}}</div>
             <img class="product_img" src="{{product.img}}" alt="">
@@ -223,6 +225,10 @@
         </div>
     </div>
   </div>
+</div>
+<div class="pagination">
+  <!--https://www.npmjs.com/package/ngx-pagination-->
+  <pagination-controls class="my-pagination" (pageChange)="p = $event" previousLabel="Пред." nextLabel="След."></pagination-controls>
 </div>
 
 

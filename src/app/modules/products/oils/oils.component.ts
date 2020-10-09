@@ -29,6 +29,22 @@ import {WindowsMessagesService} from '../../../services/messages/windows-message
   styleUrls: ['./oils.component.less']
 })
 export class OilsComponent implements OnInit {
+  get ilsac(): any {
+    return this.pIlsac;
+  }
+
+  set ilsac(value: any) {
+    this.pIlsac = value;
+  }
+
+  get ilsacIdsArray(): any[] {
+    return this.pIlsacIdsArray;
+  }
+
+  set ilsacIdsArray(value: any[]) {
+    this.pIlsacIdsArray = value;
+  }
+
   get nissanApprovals(): any {
     return this.pNissanApprovals;
   }
@@ -36,6 +52,7 @@ export class OilsComponent implements OnInit {
   set nissanApprovals(value: any) {
     this.pNissanApprovals = value;
   }
+
   get mazdaApprovals(): any {
     return this.pMazdaApprovals;
   }
@@ -43,6 +60,7 @@ export class OilsComponent implements OnInit {
   set mazdaApprovals(value: any) {
     this.pMazdaApprovals = value;
   }
+
   get jasoApprovals(): any {
     return this.pJasoApprovals;
   }
@@ -50,6 +68,7 @@ export class OilsComponent implements OnInit {
   set jasoApprovals(value: any) {
     this.pJasoApprovals = value;
   }
+
   get jaguarApprovals(): any {
     return this.pJaguarApprovals;
   }
@@ -57,6 +76,7 @@ export class OilsComponent implements OnInit {
   set jaguarApprovals(value: any) {
     this.pJaguarApprovals = value;
   }
+
   get volvoApprovals(): any {
     return this.pVolvoApprovals;
   }
@@ -64,6 +84,7 @@ export class OilsComponent implements OnInit {
   set volvoApprovals(value: any) {
     this.pVolvoApprovals = value;
   }
+
   get psaApprovals(): any {
     return this.pPsaApprovals;
   }
@@ -71,6 +92,7 @@ export class OilsComponent implements OnInit {
   set psaApprovals(value: any) {
     this.pPsaApprovals = value;
   }
+
   get chryslerApprovals(): any {
     return this.pChryslerApprovals;
   }
@@ -78,6 +100,7 @@ export class OilsComponent implements OnInit {
   set chryslerApprovals(value: any) {
     this.pChryslerApprovals = value;
   }
+
   get koenigApprovals(): any {
     return this.pKoenigApprovals;
   }
@@ -85,6 +108,7 @@ export class OilsComponent implements OnInit {
   set koenigApprovals(value: any) {
     this.pKoenigApprovals = value;
   }
+
   get gmApprovals(): any {
     return this.pGmApprovals;
   }
@@ -92,6 +116,7 @@ export class OilsComponent implements OnInit {
   set gmApprovals(value: any) {
     this.pGmApprovals = value;
   }
+
   get porscheApprovals(): any {
     return this.pPorscheApprovals;
   }
@@ -99,6 +124,7 @@ export class OilsComponent implements OnInit {
   set porscheApprovals(value: any) {
     this.pPorscheApprovals = value;
   }
+
   get nissanApprovalsIdsArray(): any[] {
     return this.pNissanApprovalsIdsArray;
   }
@@ -106,6 +132,7 @@ export class OilsComponent implements OnInit {
   set nissanApprovalsIdsArray(value: any[]) {
     this.pNissanApprovalsIdsArray = value;
   }
+
   get mazdaApprovalsIdsArray(): any[] {
     return this.pMazdaApprovalsIdsArray;
   }
@@ -113,6 +140,7 @@ export class OilsComponent implements OnInit {
   set mazdaApprovalsIdsArray(value: any[]) {
     this.pMazdaApprovalsIdsArray = value;
   }
+
   get jasoApprovalsIdsArray(): any[] {
     return this.pJasoApprovalsIdsArray;
   }
@@ -120,6 +148,7 @@ export class OilsComponent implements OnInit {
   set jasoApprovalsIdsArray(value: any[]) {
     this.pJasoApprovalsIdsArray = value;
   }
+
   get jaguarApprovalsIdsArray(): any[] {
     return this.pJaguarApprovalsIdsArray;
   }
@@ -127,6 +156,7 @@ export class OilsComponent implements OnInit {
   set jaguarApprovalsIdsArray(value: any[]) {
     this.pJaguarApprovalsIdsArray = value;
   }
+
   get volvoApprovalsIdsArray(): any[] {
     return this.pVolvoApprovalsIdsArray;
   }
@@ -134,12 +164,15 @@ export class OilsComponent implements OnInit {
   set volvoApprovalsIdsArray(value: any[]) {
     this.pVolvoApprovalsIdsArray = value;
   }
+
   set psaApprovalsIdsArray(value: any[]) {
     this.pPsaApprovalsIdsArray = value;
   }
+
   get psaApprovalsIdsArray(): any[] {
     return this.pPsaApprovalsIdsArray;
   }
+
   get chryslerApprovalsIdsArray(): any[] {
     return this.pChryslerApprovalsIdsArray;
   }
@@ -147,6 +180,7 @@ export class OilsComponent implements OnInit {
   set chryslerApprovalsIdsArray(value: any[]) {
     this.pChryslerApprovalsIdsArray = value;
   }
+
   get koenigApprovalsIdsArray(): any[] {
     return this.pKoenigApprovalsIdsArray;
   }
@@ -154,6 +188,7 @@ export class OilsComponent implements OnInit {
   set koenigApprovalsIdsArray(value: any[]) {
     this.pKoenigApprovalsIdsArray = value;
   }
+
   get gmApprovalsIdsArray(): any[] {
     return this.pGmApprovalsIdsArray;
   }
@@ -161,6 +196,7 @@ export class OilsComponent implements OnInit {
   set gmApprovalsIdsArray(value: any[]) {
     this.pGmApprovalsIdsArray = value;
   }
+
   get porscheApprovalsIdsArray(): any[] {
     return this.pPorscheApprovalsIdsArray;
   }
@@ -168,6 +204,7 @@ export class OilsComponent implements OnInit {
   set porscheApprovalsIdsArray(value: any[]) {
     this.pPorscheApprovalsIdsArray = value;
   }
+
   // "loading" variable use for ngx-loading component
   public loading = false;
 
@@ -386,6 +423,7 @@ export class OilsComponent implements OnInit {
   }
 
   private pApiIdsArray = [];
+  private pIlsacIdsArray = [];
   private pAceaIdsArray = [];
   private pBaseIdsArray = [];
   private pBrandIdsArray = [];
@@ -411,6 +449,7 @@ export class OilsComponent implements OnInit {
   private pProducts: any = [];
   private pBrands: any = [];
   private pAcea: any = [];
+  private pIlsac: any = [];
   private pApi: any = [];
   private pBase: any = [];
   private pViscosity: any = [];
@@ -435,6 +474,7 @@ export class OilsComponent implements OnInit {
   private pNonEmptyProductList = false;
   brandsOptions = [];
   aceaOptions = [];
+  ilsacOptions = [];
   apiOptions = [];
   baseOptions = [];
   volOptions = [];
@@ -480,24 +520,16 @@ export class OilsComponent implements OnInit {
   hideNissan = true;
 
   private pProductType = 1;
+  // Pagination
+  totalItems = 0;
+  p = 1;
 
   approvalsArray = ['Mb', 'Bmw', 'Ford', 'Fiat', 'Ren', 'Vw', 'Porsche', 'Gm', 'Koenig', 'Chrysler', 'Psa', 'Volvo', 'Jaguar', 'Jaso', 'Mazda', 'Nissan'];
 
   private requestItem: RequestItem = new RequestItem(
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
+    [], [], [], [], [], [], [], [], [], [],
     [], [], [], [], [], [],
-    [], [], [], []
+    [], [], [], [], [], [], []
   );
 
   constructor(private productsService: ProductsService,
@@ -516,6 +548,7 @@ export class OilsComponent implements OnInit {
     this.updateOils();
     this.updateBrands();
     this.updateAcea();
+    this.updateIlsac();
     this.updateApi();
     this.updateBase();
     this.updateApprovals();
@@ -545,7 +578,6 @@ export class OilsComponent implements OnInit {
     this.approvalsArray.forEach(model => {
       const toLowerCase = model.toLowerCase();
       this.approvalsService.approvals('prod', model).subscribe(resp => {
-        console.log(resp);
         this[toLowerCase + 'Approvals'] = resp;
         this[toLowerCase + 'Options'] = resp.map(r => new CheckboxItem(r.id, r.name, false));
       });
@@ -554,6 +586,8 @@ export class OilsComponent implements OnInit {
 
   private updateOils() {
     this.productsService.oils.subscribe(resp => {
+      // Summarize items for pagination;
+      this.totalItems = resp.length;
       resp.forEach(e => {
         this.convertStrPropertiesToArray(e);
       });
@@ -564,7 +598,7 @@ export class OilsComponent implements OnInit {
   }
 
   private updateBrands() {
-    this.brandsService.brandsByType(this.productType).subscribe(resp => {
+    this.brandsService.brandsByType(this.productType, 'prod').subscribe(resp => {
       this.brandsOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
       this.brands = resp;
     });
@@ -574,6 +608,13 @@ export class OilsComponent implements OnInit {
     this.aceaService.Acea('prod').subscribe(resp => {
       this.acea = resp;
       this.aceaOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
+    });
+  }
+
+  private updateIlsac() {
+    this.mainPropertiesService.ilsac('prod').subscribe(resp => {
+      this.ilsac = resp;
+      this.ilsacOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });
   }
 
@@ -613,6 +654,7 @@ export class OilsComponent implements OnInit {
     const idsArrays = [
       'api',
       'acea',
+      'ilsac',
       'base',
       'brand',
       'volume',
@@ -624,6 +666,8 @@ export class OilsComponent implements OnInit {
   }
 
   private commonCheckboxFade(definers: any) {
+    // Turn pagination to the 1-st page
+    this.p = 1;
     for (let i = 0; i < definers.length; i++) {
       const methodName = definers[i] + 'CheckboxFade';
       const arrName = definers[i] + 'IdsArray';
@@ -640,6 +684,15 @@ export class OilsComponent implements OnInit {
   private apiCheckboxFade(apiArr: any): void {
     const unique = this.uniqueElementsInArray(apiArr);
     this.apiOptions.map(e => {
+      e.fade = !unique.includes(e.value);
+    });
+  }
+
+  // Ilsac
+
+  private ilsacCheckboxFade(ilsacArr: any): void {
+    const unique = this.uniqueElementsInArray(ilsacArr);
+    this.ilsacOptions.map(e => {
       e.fade = !unique.includes(e.value);
     });
   }
@@ -853,12 +906,15 @@ export class OilsComponent implements OnInit {
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
     this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
+      // Summarize items for pagination;
+      this.totalItems = resp.length;
       this.nonEmptyProductList = true;
       this.products = resp;
       this.products.forEach(p => {
         this.convertStrPropertiesToArray(p);
         this.apiIdsArray = this.apiIdsArray.concat(p.api);
         this.aceaIdsArray = this.aceaIdsArray.concat(p.acea);
+        this.ilsacIdsArray = this.ilsacIdsArray.concat(p.ilsac);
         this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
         this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
         this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
@@ -881,11 +937,46 @@ export class OilsComponent implements OnInit {
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
     this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
+      // Summarize items for pagination;
+      this.totalItems = resp.length;
       this.nonEmptyProductList = true;
       this.products = resp;
       this.products.forEach(p => {
         this.convertStrPropertiesToArray(p);
         this.apiIdsArray = this.apiIdsArray.concat(p.api);
+        this.ilsacIdsArray = this.ilsacIdsArray.concat(p.ilsac);
+        this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
+        this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
+        this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
+        this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
+        this.approvalsIdsConcat(p, 'none');
+      });
+      const approvals = this.approvalsArray.map(model => {
+        return model.toLowerCase() + 'Approvals';
+      });
+      this.commonCheckboxFade(['base',
+        'api',
+        'brand',
+        'volume',
+        'viscosity'].concat(approvals));
+    });
+  }
+
+  // Ilsac
+
+  onIlsacChange(value: any) {
+    this.requestItem.ilsac = value;
+    this.nullIdsArrays();
+    this.nonEmptyProductList = false;
+    this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
+      // Summarize items for pagination;
+      this.totalItems = resp.length;
+      this.nonEmptyProductList = true;
+      this.products = resp;
+      this.products.forEach(p => {
+        this.convertStrPropertiesToArray(p);
+        this.apiIdsArray = this.apiIdsArray.concat(p.api);
+        this.aceaIdsArray = this.aceaIdsArray.concat(p.acea);
         this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
         this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
         this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
@@ -905,16 +996,18 @@ export class OilsComponent implements OnInit {
 
   // Api
   onApiChange(value: any) {
-    console.log(this.brandsOptions);
     this.requestItem.api = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
     this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
+      // Summarize items for pagination;
+      this.totalItems = resp.length;
       this.nonEmptyProductList = true;
       this.products = resp;
       this.products.forEach(p => {
         this.convertStrPropertiesToArray(p);
         this.aceaIdsArray = this.aceaIdsArray.concat(p.acea);
+        this.ilsacIdsArray = this.ilsacIdsArray.concat(p.ilsac);
         this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
         this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
         this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
@@ -938,12 +1031,15 @@ export class OilsComponent implements OnInit {
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
     this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
+      // Summarize items for pagination;
+      this.totalItems = resp.length;
       this.nonEmptyProductList = true;
       this.products = resp;
       this.products.forEach(p => {
         this.convertStrPropertiesToArray(p);
         this.aceaIdsArray = this.aceaIdsArray.concat(p.acea);
         this.apiIdsArray = this.apiIdsArray.concat(p.api);
+        this.ilsacIdsArray = this.ilsacIdsArray.concat(p.ilsac);
         this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
         this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
         this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
@@ -966,12 +1062,15 @@ export class OilsComponent implements OnInit {
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
     this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
+      // Summarize items for pagination;
+      this.totalItems = resp.length;
       this.nonEmptyProductList = true;
       this.products = resp;
       this.products.forEach(p => {
         this.convertStrPropertiesToArray(p);
         this.aceaIdsArray = this.aceaIdsArray.concat(p.acea);
         this.apiIdsArray = this.apiIdsArray.concat(p.api);
+        this.ilsacIdsArray = this.ilsacIdsArray.concat(p.ilsac);
         this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
         this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
         this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
@@ -994,12 +1093,15 @@ export class OilsComponent implements OnInit {
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
     this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
+      // Summarize items for pagination;
+      this.totalItems = resp.length;
       this.nonEmptyProductList = true;
       this.products = resp;
       this.products.forEach(p => {
         this.convertStrPropertiesToArray(p);
         this.aceaIdsArray = this.aceaIdsArray.concat(p.api);
         this.brandIdsArray = this.brandIdsArray.concat(p.acea);
+        this.ilsacIdsArray = this.ilsacIdsArray.concat(p.ilsac);
         this.apiIdsArray = this.apiIdsArray.concat(p.api);
         this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);
         this.viscosityIdsArray = this.viscosityIdsArray.concat(p.idViscosity);
@@ -1026,12 +1128,15 @@ export class OilsComponent implements OnInit {
     });
     const appArrayWithoutDefiner = fullAppArray.filter(e => e !== definer);
     this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
+      // Summarize items for pagination;
+      this.totalItems = resp.length;
       this.nonEmptyProductList = true;
       this.products = resp;
       this.products.forEach(p => {
         this.convertStrPropertiesToArray(p);
         this.apiIdsArray = this.apiIdsArray.concat(p.api);
         this.aceaIdsArray = this.aceaIdsArray.concat(p.acea);
+        this.ilsacIdsArray = this.ilsacIdsArray.concat(p.ilsac);
         this.brandIdsArray = this.brandIdsArray.concat(p.idBrand);
         this.baseIdsArray = this.baseIdsArray.concat(p.idBase);
         this.volumeIdsArray = this.volumeIdsArray.concat(p.idVolume);

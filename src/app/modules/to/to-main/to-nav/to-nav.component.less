@@ -5,6 +5,16 @@
   border-bottom: 1px solid @main_content_border;
   color: #000;
   text-align: center;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  .header{
+    width: 100%;
+  }
+  .header_remark{
+    font-size: 12px;
+    width: 100%;
+  }
 }
 .theme{
   cursor: pointer;
@@ -13,6 +23,24 @@
   &:hover{
     color: @article_theme_hover_font_color;
     border-color: #d94f5c;
+  }
+  .models_list{
+    display: inline-flex;
+    flex-flow: column nowrap;
+    .model{
+      text-indent: 10px;
+      font-size: smaller;
+      i {margin-right: 3px}
+      .autos_list{
+        display: inline-flex;
+        flex-flow: column nowrap;
+        .auto{
+          text-indent: 10px;
+          font-size: smaller;
+          i {margin-right: 3px}
+        }
+      }
+    }
   }
   .article_list_unit {
     font-size: 16px;
@@ -24,7 +52,11 @@
     }
   }
 }
-@media (min-width: 720px) and (max-width: 1320px){
-
+@media (min-width: 200px) and (max-width: 640px){
+  .theme{
+    .article_list_unit{
+      font-size: 14px;
+    }
+  }
 }
 

@@ -23,6 +23,11 @@ export class ProductsService {
       .pipe(map(resp => OilsResponse.fromJson(resp)))
       .pipe(map(or => or.data));
   }
+  public oilsByBrandId(id: any): Observable<any> {
+    return this.http.get(this.urlConfig.GETOILSBYBRANDID + id)
+      .pipe(map(resp => OilsResponse.fromJson(resp)))
+      .pipe(map(or => or.data));
+  }
 
   public getOil(id: any): Observable<Oils> {
     return this.http.get(this.urlConfig.GETOIL + '/' + id)
@@ -45,6 +50,7 @@ export class ProductsService {
     params.append('base', requestItem.base.join(','));
     params.append('api', requestItem.api.join(','));
     params.append('acea', requestItem.acea.join(','));
+    params.append('ilsac', requestItem.ilsac.join(','));
     params.append('mb', requestItem.mbApprovals.join(','));
     params.append('bmw', requestItem.bmwApprovals.join(','));
     params.append('fiat', requestItem.fiatApprovals.join(','));
@@ -83,6 +89,7 @@ export class ProductsService {
     params.append('full_desc', data.fullDesc);
     params.append('acea', data.acea);
     params.append('api', data.api);
+    params.append('ilsac', data.ilsac);
     params.append('mbApproval', data.mbApprovals);
     params.append('bmwApproval', data.bmwApprovals);
     params.append('fiatApproval', data.fiatApprovals);

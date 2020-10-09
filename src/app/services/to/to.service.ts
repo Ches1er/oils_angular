@@ -10,6 +10,7 @@ import {GroupResponse} from '../../dto/to/groups/GroupResponse';
 import {PriceExchange} from '../../dto/to/priceExchange/PriceExchange';
 import {PriceExchangeResponse} from '../../dto/to/priceExchange/PriceExchangeResponse';
 import {ServerResponse} from '../../dto/ServerResponse/ServerResponse';
+import {ModelResponse} from '../../dto/to/model/ModelResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,9 @@ export class ToService {
 
   constructor(@Inject(HttpClient) private http: HttpClient) {
   }
-  get brands(): Observable<any> {
-    return this.http.get(this.urlConfig.GETTOBRANDS)
-      .pipe(map(resp => BrandResponse.fromJson(resp)))
+  public models(id): Observable<any> {
+    return this.http.get(this.urlConfig.GETMODELS + id)
+      .pipe(map(resp => ModelResponse.fromJson(resp)))
       .pipe(map(br => br.data));
   }
   public autos(id): Observable<any> {
@@ -69,6 +70,17 @@ export class ToService {
     params.append('action', action);
     params.append('is_goods_changes', isGoodsChanges);
     return this.http.post(this.urlConfig.ADDTO, params)
+      .pipe(map(resp => ServerResponse.fromJson(resp)))
+      .pipe(map(sr => sr.response));
+  }
+  public addModel(data, action): Observable<any> {
+    console.log(data);
+    const params = new FormData();
+    params.append('name', data.name);
+    params.append('id', data.id);
+    params.append('id_brand', data.idBrand);
+    params.append('action', action);
+    return this.http.post(this.urlConfig.ADDMODEL, params)
       .pipe(map(resp => ServerResponse.fromJson(resp)))
       .pipe(map(sr => sr.response));
   }

@@ -1,15 +1,15 @@
-import {Viscosity} from "./Viscosity";
+import {Viscosity} from './Viscosity';
 
 export class ViscosityResponse {
 
-  constructor(private pData: Array<Viscosity>) {
+  constructor(private pData: any) {
   }
 
-  get data(): Array<Viscosity> {
+  get data(): any {
     return this.pData;
   }
 
-  set data(value: Array<Viscosity>) {
+  set data(value: any) {
     this.pData = value;
   }
   public static fromJson(jsonObj: any): ViscosityResponse {

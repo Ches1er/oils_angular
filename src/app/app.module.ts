@@ -20,6 +20,7 @@ import { ProductOilComponent } from './components/windows/product-oil/product-oi
 import { ArticlesComponent } from './components/articles/articles.component';
 import {DeviceDetectorModule} from 'ngx-device-detector';
 import {JwtModule} from '@auth0/angular-jwt';
+import {NoSanitizePipe} from './classes/noSanitizePipe';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {JwtModule} from '@auth0/angular-jwt';
     CurrentUserBlockComponent,
     ProductOilComponent,
     ArticlesComponent,
+    NoSanitizePipe
   ],
   imports: [
     NgxLoadingModule.forRoot({

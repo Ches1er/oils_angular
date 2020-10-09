@@ -80,6 +80,16 @@ footer {
   text-indent: 5px;
 }
 
+/*Pagination*/
+
+.pagination {
+  width: 100%;
+  display: inline-flex;
+  flex-flow: row;
+  justify-content: center;
+  font-family: Arial;
+}
+
 /* Main content nav */
 
 .main_nav ul{
@@ -437,6 +447,13 @@ footer {
   padding: 10px;
   font-size: large;
 }
+.admin_content_block_label_small{
+  color: #626262;
+  text-decoration: underline;
+}
+.red {
+  color: red;
+}
 .admin_content_form{
   display: inline-flex;
   flex-flow: column nowrap;
@@ -453,7 +470,7 @@ footer {
 }
 .used_types{
   display: inline-flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
 }
 .used_type {
   background-color: darkorange;
@@ -597,13 +614,13 @@ agm-map{
   }
 }
 
-@media (min-width: 720px) and (max-width: 1320px)
+@media (min-width: 200px) and (max-width: 640px)
 {
   .main_nav ul{
     flex-flow: column nowrap;
   }
   .wrapper{
-    width: 90%;
+    width: 98%;
   }
 }
 

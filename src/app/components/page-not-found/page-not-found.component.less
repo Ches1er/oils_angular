@@ -1,0 +1,67 @@
+@import "../../common";
+:host{width: 100%}
+.page_404_main{
+  display: inline-flex;
+  flex-flow: row nowrap;
+  background-color: #fff;
+  width: 100%;
+  justify-content: center;
+  .page_404_text{
+    width: 20%;
+    font-family: @products_name_font;
+    color: @main_nav_font_color;
+    padding: 200px 20px 20px 20px;
+    margin: 10px;
+    box-sizing: border-box;
+    font-size: 20px;
+    span {
+      display: block;
+      margin-left: 10px;
+
+      font-size: 50px;
+    }
+    .button{
+      display: inline-flex;
+      padding: 5px 15px;
+      text-decoration: none;
+      margin-top: 15px;
+      font-family: @full_desc_font;
+      text-align: center;
+      color: white;
+      background-color: green;
+      border-radius: 5px;
+      &:hover {
+        background-color: #474747;
+      }
+    }
+  }
+}
+@media (min-width: 641px) and (max-width: 1320px){
+  .page_404_main{
+    flex-flow: column nowrap;
+    align-items: center;
+    .page_404_text{
+      padding: 10px;
+      width: 100%;
+    }
+    .page_404_img{
+      img {
+      }
+    }
+  }
+}
+@media (min-width: 480px) and (max-width: 640px) {
+  .page_404_main{
+    flex-flow: column nowrap;
+    align-items: center;
+    .page_404_text{
+      padding: 10px;
+      width: 100%;
+    }
+    .page_404_img{
+      img {
+        width: 500px;
+      }
+    }
+  }
+}
