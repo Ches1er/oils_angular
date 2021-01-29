@@ -1,14 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from '../../../services/goods/products.service';
 import {Oils} from '../../../dto/oils/oils';
-import {Brand} from '../../../dto/brands/Brand';
 import {BrandsService} from '../../../services/goods/brands/brands.service';
 import {CheckboxItem} from '../../../classes/CheckboxItem';
-import {Acea} from '../../../dto/acea/Acea';
 import {AceaServiceService} from '../../../services/goods/acea/acea-service.service';
-import {Api} from '../../../dto/api/Api';
 import {ApiService} from '../../../services/goods/api/api.service';
-import {Base} from '../../../dto/Base/Base';
 import {BaseService} from '../../../services/goods/base/base.service';
 import {ApprovalsService} from '../../../services/goods/approvals/approvals.service';
 import {Mb} from '../../../dto/approvals/mb/Mb';
@@ -19,9 +15,8 @@ import {Ren} from '../../../dto/approvals/Renault/Ren';
 import {Vw} from '../../../dto/approvals/Vw/Vw';
 import {RequestItem} from '../../../classes/RequestItem';
 import {MainPropertiesService} from '../../../services/goods/mainProperties/main-properties.service';
-import {Viscosity} from '../../../dto/mainProperties/Viscosity';
-import {Volume} from '../../../dto/mainProperties/Volume';
 import {WindowsMessagesService} from '../../../services/messages/windows-messages.service';
+import {QuickFilters} from '../../../classes/QuickFilters';
 
 @Component({
   selector: 'app-oils',
@@ -350,11 +345,11 @@ export class OilsComponent implements OnInit {
     this.pBase = value;
   }
 
-  get Api(): any {
+  get api(): any {
     return this.pApi;
   }
 
-  set Api(value: any) {
+  set api(value: any) {
     this.pApi = value;
   }
 
@@ -477,8 +472,8 @@ export class OilsComponent implements OnInit {
   ilsacOptions = [];
   apiOptions = [];
   baseOptions = [];
-  volOptions = [];
-  viscOptions = [];
+  volumeOptions = [];
+  viscosityOptions = [];
 
   // Approvals Options
 
@@ -527,6 +522,11 @@ export class OilsComponent implements OnInit {
   approvalsArray = ['Mb', 'Bmw', 'Ford', 'Fiat', 'Ren', 'Vw', 'Porsche', 'Gm', 'Koenig', 'Chrysler', 'Psa', 'Volvo', 'Jaguar', 'Jaso', 'Mazda', 'Nissan'];
 
   private requestItem: RequestItem = new RequestItem(
+    [], [], [], [], [], [], [], [], [], [],
+    [], [], [], [], [], [],
+    [], [], [], [], [], [], []
+  );
+  quickFilter: QuickFilters = new QuickFilters(
     [], [], [], [], [], [], [], [], [], [],
     [], [], [], [], [], [],
     [], [], [], [], [], [], []
@@ -620,7 +620,7 @@ export class OilsComponent implements OnInit {
 
   private updateApi() {
     this.apiService.Api('prod').subscribe(resp => {
-      this.Api = resp;
+      this.api = resp;
       this.apiOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });
   }
@@ -636,11 +636,11 @@ export class OilsComponent implements OnInit {
   private updateMainProperties() {
     this.mainPropertiesService.viscosity('prod').subscribe(resp => {
       this.viscosity = resp;
-      this.viscOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
+      this.viscosityOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });
     this.mainPropertiesService.volume('prod').subscribe(resp => {
       this.volume = resp;
-      this.volOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
+      this.volumeOptions = resp.map(r => new CheckboxItem(r.id, r.name, false));
     });
   }
 
@@ -727,7 +727,7 @@ export class OilsComponent implements OnInit {
 
   private volumeCheckboxFade(volumeArr): void {
     const unique = this.uniqueElementsInArray(volumeArr);
-    this.volOptions.map(e => {
+    this.volumeOptions.map(e => {
       e.fade = !unique.includes(e.value);
     });
   }
@@ -736,7 +736,7 @@ export class OilsComponent implements OnInit {
 
   private viscosityCheckboxFade(viscArr): void {
     const unique = this.uniqueElementsInArray(viscArr);
-    this.viscOptions.map(e => {
+    this.viscosityOptions.map(e => {
       e.fade = !unique.includes(e.value);
     });
   }
@@ -900,8 +900,51 @@ export class OilsComponent implements OnInit {
     return result;
   }
 
+  // quick filters
+
+  onQuickFiltersChange(definer, array) {
+    this.quickFilter[definer] = this.quickFilterDataPreparation(definer, array);
+  }
+
+  delFromQuickFilter(key: any, value: any) {
+    const key_ = key.slice(1);
+    const arrayAfterDel = [];
+    const firstSymbol = key_.substr(0, 1);
+    const keyLowerCase = firstSymbol.toLowerCase() + key_.slice(1);
+    this.quickFilter[keyLowerCase] = this.quickFilter[keyLowerCase].filter(e => {
+      return e[1] !== value;
+    });
+    this.quickFilter[keyLowerCase].map(e => {
+      arrayAfterDel.push(e[1]);
+    });
+    const onKeyChangeMethodName = 'on' + key_ + 'Change';
+
+    this[onKeyChangeMethodName](arrayAfterDel);
+    this.uncheckCheckbox(keyLowerCase, arrayAfterDel);
+  }
+
+  private uncheckCheckbox(key, arrayAfterDel) {
+    const onKeyCheckBoxName = key + 'Options';
+    this[onKeyCheckBoxName].map(e => {
+      if (!arrayAfterDel.includes(e.value))e.checked = false;
+    });
+  }
+
+  private quickFilterDataPreparation(definer, idsArray) {
+    const result = [];
+    idsArray.forEach(e => {
+       this[definer].map(el => {
+         if (el.id == e) {
+           result.push([el.name, el.id]);
+         }
+       });
+    });
+    return result;
+  }
+
   // Brands
   onBrandsChange(value: any) {
+    this.onQuickFiltersChange('brands', value);
     this.requestItem.brand = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
@@ -933,6 +976,7 @@ export class OilsComponent implements OnInit {
 
   // Acea
   onAceaChange(value: any) {
+    this.onQuickFiltersChange('acea', value);
     this.requestItem.acea = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
@@ -965,6 +1009,7 @@ export class OilsComponent implements OnInit {
   // Ilsac
 
   onIlsacChange(value: any) {
+    this.onQuickFiltersChange('ilsac', value);
     this.requestItem.ilsac = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
@@ -996,6 +1041,7 @@ export class OilsComponent implements OnInit {
 
   // Api
   onApiChange(value: any) {
+    this.onQuickFiltersChange('api', value);
     this.requestItem.api = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
@@ -1028,6 +1074,7 @@ export class OilsComponent implements OnInit {
   // Volume
   onVolumeChange(value) {
     this.requestItem.volume = value;
+    this.onQuickFiltersChange('volume', value);
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
     this.productsService.oilsWProperties(this.requestItem).subscribe(resp => {
@@ -1058,6 +1105,7 @@ export class OilsComponent implements OnInit {
 
   // Viscosity
   onViscosityChange(value) {
+    this.onQuickFiltersChange('viscosity', value);
     this.requestItem.viscosity = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;
@@ -1120,6 +1168,7 @@ export class OilsComponent implements OnInit {
 
   // Approvals Change
   onApprovalChange(value, definer: string) {
+    this.onQuickFiltersChange(definer, value);
     this.requestItem[definer] = value;
     this.nullIdsArrays();
     this.nonEmptyProductList = false;

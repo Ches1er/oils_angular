@@ -22,6 +22,9 @@ import {DeviceDetectorModule} from 'ngx-device-detector';
 import {JwtModule} from '@auth0/angular-jwt';
 import {NoSanitizePipe} from './classes/noSanitizePipe';
 
+export function getToken() {
+  return localStorage.getItem('api_token');
+}
 
 @NgModule({
   declarations: [
@@ -54,9 +57,7 @@ import {NoSanitizePipe} from './classes/noSanitizePipe';
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return localStorage.getItem('api_token');
-        },
+        tokenGetter: getToken,
         allowedDomains: ['http://localhost:4200', 'http://oilexpress.online'],
         disallowedRoutes: [
           'http://mydomain/api/login',

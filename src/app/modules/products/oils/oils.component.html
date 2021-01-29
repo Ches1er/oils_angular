@@ -4,9 +4,9 @@
     <div class="filter_unit">Производители</div>
     <app-checkbox-component [options]='brandsOptions' (toggle)='onBrandsChange($event)'></app-checkbox-component>
     <div class="filter_unit">Объем, л.</div>
-    <app-checkbox-component [options]="volOptions" (toggle)="onVolumeChange($event)"></app-checkbox-component>
+    <app-checkbox-component [options]="volumeOptions" (toggle)="onVolumeChange($event)"></app-checkbox-component>
     <div class="filter_unit">Вязкость</div>
-    <app-checkbox-component [options]="viscOptions" (toggle)="onViscosityChange($event)"></app-checkbox-component>
+    <app-checkbox-component [options]="viscosityOptions" (toggle)="onViscosityChange($event)"></app-checkbox-component>
     <div class="filter_unit">ACEA</div>
     <app-checkbox-component [options]='aceaOptions' (toggle)='onAceaChange($event)'></app-checkbox-component>
     <div class="filter_unit">ILSAC</div>
@@ -213,8 +213,24 @@
 
     </div>
   </div>
+
   <div class="products">
     <div class="products_header">Список моторных масел</div>
+
+    <!--Quick Filter-->
+
+    <div class="filters_list">
+      <div *ngFor="let qF of quickFilter | keyvalue">
+        <div class="filter" *ngIf="qF.value.length > 0" >
+            <div class="filter_unit" *ngFor="let filterData of qF.value" (click)="delFromQuickFilter(qF.key, filterData[1])">
+              <div class="filter_name">{{filterData[0]}}</div>
+              <div class="filter_x">X</div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
     <div *ngIf="!nonEmptyProductList">Товаров нет</div>
     <div class="products_list" *ngIf="nonEmptyProductList">
         <div class="product" *ngFor="let product of products| paginate: { itemsPerPage: 6, currentPage: p, totalItems: totalItems }" (click)="onClickProduct(product.id)">

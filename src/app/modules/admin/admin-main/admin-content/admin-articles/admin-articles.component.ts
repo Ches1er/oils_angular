@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ArticlesService} from '../../../../../services/articles/articles.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Image} from '../../../../../dto/images/Image';
@@ -19,6 +19,7 @@ export class AdminArticlesComponent implements OnInit {
   set goods(value: any) {
     this.pGoods = value;
   }
+
   get articles(): any {
     return this.pArticles;
   }
@@ -26,6 +27,7 @@ export class AdminArticlesComponent implements OnInit {
   set articles(value: any) {
     this.pArticles = value;
   }
+
   get themes(): any {
     return this.pThemes;
   }
@@ -33,6 +35,7 @@ export class AdminArticlesComponent implements OnInit {
   set themes(value: any) {
     this.pThemes = value;
   }
+
   get choosenImg(): Image {
     return this.pChoosenImg;
   }
@@ -40,11 +43,13 @@ export class AdminArticlesComponent implements OnInit {
   set choosenImg(value: Image) {
     this.pChoosenImg = value;
   }
+
   private pChoosenImg: Image = null;
   private pThemes = null;
   private pGoods = [];
   private pArticles = null;
   private whatHaveToDo = 'add';
+  private blockDefiner = false;
 
   whatToFind = '';
   oldWhatToFind = null;
@@ -63,17 +68,38 @@ export class AdminArticlesComponent implements OnInit {
     idTheme: new FormControl('', Validators.required),
   });
 
+  get ca() {
+    return this.addChangeArticle;
+  }
+
   constructor(private articleService: ArticlesService, private adminMessageService: AdminMessagesService,
-              private productService: ProductsService) { }
+              private productService: ProductsService) {
+  }
 
   ngOnInit() {
+    this.choosenImg = null;
     this.whatHaveToDo = 'add';
     this.updateThemes();
     this.updateArticles();
-    this.adminMessageService.articlesThemesChangesMessage.subscribe(resp => this.updateThemes());
-    this.addChangeArticle.get('foundGoods').valueChanges.subscribe(e => {
+    this.adminMessageService.articlesThemesChangesMessage.subscribe(() => this.updateThemes());
+    this.ca.get('foundGoods').valueChanges.subscribe(() => {
       this.whatToFind = this.addChangeArticle.get('foundGoods').value;
       this.find();
+    });
+    this.adminMessageService.imageHasChoosen.subscribe(i => {
+      // blockDefiner controls that image will change only in one block
+      if (this.blockDefiner) {
+        this.moveImageToTheFormControl(i);
+        this.choosenImg = i;
+        console.log(this.choosenImg);
+      }
+      this.blockDefiner = false;
+    });
+  }
+
+  private moveImageToTheFormControl(image: Image) {
+    this.ca.patchValue({
+      imgId: image.id
     });
   }
 
@@ -82,31 +108,35 @@ export class AdminArticlesComponent implements OnInit {
       this.themes = resp;
     });
   }
+
   private updateArticles() {
     this.articleService.articles('all').subscribe(resp => {
       this.articles = resp;
     });
   }
+
   public getArticle(article) {
     this.addChangeArticle.patchValue({
       id: article.id, name: article.name, imgId: article.idImg, shortDesc: article.shortDesc, fullDesc: article.fullDesc,
       goods: article.pGoods, idTheme: article.idTheme
     });
-    this.getGoods(article.pGoods);
+    if (article.pGoods) this.getGoods(article.pGoods);
     this.choosenImg = new Image(article.imgId, 'name', article.img);
     this.whatHaveToDo = 'update';
   }
+
   private getGoods(goodsStr) {
     const goodsArr = goodsStr.split(',');
-    goodsArr.map(estr => {
-      const eArr = estr.split(':');
+    goodsArr.map(str => {
+      const eArr = str.split(':');
       if (eArr[1] === 'goods_oils') {
-        this.productService.getOil(eArr[0]).subscribe(resp => {
+        this.productService.getGoodsUnit(eArr[0], 'goods_oils').subscribe(resp => {
           this.goods.push(resp);
         });
       }
     });
   }
+
   private makeGoodsStr() {
     const productsArray = [];
     this.goods.map(e => {
@@ -118,7 +148,7 @@ export class AdminArticlesComponent implements OnInit {
 
   onArticleSubmit() {
     this.makeGoodsStr();
-    this.articleService.addArticle(this.addChangeArticle.value, this.whatHaveToDo).subscribe(resp => {
+    this.articleService.addArticle(this.ca.value, this.whatHaveToDo).subscribe(resp => {
       this.adminMessageService.ShowServerResponseWindow();
       if (resp === 'update success') {
         const data = ['обновление статьи', 'Данные успешно обновлены'];
@@ -145,8 +175,11 @@ export class AdminArticlesComponent implements OnInit {
       this.goods = [];
     });
   }
+
   clearFields(e?) {
-    if (e) { e.preventDefault(); }
+    if (e) {
+      e.preventDefault();
+    }
     this.addChangeArticle.patchValue({
       id: '',
       name: '',
@@ -158,7 +191,10 @@ export class AdminArticlesComponent implements OnInit {
     });
     this.whatHaveToDo = 'add';
   }
+
   imagesPickerShow(e) {
+    // change blockDefiner for working only in one block, else pictures will change in all blocks
+    this.blockDefiner = true;
     this.adminMessageService.imagesPickerWindowShow();
     e.preventDefault();
   }
@@ -168,8 +204,11 @@ export class AdminArticlesComponent implements OnInit {
       return e.id !== id;
     });
   }
+
   private find() {
-    if (this.whatToFind === '') {this.products = null; } else {
+    if (this.whatToFind === '') {
+      this.products = null;
+    } else {
       this.productService.findGoods(this.whatToFind).subscribe(resp => {
         if (resp.length === 0 || this.whatToFind === '') {
           this.products = null;
@@ -183,7 +222,7 @@ export class AdminArticlesComponent implements OnInit {
 
   addProduct(id: any, tableDefiner: any) {
     if (tableDefiner === 'goods_oils') {
-      this.productService.getOil(id).subscribe(resp => {
+      this.productService.getGoodsUnit(id, tableDefiner).subscribe(resp => {
         this.goods.push(resp);
       });
     }

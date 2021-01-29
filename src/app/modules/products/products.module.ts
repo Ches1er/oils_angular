@@ -10,7 +10,9 @@ import {ngxLoadingAnimationTypes, NgxLoadingModule} from 'ngx-loading';
 import {NgxPaginationModule} from 'ngx-pagination';
 
 const routes: Routes = [
-  {path: 'main', component: ProductsMainComponent},
+  /*{path: 'main', component: ProductsMainComponent},*/
+  // Use redirect while use only one product type, after uncomment 1-st item, and comment 2-nd
+  {path: 'main', redirectTo: 'oils', pathMatch: 'full'},
   {path: 'oils', component: OilsComponent, data: {definer: ['oils']}},
   {path: 'transmission', component: TransmissionComponent, data: {definer: ['transmission']}}
 ];

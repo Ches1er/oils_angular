@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BrandsService} from '../../../../../../services/goods/brands/brands.service';
 import {ToService} from '../../../../../../services/to/to.service';
-import {Image} from '../../../../../../dto/images/Image';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AdminMessagesService} from '../../../../../../services/messages/admin-messages.service';
 
@@ -63,7 +62,7 @@ export class AdminToModelsComponent implements OnInit {
       this.brands = resp;
     });
   }
-  private updateModels(brandId: any) {
+  updateModels(brandId: any) {
     this.toService.models(brandId).subscribe(r => {
       this.f.patchValue({idBrand: brandId})
       this.models = r;
@@ -116,9 +115,12 @@ export class AdminToModelsComponent implements OnInit {
     }
     this.f.patchValue({
       id: '',
-      name: '',
-      idBrand: '',
+      name: ''
     });
     this.whatHaveToDo = 'add';
+  }
+
+  updateBrand(value: any) {
+    this.f.patchValue({idBrand: value});
   }
 }

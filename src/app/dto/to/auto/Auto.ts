@@ -1,4 +1,11 @@
 export class Auto {
+  get shortDesc() {
+    return this.pShortDesc;
+  }
+
+  set shortDesc(value) {
+    this.pShortDesc = value;
+  }
   get idModel() {
     return this.pIdModel;
   }
@@ -7,7 +14,7 @@ export class Auto {
     this.pIdModel = value;
   }
 
-  constructor(private pId, private pName, private pImgId, private pImg, private pIdModel) {
+  constructor(private pId, private pName, private pImgId, private pImg, private pIdModel, private pShortDesc) {
   }
 
   get id() {
@@ -42,6 +49,6 @@ export class Auto {
     this.pImg = value;
   }
   public static fromJson(jsonObj: any): Auto {
-    return new Auto(jsonObj.id, jsonObj.name, jsonObj.id_image, jsonObj.img, jsonObj.id_model);
+    return new Auto(jsonObj.id, jsonObj.name, jsonObj.id_image, jsonObj.img, jsonObj.id_model, jsonObj.short_desc);
   }
 }

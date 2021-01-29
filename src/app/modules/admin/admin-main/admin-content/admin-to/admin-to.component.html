@@ -1,22 +1,17 @@
 <div class="admin_unit_block">
   <div class="admin_block_header">В данном блоке вы можете изменять существующие или добавлять новые автомобильные марки и статьи о техобслуживании для конкретных моделей</div>
   <div class="articles_main">
-<!--    <div class="articles_nav">
-      <div *ngIf="!articles">К сожалению пока-что нет статей</div>
-      <div *ngIf="articles">
-        <div class="article" *ngFor="let article of articles" (click)="getArticle(article)">
-          {{article.name}}
-        </div>
-      </div>
-    </div>-->
     <div class="article_block">
       <app-admin-to-brands></app-admin-to-brands>
       <app-admin-to-models></app-admin-to-models>
       <form class="admin_content_form" [formGroup]="addChangeArticle" (ngSubmit)="onArticleSubmit()">
-        <div class="admin_block_header_small">Форма добавления-изменения авто. Для изменения существующего авто,
-          выберите модель из списка, а потом авто из меню слева.
+        <div class="admin_block_header_small">Форма добавления-изменения авто.
         </div>
-
+        <div class="form-group">
+          <p class="admin_content_block_label">Блок в котором указаны последнее добавленное авто и последнее обновленное</p>
+          <button class="admin-btn" *ngIf="lastAdded" (click)="getLastAddedOrUpdated($event, lastAdded.idModel,lastAdded.id)">ПОСЛЕДНЕЕ ДОБАВЛЕННОЕ: {{lastAdded.name}}</button>
+          <button class="admin-btn" *ngIf="lastUpdated" (click)="getLastAddedOrUpdated($event, lastUpdated.idModel, lastUpdated.id)">ПОСЛЕДНЕЕ ОБНОВЛЕННОЕ: {{lastUpdated.name}}</button>
+        </div>
         <div class="form-group">
           <p class="admin_content_block_label">Для поиска модели по бренду, выберите последний из списка</p>
           <p class="admin_content_block_label_small">*При добавлении модели обязательно выберите из списка бренд</p>
@@ -43,20 +38,27 @@
             <p class="admin_content_block_label">Авто</p>
             <select name="" id="auto" (change)="getAuto($event.target.value)">
               <option disabled selected value> -- Выберите авто -- </option>
-              <option *ngFor="let br of models" value="{{br.id}}">{{br.name}}</option>
+              <option *ngFor="let br of articles" value="{{br.id}}">{{br.name}}</option>
             </select>
           </div>
         </div>
 
 
         <div class="form-group">
-          <p class="admin_content_block_label">Автомобиль</p>
+          <p class="admin_content_block_label">Название автомобиля</p>
           <input class="admin_content_input" type="text" id="name" formControlName = "name">
           <div class="validation_error"
                *ngIf="ca.get('name').getError('required') &&
                 (ca.get('name').dirty || ca.get('name').touched)">
             Введите пожалуйста название автомобиля.
           </div>
+        </div>
+        <div class="form-group" *ngIf="whatHaveToDo==='update'">
+          <p class="admin_content_block_label">Для изменения модели, к которой принадлежит авто, выберите ее из списка</p>
+          <select name="" id="changemodels" (change)="changeModel($event.target.value)">
+            <option disabled selected value> -- Выберите значение модель -- </option>
+            <option *ngFor="let br of models" value="{{br.id}}">{{br.name}}</option>
+          </select>
         </div>
 
         <div class="form-group" *ngIf="choosenImg">
@@ -70,14 +72,20 @@
         </div>
 
         <div class="form-group">
+          <p class="admin_content_block_label">Описание, определенные нюансы модели или выбранных материалов</p>
+          <p class="admin_content_block_label_small">*Описание не обязательно к добавлению!</p>
+          <textarea name="" id="short_desc" cols="30" rows="10" formControlName = "shortDesc"></textarea>
+        </div>
+
+        <div class="form-group">
           <div class="goods">
             <div *ngIf="goods.length !== 0">
               <p class="admin_content_block_label">Удаление-изменение товарных позиций</p>
               <div class="goods_unit" *ngFor="let g of goods">
-                <input class="goods_unit_name" type="text" value="{{g.name}}" (change)="nameChange($event.target.value, g.id)">
+                <input class="goods_unit_name" type="text" value="{{g.name}}" (change)="nameChange($event.target.value, g.min)">
                 <input class="goods_unit_name" type="text" value="{{g.catNumber}}"
-                       (change)="catNumberChange($event.target.value, g.id)">
-                <select name="" (change)="groupChange($event.target.value, g.id)">
+                       (change)="catNumberChange($event.target.value, g.min)">
+                <select name="" (change)="groupChange($event.target.value, g.min)">
                   <!--[selected]="g.idGroup === group.id" - выбор группы-->
                   <option
                     *ngFor="let group of groups"
@@ -87,8 +95,8 @@
                     {{group.name}}
                   </option>
                 </select>
-                <input class="goods_unit_name" type="text" value="{{g.price}}" (change)="priceChange($event.target.value, g.id)">
-                <select name="" (change)="exchangeChange($event.target.value, g.id)">
+                <input class="goods_unit_name" type="text" value="{{g.price}}" (change)="priceChange($event.target.value, g.min)">
+                <select name="" (change)="exchangeChange($event.target.value, g.min)">
                   <!--[selected]="g.idGroup === group.id" - выбор группы-->
                   <option *ngFor="let e of exchanges" [selected]="g.idExchange === e.id" value="{{e.id}}">{{e.name}}</option>
                 </select>

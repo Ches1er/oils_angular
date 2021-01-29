@@ -82,7 +82,6 @@ export class AdminArticlesThemesComponent implements OnInit {
   fillInTheme(id: any) {
     this.themes.filter(th => {
       if (th.id == id) {
-        console.log(th);
         this.addChangeTheme.patchValue({
           id: th.id,
           name: th.name,

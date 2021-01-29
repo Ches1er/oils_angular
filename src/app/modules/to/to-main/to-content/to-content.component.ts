@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ToService} from '../../../../services/to/to.service';
 import {ActivatedRoute} from '@angular/router';
+import {ifStmt} from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-to-content',
@@ -36,7 +37,8 @@ export class ToContentComponent implements OnInit {
     this.pAuto = value;
   }
 
-  constructor(private toService: ToService, private activatedRoute: ActivatedRoute) { }
+  constructor(private toService: ToService, private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit() {
     if (this.activatedRoute.snapshot.routeConfig.path === 'to_default') {
@@ -55,6 +57,26 @@ export class ToContentComponent implements OnInit {
     this.toService.groups.subscribe(g => this.groups = g);
     this.toService.goods(id, exchange).subscribe(g => {
       this.goods = g;
+      this.groups.forEach(e => {
+          const arr = this.goods.filter(goods => {
+            return goods.idGroup == e.id;
+          });
+          this.findMin(arr);
+        }
+      );
+    });
+  }
+
+  private findMin(goods: any) {
+
+    let min = 100000;
+    goods.forEach(e => {
+      if (e.price < min) { min = e.price; }
+    });
+    goods.map(e => {
+      if (e.price === min) {
+        e.min = true;
+      }
     });
   }
 

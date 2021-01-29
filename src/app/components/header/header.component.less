@@ -99,18 +99,27 @@
 @media (min-width: 200px) and (max-width: 640px){
   .header_title{
     padding: 5px 0 5px 20px;
-    .header_logo{
-      img {
-        width: 100px;
+    .logo{
+      display: inline-flex;
+      flex-flow: column nowrap;
+      .header_logo{
+        display: inline-flex;
+        flex-flow: row nowrap;
+        justify-content: center;
       }
-    }
-    .header_text{
-      .header_text_main{
-        text-transform: uppercase;
-        font-family: 'Roboto Slab', serif;
-        /*color: @header_main_color;*/
-        font-size: 2.5em;
-        font-weight: bold;
+      .header_text{
+        margin: 0;
+        display: inline-flex;
+        flex-flow: row;
+        justify-content: center;
+        .header_text_main{
+          text-transform: uppercase;
+          font-family: 'Roboto Slab', serif;
+          /*color: @header_main_color;*/
+          font-size: 3em;
+          font-weight: bold;
+          width: fit-content;
+        }
       }
     }
   }

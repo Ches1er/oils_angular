@@ -48,7 +48,7 @@ export class AdminParamsBrandsComponent implements OnInit {
   private pWhatHaveToDo: string;
   private blockDefiner = false;
   private pUsedTypes = null;
-  private typesOptions = [];
+  typesOptions = [];
 
   addChangeBrands: FormGroup = new FormGroup({
     id: new FormControl(''),

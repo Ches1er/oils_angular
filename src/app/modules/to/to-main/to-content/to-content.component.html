@@ -1,7 +1,14 @@
 <div class="to_content_main">
   <div class="to_content_auto" *ngIf="auto">
     <div class="auto_name">{{auto.name}}</div>
-    <img src="{{auto.img}}" alt="">
+    <div class="to_content_auto_desc_img">
+      <img src="{{auto.img}}" alt="">
+      <div class="desc" *ngIf="auto.shortDesc !== 'null'">{{auto.shortDesc}}</div>
+    </div>
+  </div>
+  <div class="to_content_remarks">
+    <div class="remark">* Обозначения рядом с названием масла (4+1, 5+1+1 и пр.) означают емкость канистр и какое кол-во какой емкости необходимо будет приобрести. "Цена" показывает, сколько необходимо будет заплатить за весь необходимый объем.</div>
+    <div class="remark">* Номер по каталогу рядом с моторным маслом указывается на позиции с максимальной емкостью, и необходимы только для быстрого поиска характеристик масла.</div>
   </div>
   <div class="to_content_header">Материалы для техобслуживания</div>
   <div class="to_content_goods">
@@ -11,9 +18,6 @@
         <div class="groups_header_goods">Наименование</div>
         <div class="groups_header_goods">Номер по каталогу</div>
         <div class="groups_header_goods">Цена, грн</div>
-<!--        <div class="groups_header_price">Цена макс</div>
-        <div class="groups_header_price">Цена мин</div>
-        <div class="groups_header_price">Цена средняя</div>-->
       </div>
       <div class="group" *ngFor="let group of groups">
         <div class="group_name">{{group.name}}</div>
@@ -23,9 +27,6 @@
               <div [ngClass]="{'goods_unit_price_min' : g.min}">{{g.name}}</div>
               <div [ngClass]="{'goods_unit_price_min' : g.min}">{{g.catNumber}}</div>
               <div [ngClass]="{'goods_unit_price_min' : g.min}">{{g.price}}</div>
-<!--              <div class="goods_unit_max_min" ><span *ngIf="g.max && !g.min">max</span></div>
-              <div class="goods_unit_max_min" ><span *ngIf="g.min && !g.max">min</span></div>
-              <div class="goods_unit_max_min" ><span *ngIf="g.min && g.max">avg</span></div>-->
             </div>
         </div>
         </div>

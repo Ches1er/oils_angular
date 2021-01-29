@@ -14,7 +14,7 @@ export class AceaServiceService {
   urlConfig: urlConfig = new urlConfig();
   constructor(@Inject(HttpClient) private http: HttpClient) { }
 
-  Acea(definer: string): Observable<Array<Acea>>{
+  Acea(definer: string): Observable<any> {
     return this.http.get(this.urlConfig.GETACEA + '/' + definer)
       .pipe(map(resp => AceaResponse.fromJson(resp)))
       .pipe(map(ar => ar.data));

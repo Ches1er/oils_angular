@@ -64,7 +64,8 @@ export class ToService {
     const params = new FormData();
     params.append('name', data.name);
     params.append('id', data.id);
-    params.append('id_brand', data.idBrand);
+    params.append('id_model', data.idModel);
+    params.append('short_desc', data.shortDesc);
     params.append('goods', data.goods);
     params.append('id_image', data.img);
     params.append('action', action);
@@ -74,7 +75,6 @@ export class ToService {
       .pipe(map(sr => sr.response));
   }
   public addModel(data, action): Observable<any> {
-    console.log(data);
     const params = new FormData();
     params.append('name', data.name);
     params.append('id', data.id);

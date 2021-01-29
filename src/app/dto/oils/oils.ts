@@ -273,7 +273,7 @@ export class Oils {
   }
 
   get shortDesc() {
-    return this.urlEncode.decodeValue(this.pShortDesc);
+    return this.pShortDesc;
   }
 
   set shortDesc(value) {

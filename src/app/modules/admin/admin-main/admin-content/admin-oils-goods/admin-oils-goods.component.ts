@@ -358,7 +358,7 @@ export class AdminOilsGoodsComponent implements OnInit {
       this.goods = resp;
     });
   }
-  private updateGoodsByBrand(brandId: any) {
+  public updateGoodsByBrand(brandId: any) {
     this.productsService.oilsByBrandId(brandId).subscribe(resp => {
       this.goods = resp;
     });
@@ -428,7 +428,6 @@ export class AdminOilsGoodsComponent implements OnInit {
   fillInGoodsItem(value: any) {
     this.goods.filter(item => {
       if (item.id == value) {
-        console.log(item);
         this.addChangeGoods.patchValue({
           id: item.id, name: item.name, art: item.art, idVolume: item.idVolume, idViscosity: item.idViscosity, idBase: item.idBase,
           idBrand: item.idBrand, idImg: item.idImage, shortDesc: item.shortDesc, fullDesc: item.fullDesc, acea: item.acea, api: item.api,
