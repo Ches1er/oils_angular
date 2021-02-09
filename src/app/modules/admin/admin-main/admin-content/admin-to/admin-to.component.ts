@@ -101,6 +101,7 @@ export class AdminToComponent implements OnInit {
   private blockDefiner = false;
   private pLastAdded = null;
   private pLastUpdated = null;
+  showAllFields = null;
   goodsItemNameError = [];
   goodsItemArtError = [];
   goodsItemPriceError = [];
@@ -190,10 +191,7 @@ export class AdminToComponent implements OnInit {
     });
   }
 
-  clearFields(e?) {
-    if (e) {
-      e.preventDefault();
-    }
+  private clearFields() {
     this.ca.patchValue({
       id: '',
       name: '',
@@ -206,6 +204,14 @@ export class AdminToComponent implements OnInit {
     this.goods = [];
     this.choosenImg = null;
   }
+  newAuto(e?) {
+    this.models = null;
+    if (e) {
+      e.preventDefault();
+    }
+    this.clearFields();
+    this.showAllFields = null;
+  }
 
   private updateBrands() {
     this.brandsService.brandsByType(4, 'all').subscribe(resp => {
@@ -217,20 +223,24 @@ export class AdminToComponent implements OnInit {
     this.clearFields();
     this.toService.models(brandId).subscribe(r => {
       this.models = r;
+      // Устанавливаем модель по-умолчанию
+      this.ca.patchValue({idModel: r[0].id});
+      this.showAllFields = true;
     });
   }
 
   updateAutos(modelId) {
     this.articles = null;
-
     this.ca.patchValue({idModel: modelId});
     this.toService.autos(modelId).subscribe(resp => {
       this.articles = resp;
       this.clearFields();
+      this.showAllFields = true;
     });
   }
 
   public getLastAddedOrUpdated(elem, modelId, autoId) {
+    this.showAllFields = true;
     elem.preventDefault();
     this.articles = null;
     this.ca.patchValue({idModel: modelId});
@@ -387,8 +397,6 @@ export class AdminToComponent implements OnInit {
   }
 
   changeModel(value: any) {
-    console.log(this.ca.value);
     this.ca.patchValue({idModel: value});
-    console.log(this.ca.value);
   }
 }

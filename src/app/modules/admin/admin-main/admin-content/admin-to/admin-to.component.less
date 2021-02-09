@@ -33,32 +33,34 @@
     flex-grow: 1;
     display: inline-flex;
     flex-flow: column nowrap;
-    .choosenImg {
-      width: 400px;
-      height: 225px;
-    }
-    .goods{
+    .autoInfoFields{
       display: inline-flex;
       flex-flow: column nowrap;
-      .admin-btn{
-        margin: 0;
-        max-width: 40px;
+      .choosenImg {
+        width: 400px;
+        height: 225px;
       }
-      div {
+      .goods{
         display: inline-flex;
         flex-flow: column nowrap;
-        .goods_unit{
+        .admin-btn{
+          margin: 0;
+          max-width: 40px;
+        }
+        div {
           display: inline-flex;
-          flex-flow: row nowrap;
-          padding: 5px;
-          margin-bottom: 5px;
-          input, select{
-            margin-right: 3px;
+          flex-flow: column nowrap;
+          .goods_unit{
+            display: inline-flex;
+            flex-flow: row nowrap;
+            padding: 5px;
+            margin-bottom: 5px;
+            input, select{
+              margin-right: 3px;
+            }
           }
-
         }
       }
-
     }
   }
 }

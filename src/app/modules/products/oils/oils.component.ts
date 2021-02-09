@@ -681,64 +681,106 @@ export class OilsComponent implements OnInit {
 
   // Api
 
-  private apiCheckboxFade(apiArr: any): void {
-    const unique = this.uniqueElementsInArray(apiArr);
-    this.apiOptions.map(e => {
-      e.fade = !unique.includes(e.value);
-    });
+  private apiCheckboxFade(arr: any): void {
+    const unique = this.uniqueElementsInArray(arr);
+    if (arr.length === 0) {
+      this.apiOptions.map(e => {
+        e.fade = false;
+      });
+    } else {
+      this.apiOptions.map(e => {
+        e.fade = !unique.includes(e.value);
+      });
+    }
   }
 
   // Ilsac
 
-  private ilsacCheckboxFade(ilsacArr: any): void {
-    const unique = this.uniqueElementsInArray(ilsacArr);
-    this.ilsacOptions.map(e => {
-      e.fade = !unique.includes(e.value);
-    });
+  private ilsacCheckboxFade(arr: any): void {
+    const unique = this.uniqueElementsInArray(arr);
+    if (arr.length === 0) {
+      this.ilsacOptions.map(e => {
+        e.fade = false;
+      });
+    } else {
+      this.ilsacOptions.map(e => {
+        e.fade = !unique.includes(e.value);
+      });
+    }
   }
 
   // Acea
 
-  private aceaCheckboxFade(aceaArr: any): void {
-    const unique = this.uniqueElementsInArray(aceaArr);
-    this.aceaOptions.map(e => {
-      e.fade = !unique.includes(e.value);
-    });
+  private aceaCheckboxFade(arr: any): void {
+    const unique = this.uniqueElementsInArray(arr);
+    if (arr.length === 0) {
+      this.aceaOptions.map(e => {
+        e.fade = false;
+      });
+    } else {
+      this.aceaOptions.map(e => {
+        e.fade = !unique.includes(e.value);
+      });
+    }
   }
 
   // Base
-  private baseCheckboxFade(baseArr: any): void {
-    const unique = this.uniqueElementsInArray(baseArr);
-    this.baseOptions.map(e => {
-      e.fade = !unique.includes(e.value);
-    });
+  private baseCheckboxFade(arr: any): void {
+    const unique = this.uniqueElementsInArray(arr);
+    if (arr.length === 0) {
+      this.baseOptions.map(e => {
+        e.fade = false;
+      });
+    } else {
+      this.baseOptions.map(e => {
+        e.fade = !unique.includes(e.value);
+      });
+    }
   }
 
   // Brand
 
-  private brandCheckboxFade(brandArr: any): void {
-    const unique = this.uniqueElementsInArray(brandArr);
-    this.brandsOptions.map(e => {
-      e.fade = !unique.includes(e.value);
-    });
+  private brandCheckboxFade(arr: any): void {
+    const unique = this.uniqueElementsInArray(arr);
+    if (arr.length === 0) {
+      this.brandsOptions.map(e => {
+        e.fade = false;
+      });
+    } else {
+      this.brandsOptions.map(e => {
+        e.fade = !unique.includes(e.value);
+      });
+    }
   }
 
   // Volume
 
-  private volumeCheckboxFade(volumeArr): void {
-    const unique = this.uniqueElementsInArray(volumeArr);
-    this.volumeOptions.map(e => {
-      e.fade = !unique.includes(e.value);
-    });
+  private volumeCheckboxFade(arr): void {
+    const unique = this.uniqueElementsInArray(arr);
+    if (arr.length === 0) {
+      this.volumeOptions.map(e => {
+        e.fade = false;
+      });
+    } else {
+      this.volumeOptions.map(e => {
+        e.fade = !unique.includes(e.value);
+      });
+    }
   }
 
   // Viscosity
 
-  private viscosityCheckboxFade(viscArr): void {
-    const unique = this.uniqueElementsInArray(viscArr);
-    this.viscosityOptions.map(e => {
-      e.fade = !unique.includes(e.value);
-    });
+  private viscosityCheckboxFade(arr): void {
+    const unique = this.uniqueElementsInArray(arr);
+    if (arr.length === 0) {
+      this.viscosityOptions.map(e => {
+        e.fade = false;
+      });
+    } else {
+      this.viscosityOptions.map(e => {
+        e.fade = !unique.includes(e.value);
+      });
+    }
   }
 
   // MBApprovals
@@ -907,6 +949,7 @@ export class OilsComponent implements OnInit {
   }
 
   delFromQuickFilter(key: any, value: any) {
+    const nonApprovals = ['api', 'brands', 'acea', 'volume', 'viscosity'];
     const key_ = key.slice(1);
     const arrayAfterDel = [];
     const firstSymbol = key_.substr(0, 1);
@@ -917,10 +960,15 @@ export class OilsComponent implements OnInit {
     this.quickFilter[keyLowerCase].map(e => {
       arrayAfterDel.push(e[1]);
     });
-    const onKeyChangeMethodName = 'on' + key_ + 'Change';
-
-    this[onKeyChangeMethodName](arrayAfterDel);
-    this.uncheckCheckbox(keyLowerCase, arrayAfterDel);
+    if (nonApprovals.includes(keyLowerCase)) {
+      const onKeyChangeMethodName = 'on' + key_ + 'Change';
+      this[onKeyChangeMethodName](arrayAfterDel);
+      this.uncheckCheckbox(keyLowerCase, arrayAfterDel);
+    } else {
+      this.onApprovalChange(arrayAfterDel, key);
+      const keyWithoutApprovals = keyLowerCase.substr(0, keyLowerCase.indexOf('Approvals'));
+      this.uncheckCheckbox(keyWithoutApprovals, arrayAfterDel);
+    }
   }
 
   private uncheckCheckbox(key, arrayAfterDel) {
@@ -971,6 +1019,7 @@ export class OilsComponent implements OnInit {
         'acea',
         'volume',
         'viscosity'].concat(approvals));
+      if (value.length === 0)this.brandCheckboxFade([]);
     });
   }
 
@@ -1003,6 +1052,7 @@ export class OilsComponent implements OnInit {
         'brand',
         'volume',
         'viscosity'].concat(approvals));
+      if (value.length === 0)this.aceaCheckboxFade([]);
     });
   }
 
@@ -1036,6 +1086,7 @@ export class OilsComponent implements OnInit {
         'brand',
         'volume',
         'viscosity'].concat(approvals));
+      if (value.length === 0)this.ilsacCheckboxFade([]);
     });
   }
 
@@ -1068,6 +1119,7 @@ export class OilsComponent implements OnInit {
         'brand',
         'volume',
         'viscosity'].concat(approvals));
+      if (value.length === 0)this.apiCheckboxFade([]);
     });
   }
 
@@ -1100,6 +1152,7 @@ export class OilsComponent implements OnInit {
         'api',
         'brand',
         'viscosity'].concat(approvals));
+      if (value.length === 0)this.volumeCheckboxFade([]);
     });
   }
 
@@ -1132,6 +1185,7 @@ export class OilsComponent implements OnInit {
         'api',
         'brand',
         'volume'].concat(approvals));
+      if (value.length === 0)this.viscosityCheckboxFade([]);
     });
   }
 
