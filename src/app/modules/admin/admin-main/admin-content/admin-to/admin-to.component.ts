@@ -225,6 +225,7 @@ export class AdminToComponent implements OnInit {
       this.models = r;
       // Устанавливаем модель по-умолчанию
       this.ca.patchValue({idModel: r[0].id});
+      this.updateAutos(r[0].id);
       this.showAllFields = true;
     });
   }
@@ -248,6 +249,9 @@ export class AdminToComponent implements OnInit {
       this.articles = resp;
       this.clearFields();
       this.getAuto(autoId);
+      this.toService.models(resp[0].idBrand).subscribe(r => {
+        this.models = r;
+      });
     });
   }
 
@@ -291,10 +295,11 @@ export class AdminToComponent implements OnInit {
     this.isGoodsChanges = true;
   }
 
-  removeItemFromGoods(elem, id: any) {
+  removeItemFromGoods(elem, min: any) {
     elem.preventDefault();
+    console.log(min);
     this.goods = this.goods.filter(e => {
-      return e.id != id;
+      return e.min != min;
     });
     this.isGoodsChanges = true;
   }

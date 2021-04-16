@@ -104,7 +104,7 @@
                     <!--[selected]="g.idGroup === group.id" - выбор группы-->
                     <option *ngFor="let e of exchanges" [selected]="g.idExchange === e.id" value="{{e.id}}">{{e.name}}</option>
                   </select>
-                  <button class="admin-btn" (click)="removeItemFromGoods($event, g.id)">-</button>
+                  <button class="admin-btn" (click)="removeItemFromGoods($event, g.min)">-</button>
                 </div>
               </div>
               <div class="new_item">
@@ -115,7 +115,7 @@
                 <div class="form-group">
                   <p class="admin_content_block_label">Добавление товарных позиций</p>
                   <p class="admin_content_block_label_small">
-                    *После того, как заполните все поля, нажмите кнопку "+", это добавит товарную позицию к автобомилю.
+                    *После того, как заполните все поля, нажмите кнопку "+", это добавит товарную позицию к автомобилю.
                   </p>
                   <form class="admin_content_form" [formGroup]="addGoodsItem" (ngSubmit)="onGoodsItemSubmit()">
                     <div class="form-group">
